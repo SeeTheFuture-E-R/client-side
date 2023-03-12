@@ -1,24 +1,42 @@
-import logo from './logo.svg';
+
 import './App.css';
+
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom"
+
+import Login from "./components/Login/index"
+import Register from "./components/Register/Register"
+import Home from "./components/Home/index"
+import Products from "./components/Shopping/Products/index"
+import Books from "./components/Books/index"
+import Articles from "./components/Articles/index"
+import About from "./components/About/index"
+import Shopping from "./components/Shopping/index"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <nav className='main-nav'>
+          <NavLink to="/">דף הבית</NavLink>
+          <NavLink to="/shopping">מוצרים </NavLink>
+          <NavLink to="/books">ספרים </NavLink>
+          <NavLink to="/articles">מאמרים </NavLink>
+          <NavLink to="/about">אודות </NavLink>
+          <NavLink to="/login">כניסה </NavLink>
+          <NavLink to="/register">הרשמה </NavLink>
+        </nav>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/shopping' element={<Shopping />} />
+          <Route path='/books' element={<Books />} />
+          <Route path='/articles' element={<Articles />} />
+          <Route path='/about' element={<About />} />
+
+        </Routes>
+      </Router>
+    </>
   );
 }
 
