@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 function Home(props) {
      const images = [
           {
-            url: "",;//"../../../image/home_products.png",
+            url: "",//"../../../image/home_products.png",
             title: 'products',
             width: '40%',
           },
@@ -81,7 +81,7 @@ function Home(props) {
         
 
      return (<>
-    <Link to={'/shopping'}><Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+    <Link to={'/shopping?category=deily'}><Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
       {images.map((image) => (
         <ImageButton
           focusRipple

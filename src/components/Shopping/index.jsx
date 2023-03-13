@@ -1,19 +1,21 @@
 //<!-- <Cart/>
 //<Products/> -->
 
-//import fetches from "../../fetchers"
-function Shopping(props){
-    const getAllProducts=async()=>{
-        const res = await fetch('http://localhost:9660/products')
-         console.log(await res.json()) 
-    }
-    const products = getAllProducts()
+
+
+
+import Products from "./Products/index"
+import Categories from "./Categories";
+import Cart from "./Cart";
+
+
+function Shopping(props) {
+
     return (<>
-        <h6>come to my shoppppppppppppppppppp!!!!!!!!!!!!!a</h6>
-        {
-            products.map(p=><div>p.id</div>)
-        }
-        </>
+        <Cart></Cart>
+        {/* <Categories></Categories> */}
+        <Products></Products>
+    </>
     )
 }
-export default Shopping;
+export default Shopping
