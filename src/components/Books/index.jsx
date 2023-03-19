@@ -25,6 +25,7 @@ function Books(props)
         , [])
 
     return <>
+    <button>להוספת ספר</button><br/>
        {books.map(p=><SingleBook book={p}></SingleBook>)}
         </>
        

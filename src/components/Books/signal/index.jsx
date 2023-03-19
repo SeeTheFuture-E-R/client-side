@@ -2,9 +2,11 @@
 function SingleBook({book})
 {
 
-    return <>
-      
-        </>
+    return (<>
+     {book.name}<br/>
+     {book.destanation}<br/>
+טלפון:{book.contact_details}
+        </>)
        
 }
 
