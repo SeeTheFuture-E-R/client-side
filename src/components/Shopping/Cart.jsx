@@ -10,9 +10,9 @@ import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SingleProduct from './Products/Single';
 
-
-function Cart(props) {
+function Cart({count}) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -24,23 +24,48 @@ function Cart(props) {
         setOpen(false);
     };
 
-    // const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
-//     '& .MuiBadge-badge': {
-//       right: -3,
-//       top: 13,
-//       border: `2px solid ${theme.palette.background.paper}`,
-//       padding: '0 4px',
-//     },
-//   }));
+    const getProductsFromStorage = () => {
+        let cart = localStorage.getItem("cart")
+
+        if (cart != null) {
+            cart = JSON.parse(cart)
+            return cart
+        }
+        return []
+    }
+
+    const calcSum = () => {
+        let cart = localStorage.getItem("cart")
+        if (cart != null) {
+            cart = JSON.parse(cart)
+            let sum = 0
+            cart.forEach(e => {
+                sum += parseInt(e.price);
+                console.log(e.price)
+            });
+            return sum
+
+        }
+        return 0
+    }
+
+        const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+          right: -3,
+          top: 13,
+          border: `2px solid ${theme.palette.background.paper}`,
+          padding: '0 4px',
+        },
+      }));
 
     return (
-        
+
         <div>
-                    <IconButton aria-label="cart" variant="outlined" onClick={handleClickOpen}>
-            {/* <StyledBadge badgeContent={4} color="secondary"> */}
+            <IconButton aria-label="cart" variant="outlined" onClick={handleClickOpen}>
+                <StyledBadge badgeContent={count} color="secondary">
                 <ShoppingCartIcon />
-            {/* </StyledBadge> */}
-        </IconButton>
+                </StyledBadge>
+            </IconButton>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -52,7 +77,8 @@ function Cart(props) {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        סכום כולל: 0 ₪
+                        סכום כולל: {calcSum()} ₪
+                        {getProductsFromStorage().map(p => <SingleProduct product={p} button={false}></SingleProduct>)}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

@@ -1,20 +1,23 @@
 
-import { colors } from "@mui/material";
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-function Categories(props) {
-   //const [category, setCategory] = useState("daily")
+function Categories() {
+   
     const navigate = useNavigate()
-   useEffect(() => {
-   })
+
+    function changeCategory(c)
+    {
+      navigate(`/shopping?category=${c}`);
+    }
+
    return (<>
-      <Button onClick={()=>{navigate("/shopping?category=daily")}}>יום יום</Button>
-      <Button onClick={()=>{navigate("/shopping?category=brail") }}>ברייל</Button>
-      <Button onClick={()=>{navigate("/shopping?category=medical") }}>רפואי</Button>
-      <Button onClick={()=>{navigate("/shopping?category=kitchen") }}>מטבח</Button>
-      <Button onClick={()=>{navigate("/shopping?category=mobility") }}>ניידות</Button>
-      <Button onClick={()=>{navigate("/shopping?category=ICamera") }}>הפיתוח שלנו</Button>
+      <Button onClick={()=>changeCategory('daily')}>יום יום</Button>
+      <Button onClick={()=>changeCategory('brail')}>ברייל</Button>
+      <Button onClick={()=>changeCategory('medical')}>רפואי</Button>
+      <Button onClick={()=>changeCategory('kitchen')}>מטבח</Button>
+      <Button onClick={()=>changeCategory('mobility')}>ניידות</Button>
+      <Button onClick={()=>changeCategory('ICamera')}>הפיתוח שלנו</Button>
    </>
    )
 }

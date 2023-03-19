@@ -1,23 +1,25 @@
 
+import { Button } from "@mui/material"
 
+function AddToCart({product, setCount}) {
 
-function AddToCart({ product }) {
-
-    const changeStorege = () => {
+    const changeStorage = () => {
         let cart = localStorage.getItem("cart")
-        console.log(cart)
-        if (cart == null)
-            localStorage.setItem("cart", JSON.stringify([product]));
-        else {
+
+        if (cart != null) {
             cart = JSON.parse(cart)
-            cart = [...cart, product] 
-            localStorage.setItem("cart", JSON.stringify(cart));}
+            cart = [...cart,  product]
         }
-        
-    
+        else {
+            cart = [product]
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        setCount(cart.length)
+    }
 
-    return <button onClick={changeStorege}>הוספה לעגלה</button>
-
+    return(        
+       <Button onClick={changeStorage}>הוספה לעגלה</Button>
+        )
 }
 
 export default AddToCart

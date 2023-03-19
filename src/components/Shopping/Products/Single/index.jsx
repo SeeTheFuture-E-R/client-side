@@ -1,8 +1,11 @@
+import { Button } from "@mui/material"
 import AddToCart from "./AddToCart"
+import DeleteFromCart from './DeleteFromCart'
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({ product , button=true, setCount}) => {
     const { name, price, description, company, picture } = product
 
+    
     return (
         <>
             <div>{name}</div>
@@ -10,9 +13,11 @@ const SingleProduct = ({ product }) => {
             <div>{description}</div>
             <div>{company}</div>
             <img src={picture}></img>
-            <AddToCart product={product}/>
+            {button ? <AddToCart product={product} setCount={setCount}></AddToCart> : <DeleteFromCart productId={product.productId} setCount={setCount}></DeleteFromCart>}
         </>)
 }
 
 
 export default SingleProduct
+
+

@@ -1,9 +1,7 @@
 //<!-- <Cart/>
 //<Products/> -->
 
-
-
-
+import React, { useState } from "react";
 import Products from "./Products/index"
 import Categories from "./Categories";
 import Cart from "./Cart";
@@ -11,11 +9,15 @@ import Cart from "./Cart";
 
 function Shopping(props) {
 
+    const [count, setCount] = useState(0)
+//const [shopping,setShopping]=useState()
     return (<>
-        <Cart></Cart>
-        {/* <Categories></Categories> */}
-        <Products></Products>
+        <Categories></Categories>
+        <Cart count={count}></Cart>
+        <Products setCount={setCount}></Products>
+        
     </>
     )
 }
+
 export default Shopping

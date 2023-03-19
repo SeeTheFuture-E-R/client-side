@@ -10,7 +10,6 @@ import Books from "./components/Books/index"
 import Articles from "./components/Articles/index"
 import About from "./components/About/index"
 import Shopping from "./components/Shopping/index"
-import Cart from './components/Shopping/Cart';
 
 function App() {
   return (
@@ -24,13 +23,12 @@ function App() {
           <NavLink to="/about">אודות </NavLink>
           <NavLink to="/login">כניסה </NavLink>
           <NavLink to="/register">הרשמה </NavLink>
-
         </nav>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-         // <Route path={`/shopping`} element={<Shopping />} />
+          <Route path={`/shopping`} element={<Shopping />} />
           <Route path={`/shopping?category=/*`} element={<Shopping />} />
           <Route path='/books' element={<Books />} />
           <Route path='/articles' element={<Articles />} />
