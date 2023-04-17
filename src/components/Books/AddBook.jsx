@@ -78,8 +78,8 @@ function AddBook() {
                     <div style={{ width: 300, textAlign: "center"}}>
                         פרטי הספר
                         <br></br>
-                        {details.map((l) => <><TextField id={l} label={l} variant="outlined" /><br></br></>)}
-                        {requireDetails.map((l) => <><TextField id={l} label={l} variant="outlined" required /><br></br></>)}
+                        {details.map((l, i) => <><TextField id={l} label={l} key={i} variant="outlined" /><br></br></>)}
+                        {requireDetails.map((l, i) => <><TextField id={l} label={l} key={i} variant="outlined" required /><br></br></>)}
                   
                     <DialogActions>
                         <Button onClick={() => { addBook(); handleClose() }} autoFocus>להוספה</Button>

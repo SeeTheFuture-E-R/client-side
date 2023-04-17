@@ -25,6 +25,7 @@ export const AuthContextProvider = ({ children }) => {
     setCurrentUser(res.data.user);
     setToken(res.data.accessToken);
   };
+  
   const logout = () => {
 
     setCurrentUser(null);

@@ -1,195 +1,207 @@
-import React, { useState } from "react";
-import './Register.css'
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import * as React from 'react';
 import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import FirstStep from './FirstStep';
+import SecondStep from './SecondStep';
+import ThirdStep from './ThirdStep';
+import FourthStep from './FourthStep';
+import { useContext, useState } from "react";
+import { AuthContext } from '../context/authContext';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const steps = [' רישום למערכת', 'פרטים אישיים', 'העלאת מסמכים', 'אימות כתובת מייל'];
 
 
-function Register(props) {
-    const navigate = useNavigate()
+function Register() {
 
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [userId, setUserId] = useState("")
-    // const [phone, setPhone] = useState("")
-    const [email, setEmail] = useState("")
-    // const [birth_year, setBirth_year] = useState(null)
-    // const [family_status, setFamily_status] = useState("")
-    const [num_of_children, setNum_of_children] = useState(0)
-    const [password, setPassword] = useState("")
-    // const [blind_card, setBlind_card] = useState("")
-    // const [handicap_card, setHandicap_card] = useState("")
-    // const [identity_card, setIdentity_card] = useState("")
-    // const [handicap_precentage, setHandicap_precentage] = useState(0)
-
-    const sumbit = async () => {
-        const user = {
-            userId: userId,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            // phone: phone,
-            email: email,
-            // birth_year: birth_year,
-            // family_status: family_status,
-            // num_of_children: num_of_children,
-            //     blind_card: blind_card,
-            //     handicap_card: handicap_card,
-            //     identity_card: identity_card,
-            //     handicap_precentage: handicap_precentage
-        }
-        console.log("test", user)
-        // setErr("")
-        // e.preventDefault();
-
-        try {
-            await axios.post('http://localhost:9660/auth/register', user);
-            navigate("/login")
-        } catch (err) {
-            alert(err)
-            //   setErr(err.response.data?.message);
-        }
+  const register = async () => {
+    try {
+      const res = await axios.post("http://localhost:9660/auth/register", user
+      )
+      console.log(res);
     }
+    catch (err) {
+      console.log(err)
+    }
+  }
+  const navigate = useNavigate();
 
-    const steps = ['הכנסת פרטים אישיים', 'העלאת מסמכים', 'אימות כתובת מייל'];
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [userId, setUserId] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [birth_year, setBirth_year] = useState(null)
+  const [family_status, setFamily_status] = useState("")
+  const [num_of_children, setNum_of_children] = useState(0)
+  const [password, setPassword] = useState("")
+  const [blind_card, setBlind_card] = useState("")
+  const [handicap_card, setHandicap_card] = useState("")
+  const [identity_card, setIdentity_card] = useState("")
+  const [handicap_precentage, setHandicap_precentage] = useState(0);
 
-    const [activeStep, setActiveStep] = useState(0);
-    const [skipped, setSkipped] = useState(new Set());
+  const [activeStep, setActiveStep] = useState(0)
 
-    const isStepOptional = (step) => {
-        return step === 1;
-    };
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    boxShadow: 24,
+    backgroundColor: 'white',
+    padding: '2%'
+  }
 
-    const isStepSkipped = (step) => {
-        return skipped.has(step);
-    };
+  
+  const user = {
+    userId: userId,
+    password: password,
+    firstName: firstName,
+    lastName: lastName,
+    phone: phone,
+    email: email,
+    birth_year: birth_year,
+    // family_status: family_status,
+    num_of_children: num_of_children,
+    blind_card: blind_card,
+    handicap_card: handicap_card,
+    identity_card: identity_card,
+    handicap_precentage: handicap_precentage,
+  }
 
-    const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
-    };
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <FirstStep
+          userId={userId}
+          email={email}
+          password={password}
+          handleNext={handleNext}
+          setPassword={setPassword}
+          setUserId={setUserId}
+          setEmail={setEmail}
+        />;
+      case 1:
+        return <SecondStep
+          handleNext={handleNext}
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          birth_year={birth_year}
+          setBirth_year={setBirth_year}
+          family_status={family_status}
+          setFamily_status={setFamily_status}
+          num_of_children={num_of_children}
+          setNum_of_children={setNum_of_children}
+          handicap_precentage={handicap_precentage}
+          setHandicap_precentage={setHandicap_precentage}
+          phone={phone}
+          setPhone={setPhone}
+        />;
+      case 2:
+        return <ThirdStep
+          handleNext={handleNext}
+          handicap_card={handicap_card}
+          setHandicap_card={setHandicap_card}
+          blind_card={blind_card}
+          setBlind_card={setBlind_card}
+          identity_card={identity_card}
+          setIdentity_card={setIdentity_card}
+        />;
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+      case 3:
+        return <FourthStep
+          handleNext={handleNext}
 
-    const handleSkip = () => {
-        if (!isStepOptional(activeStep)) {
-            // You probably want to guard against something like this,
-            // it should never occur unless someone's actively trying to break something.
-            throw new Error("You can't skip a step that isn't optional.");
-        }
+        />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped((prevSkipped) => {
-            const newSkipped = new Set(prevSkipped.values());
-            newSkipped.add(activeStep);
-            return newSkipped;
-        });
-    };
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+  };
 
-    const handleReset = () => {
-        setActiveStep(0);
-    };
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
 
-    return (
-        <>
-            <Box sx={{ width: '100%' }}>
-                <Stepper activeStep={activeStep}>
-                    {steps.map((label, index) => {
-                        const stepProps = {};
-                        const labelProps = {};
-                        if (isStepOptional(index)) {
-                            labelProps.optional = (
-                                <Typography variant="caption">Optional</Typography>
-                            );
-                        }
-                        if (isStepSkipped(index)) {
-                            stepProps.completed = false;
-                        }
+  const { setCurrentUser } = useContext(AuthContext)
 
-                        return (
-                            <Step key={label} {...stepProps}>
-                                <StepLabel {...labelProps}>{label}</StepLabel>
-                            </Step>
-                        );
-                    })}
-                </Stepper>
-                {activeStep === steps.length ? (
-                    <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>
-                            משתמש נוסף בהצלחה
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                            <Box sx={{ flex: '1 1 auto' }} />
-                            <Button onClick={handleReset}>Reset</Button>
-                        </Box>
-                    </React.Fragment>
-                ) : (
-                    <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                            <Button
-                                color="inherit"
-                                disabled={activeStep === 0}
-                                onClick={handleBack}
-                                sx={{ mr: 1 }}
-                            >
-                                Back
-                            </Button>
-                            <Box sx={{ flex: '1 1 auto' }} />
-                            {isStepOptional(activeStep) && (
-                                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                                    Skip
-                                </Button>
-                            )}
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const closeStepper = async () => {
+    handleClose();
+    // setLogedIn(true);
 
-                            <Button onClick={handleNext}>
-                                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                            </Button>
-                        </Box>
-                    </React.Fragment>
+    await register();
+  }
+
+  return (
+    <>
+      <Button style={{ margin: '10px', color: 'purple', backgroundColor: 'white' }} id='lgnBtn' variant="contained" onClick={handleOpen}>Sign Up</Button>
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      ><Box sx={style}>
+          <Typography component="h1" variant="h4" align="center">
+            רישום
+          </Typography>
+          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length ? (
+            setTimeout(closeStepper, 3000),
+            <React.Fragment>
+              <Typography variant="h5" gutterBottom>
+                הרישום הסתיים בהצלחה!
+              </Typography>
+              <Typography variant="subtitle1">
+                תודה שהצטרפתם אלינו!
+              </Typography>
+            </React.Fragment>
+
+          ) : (
+            <React.Fragment>
+              {getStepContent(activeStep)}
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                {activeStep !== 0 && (
+                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                    הקודם
+                  </Button>
                 )}
-            </Box>
-        </>
-    );
+                {activeStep === steps.length - 1 ?
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    {'סיום'}
+                  </Button> : <></>}
+              </Box>
+            </React.Fragment>
+          )}
+        </Box>
+      </Modal>
+    </>
+  );
 }
-export default Register
 
-
-
-
-
-// <div class='container'>
-// <div class='window'>
-//     <div class='overlay'></div>
-//     <div class='content'>
-//         <div class='welcome'> להרשם לאתר</div>
-//         <div class='subtitle'>We're almost done. Before using our services you need to create an account.</div>
-//         <div class='input-fields'>
-//             <input type='text' placeholder='תעודת זהות' class='input-line full-width' onChange={(e) => setUserId(e.target.value)}></input>
-//             <input type='text' placeholder='שם פרטי' class='input-line full-width' onChange={(e) => setFirstName(e.target.value)}></input>
-//             <input type='text' placeholder='שם משפחה' class='input-line full-width' onChange={(e) => setLastName(e.target.value)}></input>
-//             {/* <input type='text' placeholder='פלאפון' class='input-line full-width' onChange={(e)=>setPhone(e)}></input> */}
-//             <input type='email' placeholder='איימיל' class='input-line full-width' onChange={(e) => setEmail(e.target.value)}></input>
-//             {/* <input type='number' placeholder='שנת לידה' class='input-line full-width' onChange={(e)=>setBirth_year(e)}></input> */}
-//             {/* status??? */}
-//             <input type='number' placeholder='מספר ילדים ' class='input-line full-width' onChange={(e) => setNum_of_children(e.target.value)}></input>
-//             <input type='password' placeholder='סיסמה' class='input-line full-width' onChange={(e) => setPassword(e.target.value)}></input>
-//         </div>
-//         <div><button class='ghost-round full-width' onClick={() => { sumbit() }}>Sign Up</button></div>
-//     </div>
-// </div>
-// </div>
+export default Register;

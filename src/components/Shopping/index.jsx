@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import Products from "./Products/index"
 import Categories from "./Categories";
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 
 
 function Shopping(props) {

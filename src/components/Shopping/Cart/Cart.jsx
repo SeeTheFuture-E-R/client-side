@@ -10,12 +10,15 @@ import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import SingleProduct from './Products/Single';
+import SingleProduct from '../Products/Single';
+import Payment from './Payment';
+import Details from './Details';
+//import { CreditCard } from '@mui/icons-material';
 
-function Cart({count}) {
+function Cart({ count }) {
 
     const [open, setOpen] = React.useState(false);
-
+    const [cartOpen, setCartOpen] = React.useState(true);
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -23,6 +26,7 @@ function Cart({count}) {
     const handleClose = () => {
         setOpen(false);
     };
+
 
     const getProductsFromStorage = () => {
         let cart = localStorage.getItem("cart")
@@ -49,21 +53,21 @@ function Cart({count}) {
         return 0
     }
 
-        const StyledBadge = styled(Badge)(({ theme }) => ({
+    const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
-          right: -3,
-          top: 13,
-          border: `2px solid ${theme.palette.background.paper}`,
-          padding: '0 4px',
+            right: -3,
+            top: 13,
+            border: `2px solid ${theme.palette.background.paper}`,
+            padding: '0 4px',
         },
-      }));
+    }));
 
     return (
 
         <div>
             <IconButton aria-label="cart" variant="outlined" onClick={handleClickOpen}>
                 <StyledBadge badgeContent={count} color="secondary">
-                <ShoppingCartIcon />
+                    <ShoppingCartIcon />
                 </StyledBadge>
             </IconButton>
             <Dialog
@@ -72,21 +76,13 @@ function Cart({count}) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">
-                    {"העגלה שלך"}
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        סכום כולל: {calcSum()} ₪
-                        {getProductsFromStorage().map(p => <SingleProduct product={p} button={false}></SingleProduct>)}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>סגור</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        לסיום ותשלום
-                    </Button>
-                </DialogActions>
+                <div>
+                    {cartOpen ?
+                        <Details setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum}></Details>
+                        :
+                        <Payment setCartOpen={setCartOpen}></Payment>
+                    }
+                </div>
             </Dialog>
         </div>
     );
