@@ -12,6 +12,8 @@ const SingleProduct = ({ product , button=true, setCount}) => {
             <div>{description}</div>
             <div>{company}</div>
             <img src={picture}></img>
+            {picture}
+            {console.log(setCount+"Single")}
             {button ? <AddToCart product={product} setCount={setCount}></AddToCart> : <DeleteFromCart productId={product.productId} setCount={setCount}></DeleteFromCart>}
         </>)
 }

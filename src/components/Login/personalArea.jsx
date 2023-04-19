@@ -4,10 +4,11 @@ import TextField from '@mui/material/TextField';
 import{useContext} from "react"
 import {AuthContext} from '../context/authContext'
 import axios from "axios";
+import SingleBook from "../Books/signal";
 function  PersonalArea(props){
-let { setCurrentUser, setToken, currentUser, token } = useContext(AuthContext);
+let { setCurrentUser, currentUser, token } = useContext(AuthContext);
   const changeDetilas=async()=>{
-    console.log("ffffffffffffffff")
+
   const user = {
     id:currentUser.id,
     userId: currentUser.userId,
@@ -24,7 +25,7 @@ let { setCurrentUser, setToken, currentUser, token } = useContext(AuthContext);
 //     //     handicap_precentage: handicap_precentage
  }
 
- console.log("test", user)
+
 
 // // e.preventDefault();
 let config = {
@@ -34,13 +35,33 @@ let config = {
 }
 try{
      await axios.put(`http://localhost:9660/users/${currentUser.id}`, user,config);
-     //console.log("faleeeeeeeeeeeeeeeee")
-       setCurrentUser(user)
+     
+
+      const res=await axios.get(`http://localhost:9660/users/${currentUser.id}`,config)
+       setCurrentUser(res.data)
     }
 catch(e){
 console.log(e+"faleeeeeeeeeeeeeeeee")
 }
-   }
+}
+const getDetails=async()=>{
+  try{
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    }
+  const res=await axios.get(`http://localhost:9660/users/${currentUser.id}`,config)
+  console.log(res)}
+  catch(err){
+    console.log("hhhhfffffffffffhhhhhhhhhhhhhhh")
+    console.log(err)
+  }
+}
+   
+    // useEffect=()=>{
+    //   {getDetails()}
+    // }
     return (<>
     <br/>
          <TextField
@@ -77,7 +98,9 @@ console.log(e+"faleeeeeeeeeeeeeeeee")
         shrink: true,
       }}
     />
-       
+      
+   {   currentUser.books.map(x =>{<SingleBook book={x} area={true}></SingleBook>} )}
+
     <Button varient="outline" onClick={changeDetilas}>לעידכון</Button>
     </>)
 }

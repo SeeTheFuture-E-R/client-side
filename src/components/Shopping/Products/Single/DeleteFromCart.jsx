@@ -15,6 +15,7 @@ function DeleteFromCart({ productId , setCount}) {
             else
                 localStorage.setItem("cart", JSON.stringify(cart));
         }
+        console.log(setCount)
         setCount(cart.length)
     }
 

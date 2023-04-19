@@ -13,9 +13,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SingleProduct from '../Products/Single';
 import Payment from './Payment';
 import Details from './Details';
-//import { CreditCard } from '@mui/icons-material';
 
-function Cart({ count }) {
+
+function Cart({ count, setCount }) {
 
     const [open, setOpen] = React.useState(false);
     const [cartOpen, setCartOpen] = React.useState(true);
@@ -78,7 +78,7 @@ function Cart({ count }) {
             >
                 <div>
                     {cartOpen ?
-                        <Details setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum}></Details>
+                        <Details setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()} setCount={setCount}>{console.log(setCount+"car2")}</Details>
                         :
                         <Payment setCartOpen={setCartOpen}></Payment>
                     }

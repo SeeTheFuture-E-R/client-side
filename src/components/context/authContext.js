@@ -21,8 +21,9 @@ export const AuthContextProvider = ({ children }) => {
         withCredentials: true,
       }
     );
-
+console.log(res.data.user)
     setCurrentUser(res.data.user);
+    console.log(res.data.accessToken)
     setToken(res.data.accessToken);
   };
   
@@ -33,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log("useeffectuser")
     localStorage.setItem("user",  JSON.stringify(currentUser));
   }, [currentUser]);
   

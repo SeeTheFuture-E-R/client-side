@@ -1,11 +1,14 @@
 import { EventSeatRounded } from "@mui/icons-material";
-import MailFreind from "./renana";
-import Friend from "./ester";
+import MailFriend from "./MailToFriends";
+import Friend from "./friends";
+
 function Friends() {
+
     return (
         <>
-            <MailFreind></MailFreind>
+            <MailFriend></MailFriend>
             <Friend></Friend>
+            <img src={"M:\\פרויקט\\client_side\\see-the-future\\image\\404.png"}></img>
         </>
     )
 }

@@ -10,10 +10,11 @@ import Cart from "./Cart/Cart";
 function Shopping(props) {
 
     const [count, setCount] = useState(0)
+
 //const [shopping,setShopping]=useState()
     return (<>
         <Categories></Categories>
-        <Cart count={count}></Cart>
+        <Cart count={count} setCount={setCount}></Cart>
         <Products setCount={setCount}></Products>
         
     </>

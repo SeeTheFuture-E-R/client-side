@@ -1,12 +1,14 @@
 import axios from "axios";
-import {useEffect,useState} from "react"
+import { useEffect, useState } from "react"
 import SingleBook from "./signal";
 import AddBook from "./AddBook";
-function Books(props)
-{
-    const [books,setBooks]=useState([])
+import Uploader from "../Uploader";
 
-    const getAllBooks=async()=>{
+function Books(props) {
+    const [books, setBooks] = useState([])
+    const [file, setFile] = useState()
+
+    const getAllBooks = async () => {
         try {
             console.log("all book")
             const res = await axios.get('http://localhost:9660/books');
@@ -17,22 +19,22 @@ function Books(props)
             console.log(err)
             //   setErr(err.response.data?.message);
         }
-     
+
     }
 
-    
-    
+
+
     useEffect(() => {
         getAllBooks()
     }
         , [])
 
     return <>
-    <AddBook></AddBook><br/>
-    
-       {books.map(p=><SingleBook book={p}></SingleBook>)}
-        </>
-       
+        <AddBook setBooks={ setBooks} books={books}></AddBook><br />
+
+        {books.map(p => <SingleBook book={p}></SingleBook>)}
+    </>
+
 }
 
 export default Books;

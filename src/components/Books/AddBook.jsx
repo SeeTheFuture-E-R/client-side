@@ -21,7 +21,7 @@ import {AuthContext} from "../context/authContext"
 // }
 
 
-function AddBook() {
+function AddBook({books, setBooks}) {
 
 
     const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ function AddBook() {
                 description: document.getElementById("תיאור").value, 
                 author: document.getElementById("סופר").value, 
                 num_of_pages: parseInt(document.getElementById("מספר עמודים").value),
-                lendId: currentUser?.userId,
+                userId:currentUser?.id,
                 contact_details:  document.getElementById("טלפון / מייל").value, 
                 address:  document.getElementById("כתובת").value
             };
@@ -57,11 +57,12 @@ function AddBook() {
                   'Authorization': 'Bearer ' + token
                 }
             }
-
             const res = await axios.post('http://localhost:9660/books', Book,config);
             console.log(res.data)
+            setBooks([...books,res.data])
 
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(err)
             //   setErr(err.response.data?.message);
         }

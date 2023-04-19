@@ -39,11 +39,12 @@ const getProductsFromStorage = () => {
 }
 
     return(
-      <>
+    <div style={{width:500}}>
+      
        תשלום<br/>
-       <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 200}} aria-label="caption table">
-        <caption>A basic table example with a caption</caption>
+       <TableContainer component={Paper} style={{margin:"8px"}}>
+      <Table sx={{ Width: 400}} aria-label="caption table">
+       
         <TableHead>
           <TableRow>
             <TableCell>שם</TableCell>
@@ -62,11 +63,8 @@ const getProductsFromStorage = () => {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
-      {getProductsFromStorage().map((p,i) => <div key={i}>{p.name} {p.price} {p.picture}</div>)}
+    </TableContainer>     
      
-      
-      <div>
       מספר כרטיס אשראי<br />
       <TextField style={{margin:"8px"}} size="small"  onChange={(e) => { setcreditNumber(e.target.value) }}></TextField><br />
       תעודת זהות בעל ההכרטיס<br />
@@ -76,8 +74,9 @@ const getProductsFromStorage = () => {
       תאריך<br />
       <TextField  style={{margin:"8px"}} onChange={(e) => { setExpiryDate(e.target.value) }}></TextField><br />
       <Button onClick={()=>setCartOpen(true)}>לחזור </Button>
-      <Button onClick={toPayment}>לסיום</Button></div>
-</>
+      <Button onClick={toPayment}>לסיום</Button>
+      </div> 
+
   
     )
 }
