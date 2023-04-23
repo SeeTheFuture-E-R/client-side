@@ -45,7 +45,7 @@ function Cart({ count, setCount }) {
             let sum = 0
             cart.forEach(e => {
                 sum += parseInt(e.price);
-                console.log(e.price)
+                
             });
             return sum
 
@@ -78,9 +78,9 @@ function Cart({ count, setCount }) {
             >
                 <div>
                     {cartOpen ?
-                        <Details setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()} setCount={setCount}>{console.log(setCount+"car2")}</Details>
+                        <Details setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()} setCount={setCount}></Details>
                         :
-                        <Payment setCartOpen={setCartOpen}></Payment>
+                        <Payment setCartOpen={setCartOpen} handleClose={handleClose} ></Payment>
                     }
                 </div>
             </Dialog>

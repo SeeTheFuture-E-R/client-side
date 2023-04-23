@@ -8,7 +8,6 @@ function Friends() {
         <>
             <MailFriend></MailFriend>
             <Friend></Friend>
-            <img src={"M:\\פרויקט\\client_side\\see-the-future\\image\\404.png"}></img>
         </>
     )
 }

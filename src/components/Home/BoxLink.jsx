@@ -4,18 +4,17 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 
-function BoxLink({url}){
-    const images = [
+function BoxLink({url, title, massage}){
+    const image = 
     {
       url: url,
-      title: 'products',
+      title: title,
       width: '40%',
     }
-  ]
   
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
-    height: 200,
+    height: 350,
     [theme.breakpoints.down('sm')]: {
       width: '100% !important', // Overrides inline-style
       height: 100,
@@ -69,7 +68,7 @@ function BoxLink({url}){
   
   const ImageMarked = styled('span')(({ theme }) => ({
     height: 3,
-    width: 18,
+    width: 20,
     backgroundColor: theme.palette.common.white,
     position: 'absolute',
     bottom: -2,
@@ -78,8 +77,7 @@ function BoxLink({url}){
   }));
   
 return(
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-      {images.map((image) => (
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' , margin: '50px'}}>
         <ImageButton
           focusRipple
           key={image.title}
@@ -106,7 +104,6 @@ return(
             </Typography>
           </Image>
         </ImageButton>
-      ))}
     </Box>
 )
 }

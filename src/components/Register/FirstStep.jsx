@@ -63,6 +63,7 @@ function FirstStep(props) {
             id="password"
             name="password"
             label="סיסמא"
+            type={password}
             fullWidth
             autoComplete="new-password"
             variant="standard"
@@ -75,6 +76,7 @@ function FirstStep(props) {
         <Grid item xs={7}>
           <TextField
             required
+            type={password}
             id="verifyPassword"
             name="verifyPassword"
             label="אימות סיסמא"

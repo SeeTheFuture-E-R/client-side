@@ -4,9 +4,11 @@ import TextField from '@mui/material/TextField';
 import{useContext} from "react"
 import {AuthContext} from '../context/authContext'
 import axios from "axios";
-import SingleBook from "../Books/signal";
+import SingleBook from "../Books/single";
+import { Start } from "@mui/icons-material";
 function  PersonalArea(props){
 let { setCurrentUser, currentUser, token } = useContext(AuthContext);
+const arr=[2,4,5]
   const changeDetilas=async()=>{
 
   const user = {
@@ -38,10 +40,12 @@ try{
      
 
       const res=await axios.get(`http://localhost:9660/users/${currentUser.id}`,config)
-       setCurrentUser(res.data)
+     
+       setCurrentUser(res.data) 
+       
     }
 catch(e){
-console.log(e+"faleeeeeeeeeeeeeeeee")
+console.log(e)
 }
 }
 const getDetails=async()=>{
@@ -52,9 +56,9 @@ const getDetails=async()=>{
       }
     }
   const res=await axios.get(`http://localhost:9660/users/${currentUser.id}`,config)
-  console.log(res)}
+  }
   catch(err){
-    console.log("hhhhfffffffffffhhhhhhhhhhhhhhh")
+    
     console.log(err)
   }
 }
@@ -84,24 +88,36 @@ const getDetails=async()=>{
         /><TextField
         id="email"
         defaultValue={currentUser.email}
-        label="Number"
+        label="email"
         type="text"
         InputLabelProps={{
           shrink: true,
         }}
       /><TextField
       id="outlined-number"
-      defaultValue="Default Value"
+      defaultValue={currentUser.phon}
       label="Number"
       type="text"
       InputLabelProps={{
         shrink: true,
       }}
     />
-      
-   {   currentUser.books.map(x =>{<SingleBook book={x} area={true}></SingleBook>} )}
-
-    <Button varient="outline" onClick={changeDetilas}>לעידכון</Button>
+    <Button varient="outline" onClick={changeDetilas}>לעידכון</Button> 
+    {/* <SingleBook book={{
+        bookId: 7,
+        name:"",
+        picture: null,
+        description:" ספר ראשון בסידרת ממלכה במבחן",
+        author:" מיה קינן",
+        num_of_pages: 450,       
+        contact_details: "0583236977"
+        
+    }} area={true}>jjjjjj</SingleBook> */}
+    { currentUser.books.map((x) => <SingleBook book={x} area={true}></SingleBook>)}
+    {/* books.map(p => <SingleBook book={p}></SingleBook>) */}
+    
     </>)
 }
 export default PersonalArea;
+/*  */
+    /* <SingleBook book={x} area={true}>jjjjjj</SingleBook> */

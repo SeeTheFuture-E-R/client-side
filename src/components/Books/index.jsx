@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import SingleBook from "./signal";
+import SingleBook from "./single";
 import AddBook from "./AddBook";
 import Uploader from "../Uploader";
 
