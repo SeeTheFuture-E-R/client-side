@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
-import SingleProduct from "./Single";
+import SingleProduct from "./Single/index";
 import axios from "axios";
 
 function Products({ setCount }) {

@@ -2,8 +2,8 @@
 import axios from "axios";
 import { useState, useContext } from "react";
 import { Button, Dialog, DialogActions, Box, TextField } from '@mui/material';
-import {AuthContext} from "../context/authContext"
-
+import { AuthContext } from "../context/authContext"
+import Uploader from '../Uploader'
 //   return (
 //     <Box
 //       component="form"
@@ -21,11 +21,12 @@ import {AuthContext} from "../context/authContext"
 // }
 
 
-function AddBook({books, setBooks}) {
+function AddBook({ books, setBooks }) {
 
 
     const [open, setOpen] = useState(false);
-    let { currentUser, token } = useContext(AuthContext);
+    let { setCurrentUser, currentUser, token } = useContext(AuthContext);
+    const [image, setImage] = useState()
 
     const requireDetails = ["טלפון / מייל", "כתובת"]
     const details = ["שם הספר", "סופר", "תיאור", "מספר עמודים"]
@@ -41,27 +42,31 @@ function AddBook({books, setBooks}) {
     const addBook = async () => {
         try {
             const Book = {
-                name: document.getElementById("שם הספר").value, 
+                name: document.getElementById("שם הספר").value,
                 picture: "picture",
-                description: document.getElementById("תיאור").value, 
-                author: document.getElementById("סופר").value, 
+                description: document.getElementById("תיאור").value,
+                author: document.getElementById("סופר").value,
                 num_of_pages: parseInt(document.getElementById("מספר עמודים").value),
-                userId:currentUser?.id,
-                contact_details:  document.getElementById("טלפון / מייל").value, 
-                address:  document.getElementById("כתובת").value
+                userId: currentUser?.id,
+                contact_details: document.getElementById("טלפון / מייל").value,
+                address: document.getElementById("כתובת").value,
             };
-            console.log(Book)
+
 
             let config = {
                 headers: {
-                  'Authorization': 'Bearer ' + token
+                    'Authorization': 'Bearer ' + token
                 }
             }
-            const res = await axios.post('http://localhost:9660/books', Book,config);
-            console.log(res.data)
-            setBooks([...books,res.data])
-
-        } 
+            const res = await axios.post('http://localhost:9660/books', Book, config);
+            const picture=await axios.post(`http://localhost:9660/books/${res.data.bookId}`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
+            let newUser = currentUser
+            res.data.picture = picture.data.name
+            newUser.books = [...currentUser.books, res.data]
+            console.log(newUser.books)
+            setCurrentUser(newUser);
+            setBooks([...books, res.data])
+        }
         catch (err) {
             console.log(err)
             //   setErr(err.response.data?.message);
@@ -76,17 +81,17 @@ function AddBook({books, setBooks}) {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <div style={{ width: 300, textAlign: "center"}}>
+                    <div style={{ width: 300, textAlign: "center" }}>
                         פרטי הספר
                         <br></br>
                         {details.map((l, i) => <><TextField id={l} label={l} key={i} variant="outlined" /><br></br></>)}
                         {requireDetails.map((l, i) => <><TextField id={l} label={l} key={i} variant="outlined" required /><br></br></>)}
-                  
-                    <DialogActions>
-                        <Button onClick={() => { addBook(); handleClose() }} autoFocus>להוספה</Button>
-                        <Button onClick={handleClose}>❌</Button>
-                    </DialogActions>
-                      </div>
+                        <Uploader file={image} setFile={setImage}></Uploader>
+                        <DialogActions>
+                            <Button onClick={() => { addBook(); handleClose() }} autoFocus>להוספה</Button>
+                            <Button onClick={handleClose}>❌</Button>
+                        </DialogActions>
+                    </div>
                 </Dialog>
             </div>
         </>)

@@ -24,6 +24,7 @@ function Login(props) {
             setCurrentUser(res.data.user)
             
             setToken(res.data.accessToken)
+            
             navigate("/personalArea")
         } catch (err) {
             if (err.Status == 401)

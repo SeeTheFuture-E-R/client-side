@@ -1,81 +1,81 @@
-import React, { useEffect , useState} from "react";
-import GoogleMapReact from 'google-map-react';
 import { Icon } from '@iconify/react'
+import React, { useEffect, useState } from "react";
+import Geocode from "react-geocode";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import {
+//   GoogleMap,
+//   useJsApiLoader,
+  Marker,
+//   DirectionsRenderer,
+//   DistanceMatrixService,
+//   InfoWindow,
+//   Polyline
+} from "@react-google-maps/api";
 
-const LocationPin = ({ text }) => (
-  <div className="pin">
-    <Icon  className="pin-icon" />
-    <p className="pin-text">{text}</p>
-  </div>
-)
 
-function SimpleMap (){
-    
-    const location = {
-        address: 'my home',
-        lat: 31.765556,
-        lng: 35.186858,
-      }
-    const [map,setMap]=useState("")
-    // const defaultProps = {
-    //   center: {
-    //     lat: 10.99835602,
-    //     lng: 77.01502627
-    //   },
-    //   zoom: 11
-    // };
-const getMap=async()=>{
- setMap(  <GoogleMapReact
-    bootstrapURLKeys={{ key: 'AIzaSyAtQpEDudWMrZBVUyiEiJeVdOWeXQMW-uI' }}
-    defaultCenter={location}
-    defaultZoom={13}
-  >
-    <LocationPin
-      lat={location.lat}
-      lng={location.lng}
-      text={location.address}
-    />
-  </GoogleMapReact>) 
-}
-    useEffect(() => {
-        getMap()
+import GoogleMapReact from "google-maps-react";
+import { CircularProgress } from '@mui/material';
+Geocode.setApiKey("AIzaSyAtQpEDudWMrZBVUyiEiJeVdOWeXQMW-uI");
+// const Marker = props => {
+//   return <div className="SuperAwesomePin"></div>
+// }
+const Map = ({address}) => 
+{
+  // const { isLoaded } = useJsApiLoader({
+  //   id: "google-map-script",
+  //   googleMapsApiKey: "AIzaSyAtQpEDudWMrZBVUyiEiJeVdOWeXQMW-uI",
+  //   zoom : 12
+  // });
+
+  //   const marker = new AdvancedMarkerView({
+  //   map: map,
+  //   position: center,
+  //   title: 'the book is here'
+  // });
+
+  const [center, setCenter] = useState()
+  // const l = { "lat": 31.765556, "lng": 35.185868 }
+  const f = async () => {
+    if (!center) {
+      console.log(address)
+      const res = await Geocode.fromAddress(address);
+      console.log(res)
+      console.log(address + " " + res.results[0].geometry)
+      setCenter(res.results[0].geometry.location)
     }
-        , "")
-
-    return (
-      // Important! Always set the container height explicitly
-    <>maps
-      <div style={{ height: '100vh', width: '100%' }}>
-        {/* <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyAtQpEDudWMrZBVUyiEiJeVdOWeXQMW-uI" }}
-          defaultCenter={defaultProps.center}
-          defaultZoom={defaultProps.zoom}
-        >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
-          />
-        </GoogleMapReact> */}
-{/* 
-        <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyAtQpEDudWMrZBVUyiEiJeVdOWeXQMW-uI' }}
-        defaultCenter={location}
-        defaultZoom={13}
-      >
-        <LocationPin
-          lat={location.lat}
-          lng={location.lng}
-          text={location.address}
-        />
-      </GoogleMapReact> */}
-      {map}
-      </div>
-  </> 
-    );
   }
+  // const renderMarkers=(map, maps)=> {
+  //   let marker = new Marker({
+  //     position: center,
+  //     map,
+  //     title: 'Hello World!'
+  //   });
+  //   return marker;
+  // }
+  useEffect(() => { f() }, [center]);
 
-export default SimpleMap;
+  const [load, setLoad] = useState(true)
+  return (<>
+    {/* {isLoaded} */}
+{/* {load&&<CircularProgress/>} */}
+
+    <GoogleMapReact google={window.google}
+
+      defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
+      defaultZoom={18}
+      center={center}
+      yesIWantToUseGoogleMapApiInternals
+      markerId='1'
+      markerColor="green"
+      zoom={18}
+    onLoad = {()=>setLoad(false)}
+    >
+       <Marker id={1} key={1} position={center} title={"the book"}><Icon  className="pin-icon" /></Marker> 
+    </GoogleMapReact>
+
+  </>
+  );
+};
+export default Map;
+
 

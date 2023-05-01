@@ -104,6 +104,7 @@ return(
             </Typography>
           </Image>
         </ImageButton>
+        <span>{image.title}</span>
     </Box>
 )
 }

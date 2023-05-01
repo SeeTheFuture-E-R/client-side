@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions } from '@mui/material';
 import axios from 'axios';
-import { useState, useContext} from 'react';
+import { useState, useContext } from 'react';
 
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -29,11 +29,12 @@ function AddFriendButton({ friends, setFriends }) {
 
     const addFriend = async () => { //alert("add friend"); console.log(image) }
 
-
-        const friend = { userId: currentUser.id, name, picturePath: image.name }
+        console.log(image)
+        const friend = { userId: currentUser.id, name}//, picturePath: image.name }
         try {
             const res = await axios.post(`http://localhost:9660/friends`, friend, { headers: { 'Authorization': 'Bearer ' + token } })
-            const imgRes = await axios.post(`http://localhost:9660/friends/${res.data.friendId}`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
+            const picture = await axios.post(`http://localhost:9660/friends/${res.data.friendId}`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
+            res.data.picturePath = picture.data.name
             setFriends([...friends, res.data])
         }
         catch (err) {
@@ -53,9 +54,9 @@ function AddFriendButton({ friends, setFriends }) {
                 <div style={{ width: 300, textAlign: "center" }}>
                     הכנס שם של החבר
                     <br />
-                    <input type="text" onChange={(e) => { setName(e.target.value) }} placeholder="vghbb" />
+                    <input style={{ border: "1px solid" }} type="text" onChange={(e) => { setName(e.target.value) }} placeholder="vghbb" />
                     <br />
-                    {cameraOpen? <Camera open={cameraOpen} setOpen={setCameraOpen} image={image} setImage={setImage}></Camera>: <IconButton onClick={()=>setCameraOpen(true)}><PhotoCamera></PhotoCamera></IconButton>}
+                    {cameraOpen ? <Camera open={cameraOpen} setOpen={setCameraOpen} image={image} setImage={setImage}></Camera> : <IconButton onClick={() => setCameraOpen(true)}><PhotoCamera></PhotoCamera></IconButton>}
                     <Uploader file={image} setFile={setImage}></Uploader>
                     <DialogActions>
                         <Button onClick={() => { addFriend(); handleClose() }} autoFocus>להוספה</Button>
@@ -63,7 +64,6 @@ function AddFriendButton({ friends, setFriends }) {
                     </DialogActions>
                 </div>
             </Dialog>
-            <img src={image}></img>
         </>
     )
 }

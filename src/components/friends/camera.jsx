@@ -1,23 +1,34 @@
-import { useEffect, useRef, useState , useCallback} from "react"; // import useCallback
+import { useEffect, useRef, useState, useCallback } from "react"; // import useCallback
 import Webcam from "react-webcam";
 import { IconButton } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 import { Button } from "@mui/material";
 
-function Camera({ open, setOpen , image, setImage}) {
+function Camera({ open, setOpen, image, setImage }) {
 
     const webcamRef = useRef(null)
-    const [imgSrc, setImgSrc] = useState();
+    const [imgSrc, setImgSrc] = useState('');
 
-  useEffect(() => {
-    console.log(imgSrc)
-    if (imgSrc) {
-        console.log(":DFgsgfs")
-      const formData = new FormData()
-      formData.append("file", imgSrc)
-    setImage(formData)
-  }
-  }, [imgSrc])
+    // useEffect(() => {
+    //     console.log(imgSrc)
+    //     if (imgSrc!='') {
+    //         console.log(":DFgsgfs")
+    //         const formData = new FormData()
+    //         formData.append("file", imgSrc)
+    //         setImage(formData)
+    //     }
+    // }, [imgSrc])
+
+    
+    // useEffect(() => {
+    //     console.log("fdjghjdsfhgjsd", imgSrc)
+    //     if (imgSrc) {
+    //         const formData = new FormData()
+    //         formData.append("file", imgSrc)
+    //         setImage(formData)
+    //     }
+
+    // }, [imgSrc])
 
 
     const videoConstraints = {
@@ -26,24 +37,27 @@ function Camera({ open, setOpen , image, setImage}) {
         facingMode: "user"
     };
 
-    const capture1 = () => {
-        const imageSrc = webcamRef.current.getScreenshot();
-        setImgSrc(imageSrc);
-        setOpen(false)
-    }
+    // const capture1 = () => {
+    //     const imageSrc = webcamRef.current.getScreenshot();
+    //     setImgSrc(imageSrc);
+    //     setOpen(false)
+    // }
 
     const capture = useCallback(
         () => {
-          const imageSrc = webcamRef.current.getScreenshot();
-          setImgSrc(imageSrc);
-          setOpen(false)
+            const imageSrc = webcamRef.current.getScreenshot();
+            console.log(imageSrc)
+            const formData = new FormData()
+            formData.append("file", imgSrc)
+            setImage(formData)
+            setOpen(false)
         },
         [webcamRef]
-      );
+    );
+
 
     return (
         <>
-
             <Webcam
                 audio={false}
                 height={720}
@@ -52,11 +66,9 @@ function Camera({ open, setOpen , image, setImage}) {
                 screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
             >
-
             </Webcam>
             <Button onClick={() => setOpen(false)}>X</Button>
-            <Button onClick={capture}>take picture</Button>
-
+            <Button onClick={(capture)}>take picture</Button>
         </>
     )
 

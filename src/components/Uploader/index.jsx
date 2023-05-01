@@ -10,22 +10,14 @@ const Uploader = ({ file, setFile, label }) => {
   const [selectFile, setSelectFile] = useState()
 
   useEffect(() => {
+    console.log("fdjghjdsfhgjsd", selectFile)
     if (selectFile) {
       const formData = new FormData()
       formData.append("file", selectFile)
-    //   axios.post("http://localhost:9660/upload", formData).then(({ data }) => {
-    //     if (data?.name) {
-    //       setFile(data.name)
-    //     }
-    //   }).catch(err => {
-    //     console.log("error")
-    //   })
-    // 
     setFile(formData)
   }
 
   }, [selectFile])
-
 
   return (
     <>
@@ -33,7 +25,6 @@ const Uploader = ({ file, setFile, label }) => {
         <input hidden accept="image/*" type="file" onChange={(e)=> setSelectFile(e.target.files[0])}/>
         <PhotoCamera />
       </IconButton>
-
     </>
   )
 }

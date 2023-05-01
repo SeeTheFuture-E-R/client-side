@@ -15,6 +15,7 @@ import Payment from './Payment';
 import Details from './Details';
 
 
+
 function Cart({ count, setCount }) {
 
     const [open, setOpen] = React.useState(false);
@@ -76,11 +77,11 @@ function Cart({ count, setCount }) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <div>
+                <div style={{ width: 500 }}>
                     {cartOpen ?
                         <Details setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()} setCount={setCount}></Details>
                         :
-                        <Payment setCartOpen={setCartOpen} handleClose={handleClose} ></Payment>
+                        <Payment setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()}></Payment>
                     }
                 </div>
             </Dialog>

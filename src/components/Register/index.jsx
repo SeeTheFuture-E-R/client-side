@@ -14,6 +14,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from '../context/authContext';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import MyUploadFile from './UploadFile'
+import PdfViewer from '../Viewer';
 
 const steps = [' רישום למערכת', 'פרטים אישיים', 'העלאת מסמכים', 'אימות כתובת מייל'];
 
@@ -30,6 +32,7 @@ function Register() {
       console.log(err)
     }
   }
+
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("")
@@ -41,9 +44,9 @@ function Register() {
   const [family_status, setFamily_status] = useState("")
   const [num_of_children, setNum_of_children] = useState(0)
   const [password, setPassword] = useState("")
-  const [blind_card, setBlind_card] = useState("")
-  const [handicap_card, setHandicap_card] = useState("")
-  const [identity_card, setIdentity_card] = useState("")
+  const [blind_card, setBlind_card] = useState()
+  const [handicap_card, setHandicap_card] = useState()
+  const [identity_card, setIdentity_card] = useState()
   const [handicap_precentage, setHandicap_precentage] = useState(0);
 
   const [activeStep, setActiveStep] = useState(0)
@@ -58,7 +61,7 @@ function Register() {
     padding: '2%'
   }
 
-  
+
   const user = {
     userId: userId,
     password: password,
@@ -69,11 +72,10 @@ function Register() {
     birth_year: birth_year,
     // family_status: family_status,
     num_of_children: num_of_children,
-    blind_card: blind_card,
-    handicap_card: handicap_card,
-    identity_card: identity_card,
     handicap_precentage: handicap_precentage,
   }
+
+
 
 
   function getStepContent(step) {
@@ -147,9 +149,55 @@ function Register() {
     await register();
   }
 
+  const upload = async () => {
+
+    // console.log(blind_card)
+    // console.log(handicap_card)
+    // console.log(identity_card)
+    const files = [
+      blind_card,
+      handicap_card,
+      identity_card
+    ]
+    const formData = new FormData()
+    files.forEach(f=>formData.append('files', f));
+    // console.log("🤣😂😊", formData.entries().forEach(f=>console.log(f[0]+""+f[1])) ,"💛🧡🧡❤");
+// multipart/form-data
+
+    try {
+      const res = await axios.post(`http://localhost:9660/users/53`, formData, { headers: { "Content-Type": "application/pdf" } })
+      console.log(res);
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <>
       <Button style={{ margin: '10px', color: 'purple', backgroundColor: 'white' }} id='lgnBtn' variant="contained" onClick={handleOpen}>Sign Up</Button>
+      {
+      identity_card ?
+        <PdfViewer url={identity_card.name} fileName={"identity_card"} ></PdfViewer>
+        :
+        <MyUploadFile file={identity_card} setFile={setIdentity_card}></MyUploadFile>
+      }
+         {
+      blind_card ?
+        <PdfViewer url={blind_card.name} fileName={"blind_card"} ></PdfViewer>
+        :
+        <MyUploadFile file={blind_card} setFile={setBlind_card}></MyUploadFile>
+      }
+         {
+      handicap_card ?
+        <PdfViewer url={handicap_card.name} fileName={"handicap_card"} ></PdfViewer>
+        :
+        <MyUploadFile file={handicap_card} setFile={setHandicap_card}></MyUploadFile>
+      }
+
+      <Button onClick={upload}>upload</Button>
+
+
       <Modal
         keepMounted
         open={open}

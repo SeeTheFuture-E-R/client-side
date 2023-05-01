@@ -20,7 +20,7 @@ function DeleteFromCart({ productId , setCount}) {
     }
 
     return (
-        <Button onClick={deleteProduct}>❌</Button>
+        <Button onClick={deleteProduct}>❌{console.log("deleteeeeeeeeeeeeeeee")}</Button>
     )
 }
 export default DeleteFromCart

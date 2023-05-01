@@ -18,7 +18,7 @@ function AddToCart({product, setCount}) {
     }
 
     return(        
-       <Button onClick={changeStorage}>הוספה לעגלה</Button>
+       <Button onClick={changeStorage}>הוספה לעגלה{console.log("nnnnnnnnnnnnnnnnnnnnnnnn")}</Button>
         )
 }
 
