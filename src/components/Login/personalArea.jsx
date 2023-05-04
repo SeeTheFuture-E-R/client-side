@@ -103,21 +103,6 @@ console.log(res)
     {currentUser.books.map((x) => <SingleBook book={x} area={true}></SingleBook>)}
     <h3>הזמנות</h3>
     {currentUser.purchases.map((x, i) => <div key={i}>קוד הזמנה: {x.purchaseId}<br /><Button key={i} onClick={(e) => { getPurchaseDtailes(e.target.value);console.log(e)}}>צפה בפרטים</Button><br />
-      {/* <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography >Accordion 1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion></>)} */}
     </div>
     ) }
       </>)

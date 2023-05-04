@@ -34,21 +34,17 @@ const SingleProduct = ({ product , setCount}) => {
     }
     
     return ( 
-        <div style={{"border-color": "black",
-            "border":"30px",
-            "border-style": "solid,5px",
-            "background-color": "antiquewhite",
-            "margin":"30px",
-            }} > 
+        <div class="signalProduct" > 
        {/* <Card sx={{ display: 'flex' ,border}}> */}
-      <Box sx={{ display: 'flex',textAlign:'center'}}>
+       <Box sx={{ display: 'flex',textAlign:'center'}}> 
      <div style={{margin:"30px"}}> <CardMedia
           component="img"
           height="360"
           width="500"
           margin='5'
-          image={picture}
+          image={`http://localhost:9660/images/products/${picture}`}
         /></div>
+        <div>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
            {name}
@@ -62,11 +58,11 @@ const SingleProduct = ({ product , setCount}) => {
             {company}
           </Typography>
         </CardContent>  
-      
-      </Box> 
-       {
-      ! cheackInCart()?
- <AddToCart product={product} setCount={setCount}></AddToCart> : <DeleteFromCart productId={product.productId} setCount={setCount}>להסיר מהעגלה</DeleteFromCart>}
+      </div>
+      </Box>  
+       
+      {! cheackInCart()?
+ <AddToCart class="bAdd" product={product} setCount={setCount}></AddToCart> : <DeleteFromCart productId={product.productId} setCount={setCount}>להסיר מהעגלה</DeleteFromCart>}
     {/* </Card>*/}
     </div>) 
 

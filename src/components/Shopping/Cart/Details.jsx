@@ -50,7 +50,7 @@ function Details({setCartOpen,handleClose, calcSum, setCount}){
           height="80"
           width="150"
           margin='5'
-          image={p.picture}
+          image={`http://localhost:9660/images/products/${p.picture}`}
         />
         <DeleteFromCart productId={p.productId} setCount={setCount}></DeleteFromCart>
         </div>)}

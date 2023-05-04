@@ -4,13 +4,10 @@ import axios from "axios";
 import { useContext, useState } from 'react'
 import { AuthContext } from '../../context/authContext'
 import { Dialog } from "@mui/material";
-import { Box } from "@mui/system";
-import Marker from "react-google-maps/lib/components/Marker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHouse, faInbox,  faMailBulk, faPhone,faSearch ,faLocationDot} from "@fortawesome/free-solid-svg-icons"
-// import { FaMapMarkerAlt } from "react-icons/Fa";
-<i class="fa-solid fa-map-location-dot"></i>
+import { faLocationDot} from "@fortawesome/free-solid-svg-icons"
 import "../Books.css"
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 function SingleBook({ book, area }) {
         let { setCurrentUser, currentUser, token } = useContext(AuthContext);
         const [open, setOpen] = useState(false)
@@ -41,7 +38,7 @@ function SingleBook({ book, area }) {
 
         return (<div class="single">
                 {/* <button ><FaMapMarkerAlt ></FaMapMarkerAlt></button> */}
-                <img src={`http://localhost:9660/images/books/${book.picture}`}></img>
+                <img alt="image of book" title="image of book" src={`http://localhost:9660/images/books/${book.picture}`}></img>
                 <br/>
                 {book.name}<br />
                 {book.description}<br />
@@ -49,20 +46,21 @@ function SingleBook({ book, area }) {
                   
 
                 {area ? <Button onClick={removeBook}>להסרה</Button> :
-                <FontAwesomeIcon  onClick={() => setOpen(true)} icon={faLocationDot}fontSize={"30px"}/>}
+                <FontAwesomeIcon class="map" onClick={() => setOpen(true)} icon={faLocationDot}fontSize={"30px"}/>}
                         {/* // <button onClick={() => setOpen(true)}  style={{borderRadius: "180px"}} ><FontAwesomeIcon icon={faLocationDot}fontSize={"30px"}/>  </button>} */}
                         <br /><br />
                 <Dialog
                         open={open}
-                        fullWidth={true}
+                        fullWidth={false}
                         maxWidth={"1000px"}
                         scroll="body"
                 >
-                        <div style={{ height: 750 }} >
-                                <Map address={book.address} marker={{position: book.address}}>
-                                        <Marker position={book.address} title="the book is here" />
+                        <div style={{ height: 600, width:500 }} >
+                                <Map address={book.address}  style={{}}>
+                                       
                                 </Map>
-                                <Button onClick={() => setOpen(false)}>❌</Button></div>
+                                <Button  onClick={() => setOpen(false)} >
+                                        <FontAwesomeIcon onClick={() => setOpen(true)} icon={faXmark} fontSize={"30px"} style={{color:"#dd131d"}}/></Button></div>
                 </Dialog>
 
 
@@ -74,3 +72,4 @@ function SingleBook({ book, area }) {
 
 export default SingleBook;
 // style={{ width: 65, height: 35, fontSize: 12, fontWeight: 150, lineHeight: 1 }}
+//

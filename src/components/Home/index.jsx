@@ -6,7 +6,6 @@ import { Grid } from "@mui/material";
 
 function Home(props) {
 
-
   return <>
     <Grid >
       <Link to={'/shopping?category=daily'}>
@@ -38,9 +37,7 @@ function Home(props) {
       </Link>
       <p>products</p>
     </Box>
-    <div>bbbbbbbbbbbb</div>// style="border: solid black 5px;"
   </>
-
 }
 
 export default Home;

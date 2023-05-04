@@ -9,6 +9,10 @@ import { AuthContext } from '../context/authContext';
 import Uploader from '../Uploader';
 import Webcam from "react-webcam";
 import Camera from './camera';
+import { green } from '@mui/material/colors';
+import Icon from '@mui/material/Icon';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {fasolid, faCirclePlus ,faLocationDot} from "@fortawesome/free-solid-svg-icons"
 
 function AddFriendButton({ friends, setFriends }) {
 
@@ -30,7 +34,7 @@ function AddFriendButton({ friends, setFriends }) {
     const addFriend = async () => { //alert("add friend"); console.log(image) }
 
         console.log(image)
-        const friend = { userId: currentUser.id, name}//, picturePath: image.name }
+        const friend = { userId: currentUser.id, name }//, picturePath: image.name }
         try {
             const res = await axios.post(`http://localhost:9660/friends`, friend, { headers: { 'Authorization': 'Bearer ' + token } })
             const picture = await axios.post(`http://localhost:9660/friends/${res.data.friendId}`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
@@ -45,7 +49,14 @@ function AddFriendButton({ friends, setFriends }) {
 
     return (
         <>
-            <Button onClick={handleClickOpen}>הוסף חבר</Button>
+
+            <FontAwesomeIcon 
+            onClick={handleClickOpen} 
+            icon={faCirclePlus} 
+            fontSize={"30px"}  
+            style={{color: "#28e41b", fontSize: "90px"}}
+            
+            ></FontAwesomeIcon>
             <Dialog
                 open={open}
                 aria-labelledby="alert-dialog-title"
