@@ -1,17 +1,18 @@
-
-
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom"
-import Login from "./Login"
-import Register from "./Register"
-import Home from "./Home/index"
-import Books from "./Books/index"
-import Articles from "./Articles/index"
-import About from "./About/index"
-import Shopping from "./Shopping/index"
-import PersonalArea from "./Login/personalArea"
+import Login from "../Login"
+import Register from "../Register"
+import Home from "../Home/index"
+import Books from "../Books/index"
+import Articles from "../Articles/index"
+import About from "../About/index"
+import Shopping from "../Shopping/index"
+import PersonalArea from "../Login/personalArea"
 import { useContext } from "react"
-import { AuthContext } from "./context/authContext"
-import ICamera from "./Shopping/Products/ICamera"
+import { AuthContext } from "../context/authContext"
+import ICamera from "../Shopping/Products/ICamera"
 import { Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +36,7 @@ function Nav() {
         <NavLink to={`/shopping?category=daily`}>מוצרים </NavLink>
         <NavLink to="/books">ספרים </NavLink>
         <NavLink to="/articles">מאמרים </NavLink>
-        <NavLink to="/about">אודות </NavLink>
+        <NavLink to="/about">אודות  <FontAwesomeIcon icon={faXmark} fontSize={"20px"} style={{color:"#dd131d"}}/></NavLink>
         {(currentUser) ? <div> שלום {currentUser.firstName} {currentUser.lastName}</div> : <div></div>}
 
         <NavLink to="/ICamera">פיתוח </NavLink>

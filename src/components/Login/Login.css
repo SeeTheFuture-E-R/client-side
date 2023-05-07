@@ -32,6 +32,11 @@ button:focus {
   color: #fff;
   transition: color .2s ease;
 }
+#comments{
+  /* visibility: hidden; */
+  color:red;
+  font-size: 15px;
+}
 
 .spacing {
   -webkit-box-flex: 1;

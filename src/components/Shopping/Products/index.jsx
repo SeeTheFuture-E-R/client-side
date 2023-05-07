@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import SingleProduct from "./Single/index";
 import axios from "axios";
-
+import "../Shopping.css"
 function Products({ setCount }) {
     const { search } = useLocation();
     const [products, setProducts] = useState([]);
@@ -34,9 +34,9 @@ function Products({ setCount }) {
 
 
     return (
-        <>
+        <div id="conteiner-pro">
             {products.map((p) => {if(p.category==category) return <SingleProduct product={p} setCount={setCount}></SingleProduct>})}
-        </>
+        </div >
     )
 }
 

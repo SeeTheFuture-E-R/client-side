@@ -1,0 +1,36 @@
+
+.ltr{
+    direction: ltr;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 4px;
+    margin: 20px;
+
+}
+.rtl{
+    direction: rtl;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 4px;
+    margin: 20px;
+    text-align: center;
+}
+.pageDescription{
+width:30%;
+height: 200px;
+margin: 90px;
+padding: 40px; 
+text-align: center;
+border: solid black 1px;
+margin: auto;
+}
+/* .wrappingDescription{
+    width:50%;
+    direction: center;
+    text-align: center;
+    background-color: aqua;
+  
+} */
+.link{
+    width:43%;
+}

@@ -5,12 +5,12 @@ import { CircularProgress } from '@mui/material'
 const PdfViewer = ({ url, fileName }) => {
 
     const [isLoading, setIsLoading] = useState(true)
-
+console.log(url)
     return (
         <>
             {isLoading && <CircularProgress />}
             <iframe
-                src={`../../../documents/${url}`}
+                src={url}
                 width="100%"
                 height="100%"
                 key={fileName}

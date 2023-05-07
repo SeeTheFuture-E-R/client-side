@@ -1,21 +1,16 @@
 
-import SingleProduct from "../Products/Single/index"
 import Button from '@mui/material/Button';
 import DeleteFromCart from "./DeleteFromCart";
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { AuthContext } from '../../context/authContext'
 import { useContext } from "react"
+import {  useNavigate } from "react-router-dom";
 
 function Details({setCartOpen,handleClose, calcSum, setCount}){
     let { setCurrentUser, setToken, currentUser, token } = useContext(AuthContext);
+    const navigate = useNavigate()
+
     const getProductsFromStorage = () => {
         let cart = localStorage.getItem("cart")
 
@@ -24,6 +19,12 @@ function Details({setCartOpen,handleClose, calcSum, setCount}){
             return cart
         }
         return []
+    }
+    const cheakCurrentUser=()=>{
+      if (currentUser)
+      setCartOpen(false)
+      else
+      navigate("/Login")
     }
    
     return(<>
@@ -56,7 +57,7 @@ function Details({setCartOpen,handleClose, calcSum, setCount}){
         </div>)}
 {/* <SingleProduct product={p} button={false} setCount={setCount} style={{"width":"100px"}}></SingleProduct>)} */}
 <Button onClick={handleClose}>סגור</Button> 
-<Button onClick={()=>setCartOpen(false)}>לשלם</Button>
+<Button onClick={()=>cheakCurrentUser()}>לשלם</Button>
 </>
 )
 }

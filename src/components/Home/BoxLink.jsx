@@ -9,7 +9,7 @@ function BoxLink({url, title, massage}){
     {
       url: url,
       title: title,
-      width: '40%',
+      width: '100%',
     }
   
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
@@ -40,7 +40,7 @@ function BoxLink({url, title, massage}){
     top: 0,
     bottom: 0,
     backgroundSize: 'cover',
-    backgroundPosition: 'center 40%',
+    backgroundPosition: 'center 100%',
   });
   
   const Image = styled('span')(({ theme }) => ({
@@ -104,7 +104,7 @@ return(
             </Typography>
           </Image>
         </ImageButton>
-        <span>{image.title}</span>
+        {/* <span>{image.title}</span> */}
     </Box>
 )
 }

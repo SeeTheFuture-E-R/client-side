@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import { useState } from 'react'
 import { Box, TextField } from "@mui/material";
 import { FormControl } from "@mui/material";
+import MyUploadFile from './UploadFile'
+import PdfViewer from '../Viewer';
 
 function ThirdStep(props) {
   const { handleNext, handicap_card, setHandicap_card, blind_card, setBlind_card, identity_card, setIdentity_card } = props
@@ -14,63 +16,44 @@ function ThirdStep(props) {
 
   const handleSubmit = (event) => {
       event.preventDefault();
-      if (!handicap_card || !blind_card || !identity_card) {
-          setError(true);
-          return;
-      }
+      // if (!handicap_card || !blind_card || !identity_card) {
+      //     setError(true);
+      //     return;
+      // }
       handleNext()
   };
 
   return (
     <React.Fragment>
-      <FormControl>
+      <FormControl sx={{textAlign:"center"}}>
         <Typography variant="h5" gutterBottom>
           העלאת מסמכים
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={7} >
-            <TextField
-              required
-              id="identity_card"
-              name="identity_card"
-              label="תעודת זהות"
-              fullWidth
-              variant="standard"
-              onBlur={(e) => setIdentity_card(e.target.value)}
-              defaultValue={identity_card}
-              error={error && !identity_card}
-              helperText={error && !identity_card ? `Please upload your identity card` : ''}
-            />
+          {
+      identity_card ?
+        <PdfViewer url={identity_card.name} fileName={"identity_card"} ></PdfViewer>
+        :
+        <MyUploadFile file={identity_card} setFile={setIdentity_card}></MyUploadFile>
+      }
           </Grid>
           <Grid item xs={7} >
-            <TextField
-              required
-              id="handicap_card"
-              name="handicap_card"
-              label="תעודת נכה"
-              fullWidth
-              autoComplete=""
-              variant="standard"
-              onBlur={(e) => setHandicap_card(e.target.value)}
-              defaultValue={handicap_card}
-              error={error && !handicap_card}
-              helperText={error && !handicap_card ? 'Please upload your handicap card' : ''}
-            />
+          {
+      blind_card ?
+        <PdfViewer url={blind_card.name} fileName={"blind_card"} ></PdfViewer>
+        :
+        <MyUploadFile file={blind_card} setFile={setBlind_card}></MyUploadFile>
+      }
           </Grid>
           <Grid item xs={7} >
-            <TextField
-              required
-              id="blind_card"
-              name="blind_card"
-              label="שם משפחה"
-              fullWidth
-              autoComplete=""
-              variant="standard"
-              onBlur={(e) => setBlind_card(e.target.value)}
-              defaultValue={blind_card}
-              error={error && !blind_card}
-              helperText={error && !blind_card ? 'Please upload your blind card' : ''}
-            />
+          {
+      handicap_card ?
+        <PdfViewer url={handicap_card.name} fileName={"handicap_card"} ></PdfViewer>
+        :
+        <MyUploadFile file={handicap_card} setFile={setHandicap_card}></MyUploadFile>
+      }
+
           </Grid>
         </Grid>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>

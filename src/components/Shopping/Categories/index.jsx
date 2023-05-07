@@ -1,24 +1,73 @@
+// import './category.css'
 
 import { Button } from "@mui/material";
-import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-function Categories() {
-   
-    const navigate = useNavigate()
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-    function changeCategory(c)
-    {
+
+function Categories() {
+
+   const navigate = useNavigate()
+
+   const [prev, setPrev] = useState(null);
+   const [category, setCategory] = useState("daily");
+
+
+   const handleChange = (event, nextView) => {
+      if(prev!=null)
+      {
+         console.log(prev.target)
+      }
+      else{
+         document.getElementById("daily").sx = Style
+      }
+      // event.target.sx = {currentStyle}
+      setPrev(event)
+      setCategory(event.target.value)
+      changeCategory(event.target.value)
+   };
+
+   function changeCategory(c) {
       navigate(`/shopping?category=${c}`);
-    }
+   }
+   
+   const Style = {
+      backgroundColor: "pink",
+      width: "105px",
+      margin:"10px"
+   }
+
 
    return (<>
-      <Button onClick={()=>changeCategory('daily')}>יום יום</Button>
-      <Button onClick={()=>changeCategory('brail')}>ברייל</Button>
-      <Button onClick={()=>changeCategory('medical')}>רפואי</Button>
-      <Button onClick={()=>changeCategory('kitchen')}>מטבח</Button>
-      <Button onClick={()=>changeCategory('mobility')}>ניידות</Button>
-      <Button onClick={()=>changeCategory('ICamera')}>הפיתוח שלנו</Button>
+      <ToggleButtonGroup
+         orientation="vertical"
+         value={category}
+         exclusive
+         onChange={handleChange}
+      >
+         <ToggleButton id="daily" value="daily" sx={Style}>
+            יום יום
+         </ToggleButton>
+         <ToggleButton value="brail" sx={Style}>
+            ברייל
+         </ToggleButton>
+         <ToggleButton value="medical" sx={Style}>
+            רפואי
+         </ToggleButton>
+         <ToggleButton value="kitchen" sx={Style}>
+            מטבח
+         </ToggleButton>
+         <ToggleButton value="mobility" sx={Style}>
+            ניידות
+         </ToggleButton>
+         <ToggleButton value="ICamera" sx={Style}>
+            הפיתוח שלנו
+         </ToggleButton>
+      </ToggleButtonGroup>
    </>
    )
 }
-export default Categories; 
+export default Categories;
+

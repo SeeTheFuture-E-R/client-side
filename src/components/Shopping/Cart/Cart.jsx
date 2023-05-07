@@ -67,8 +67,8 @@ function Cart({ count, setCount }) {
 
         <div>
             <IconButton aria-label="cart" variant="outlined" onClick={handleClickOpen}>
-                <StyledBadge badgeContent={count} color="secondary">
-                    <ShoppingCartIcon />
+                <StyledBadge badgeContent={count} color="secondary" >
+                    <ShoppingCartIcon fontSize="large" />
                 </StyledBadge>
             </IconButton>
             <Dialog

@@ -20,17 +20,20 @@ function Login(props) {
         // e.preventDefault();
         try {
             const res = await axios.post('http://localhost:9660/auth/login', { userId: id, password: password });
-
             setCurrentUser(res.data.user)
-            
-            setToken(res.data.accessToken)
-            
+            setToken(res.data.accessToken)     
             navigate("/personalArea")
+
         } catch (err) {
-            if (err.Status == 401)
-                alert("your password is'nt correct")
-            console.log(err)
-            //   setErr(err.response.data?.message);
+            console.log(err.response.status)
+            if (err.response.status == 401)
+                {
+                document.getElementById("comments").innerText="*הסיסמה אינה נכונה";
+           // document.getElementsByClassName("comments").style.visibility="visible";
+        }
+            if (err.response.status == 500)
+                {document.getElementById("comments").innerText="*אינך רשום במערכת, שנה ת.ז. או ירשם";}
+      
         }
     }
 
@@ -46,7 +49,9 @@ function Login(props) {
                             <div class='subtitle'>We're almost done. Before using our services you need to create an account.</div>
                             <div class='input-fields'>
                                 <TextField id="demo-helper-text-misaligned-no-helper" label='*תעודת זהות' onChange={(e) => setid(e.target.value)} />
-                                <Password setPassword={setPassword}></Password>
+                                <Password class='password' setPassword={setPassword} style={{"text-align": "right"}}></Password>
+                                <br/>
+                                <label id="comments" ></label>
                             </div>
                                 <div class='spacing'>שכחת את הסיסמא?</div>
                                 <div><button class='ghost-round full-width' onClick={submit}>Sign In</button></div>

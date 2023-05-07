@@ -11,9 +11,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from "axios";
+
 import { useContext } from "react"
 import { AuthContext } from '../../context/authContext'
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 
 function Payment({ setCartOpen, handleClose, calcSum }) {
   let { setCurrentUser, setToken, currentUser, token } = useContext(AuthContext);
@@ -65,6 +66,7 @@ function Payment({ setCartOpen, handleClose, calcSum }) {
   }
   const [error, setError] = useState(false)
   return (
+ 
     <div style={{ width: 500 }}>
 
       תשלום<br />
@@ -102,6 +104,7 @@ function Payment({ setCartOpen, handleClose, calcSum }) {
       <Button onClick={() => setCartOpen(true)}>לחזור </Button>
       <Button onClick={()=>{toPayment(); handleClose()}}>לסיום</Button>
     </div>
+
   )
 }
 export default Payment;

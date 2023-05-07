@@ -1,0 +1,17 @@
+
+.category{
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+  top: 30px;
+  margin:10px;
+}
+
+
+.category:hover, .category.active {
+  transition: all 0.3s;
+  background-color: palevioletred;
+  color:black
+}

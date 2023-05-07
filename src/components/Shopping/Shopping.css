@@ -1,0 +1,19 @@
+#conteiner{
+    display: flex;
+    direction:ltr;
+    /* flex-wrap: nowrap; */ 
+   
+}
+
+
+#categories{
+    width: 20%;
+     background-color: red;
+
+}
+#conteiner-pro{
+    width:80%;
+    margin:30px;
+   
+    flex-direction: column;
+}

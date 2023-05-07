@@ -155,14 +155,15 @@ function Register() {
     // console.log(handicap_card)
     // console.log(identity_card)
     const files = [
+      identity_card,
       blind_card,
       handicap_card,
-      identity_card
-    ]
+  ]
     const formData = new FormData()
-    files.forEach(f=>formData.append('files', f));
+    files.forEach(f=>formData.append('file', f));
+    // formData.append('file', identity_card)
     // console.log("🤣😂😊", formData.entries().forEach(f=>console.log(f[0]+""+f[1])) ,"💛🧡🧡❤");
-// multipart/form-data
+    // multipart/form-data
 
     try {
       const res = await axios.post(`http://localhost:9660/users/53`, formData, { headers: { "Content-Type": "application/pdf" } })
@@ -177,22 +178,22 @@ function Register() {
     <>
       <Button style={{ margin: '10px', color: 'purple', backgroundColor: 'white' }} id='lgnBtn' variant="contained" onClick={handleOpen}>Sign Up</Button>
       {
-      identity_card ?
-        <PdfViewer url={identity_card.name} fileName={"identity_card"} ></PdfViewer>
-        :
-        <MyUploadFile file={identity_card} setFile={setIdentity_card}></MyUploadFile>
+        identity_card ?
+          <PdfViewer url={identity_card} fileName={"identity_card"} ></PdfViewer>
+          :
+          <MyUploadFile file={identity_card} setFile={setIdentity_card}></MyUploadFile>
       }
-         {
-      blind_card ?
-        <PdfViewer url={blind_card.name} fileName={"blind_card"} ></PdfViewer>
-        :
-        <MyUploadFile file={blind_card} setFile={setBlind_card}></MyUploadFile>
+      {
+        blind_card ?
+          <PdfViewer url={blind_card.name} fileName={"blind_card"} ></PdfViewer>
+          :
+          <MyUploadFile file={blind_card} setFile={setBlind_card}></MyUploadFile>
       }
-         {
-      handicap_card ?
-        <PdfViewer url={handicap_card.name} fileName={"handicap_card"} ></PdfViewer>
-        :
-        <MyUploadFile file={handicap_card} setFile={setHandicap_card}></MyUploadFile>
+      {
+        handicap_card ?
+          <PdfViewer url={handicap_card.name} fileName={"handicap_card"} ></PdfViewer>
+          :
+          <MyUploadFile file={handicap_card} setFile={setHandicap_card}></MyUploadFile>
       }
 
       <Button onClick={upload}>upload</Button>
