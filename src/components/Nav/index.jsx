@@ -1,6 +1,3 @@
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faLocationDot} from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom"
 import Login from "../Login"
 import Register from "../Register"
@@ -15,6 +12,9 @@ import { AuthContext } from "../context/authContext"
 import ICamera from "../Shopping/Products/ICamera"
 import { Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
+import Error from '../Error'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 
 function Nav() {
@@ -35,11 +35,17 @@ function Nav() {
         <NavLink to="/">דף הבית</NavLink>
         <NavLink to={`/shopping?category=daily`}>מוצרים </NavLink>
         <NavLink to="/books">ספרים </NavLink>
-        <NavLink to="/articles">מאמרים </NavLink>
-        <NavLink to="/about">אודות  <FontAwesomeIcon icon={faXmark} fontSize={"20px"} style={{color:"#dd131d"}}/></NavLink>
-        {(currentUser) ? <div> שלום {currentUser.firstName} {currentUser.lastName}</div> : <div></div>}
-
         <NavLink to="/ICamera">פיתוח </NavLink>
+        <NavLink to="/articles">מאמרים </NavLink>
+        <NavLink to="/about">אודות  </NavLink>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        {(currentUser) ? 
+        <div> שלום {currentUser.firstName} {currentUser.lastName}
+        <FontAwesomeIcon icon={faUser} fontSize={"20px"}/></div> 
+        : <div></div>}
+
         {currentUser ?
           <>
             <NavLink to="/personalArea">אזור אישי </NavLink>
@@ -62,6 +68,7 @@ function Nav() {
         <Route path='/about' element={<About />} />
         <Route path='/personalArea' element={<PersonalArea />} />
         <Route path='/ICamera' element={<ICamera />} />
+        <Route path='/*' element={<Error/>}></Route>
       </Routes>
     </>
   )

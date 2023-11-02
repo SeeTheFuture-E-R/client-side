@@ -33,7 +33,7 @@ function AddFriendButton({ friends, setFriends }) {
 
     const addFriend = async () => { //alert("add friend"); console.log(image) }
 
-        console.log(image)
+        console.log(image+"🧑🏿‍🎄🧓🏽👩🏽‍🦰😉😕🍹😣")
         const friend = { userId: currentUser.id, name }//, picturePath: image.name }
         try {
             const res = await axios.post(`http://localhost:9660/friends`, friend, { headers: { 'Authorization': 'Bearer ' + token } })
