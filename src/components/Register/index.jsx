@@ -44,9 +44,9 @@ function Register() {
   const [family_status, setFamily_status] = useState("")
   const [num_of_children, setNum_of_children] = useState(0)
   const [password, setPassword] = useState("")
-  const [blind_card, setBlind_card] = useState()
-  const [handicap_card, setHandicap_card] = useState()
-  const [identity_card, setIdentity_card] = useState()
+  const [blind_card, setBlind_card] = useState("A")
+  const [handicap_card, setHandicap_card] = useState("A")
+  const [identity_card, setIdentity_card] = useState("A")
   const [handicap_precentage, setHandicap_precentage] = useState(0);
 
   const [activeStep, setActiveStep] = useState(0)
