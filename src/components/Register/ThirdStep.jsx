@@ -29,7 +29,7 @@ function ThirdStep(props) {
         <Typography variant="h5" gutterBottom>
           העלאת מסמכים
         </Typography>
-        <Grid container spacing={3}>
+        {/* <Grid container spacing={3}>
           <Grid item xs={7} >
           {
       identity_card ?
@@ -55,7 +55,7 @@ function ThirdStep(props) {
       }
 
           </Grid>
-        </Grid>
+        </Grid> */}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
             variant="contained"
