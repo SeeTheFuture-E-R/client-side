@@ -3,6 +3,7 @@ import * as React from 'react';
 import BoxLink from './BoxLink'
 import { Box } from "@mui/system";
 import { Grid } from "@mui/material";
+import Footer from "./Footer/index"
 import "./Home.css"
 function Home(props) {
 
@@ -62,7 +63,9 @@ function Home(props) {
 אנו ממשיכים לעבוד על יעול ושיפור האתר והבאת תוספים נוספים למען עתיד טוב יותר
 </div>
     </Box>
+    <Footer></Footer>
   </>
 }
 
 export default Home;
+
