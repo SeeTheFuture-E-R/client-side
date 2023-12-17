@@ -21,6 +21,11 @@ function AddFriendButton({ friends, setFriends }) {
     const [image, setImage] = useState('');
     const [cameraOpen, setCameraOpen] = useState(false)
 
+    const takePicture = async ()=>{
+        const res = await axios.post(`http://localhost:8000/01`)
+        console.log(res)
+        setCameraOpen(true)
+    }
 
     let { currentUser, token } = useContext(AuthContext);
     const handleClickOpen = () => {
@@ -67,7 +72,7 @@ function AddFriendButton({ friends, setFriends }) {
                     <br />
                     <input style={{ border: "1px solid" }} type="text" onChange={(e) => { setName(e.target.value) }} placeholder="vghbb" />
                     <br />
-                    {cameraOpen ? <Camera open={cameraOpen} setOpen={setCameraOpen} image={image} setImage={setImage}></Camera> : <IconButton onClick={() => setCameraOpen(true)}><PhotoCamera></PhotoCamera></IconButton>}
+                    {cameraOpen ? <Camera open={cameraOpen} setOpen={setCameraOpen} image={image} setImage={setImage}></Camera> : <IconButton onClick={() => takePicture()}><PhotoCamera></PhotoCamera></IconButton>}
                     <Uploader file={image} setFile={setImage}></Uploader>
                     <DialogActions>
                         <Button onClick={() => { addFriend(); handleClose() }} autoFocus>להוספה</Button>
