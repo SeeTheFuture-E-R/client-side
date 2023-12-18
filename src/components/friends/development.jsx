@@ -11,25 +11,42 @@ function Development () {
     const [picture, setPicture] = useState('');
     const [result, setResult]=useState('');
     const webcamRef = React.useRef(null);
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (event) => {
+      setFile(event.target.files[0]);
+    };
+
+    const stratTrial = async () =>{
+
+        const res = await axios.post(`http://localhost:8000/02`)
+
+        //res = await axios.post(`http://localhost:8000/03`)
+    }
 
     const capture = React.useCallback(async () => {
         const pictureSrc = webcamRef.current.getScreenshot();
         setPicture(pictureSrc)
-      
-       /* try {
-           
-            const response=await axios.post('http://127.0.0.1:8000/aa', { path: pictureSrc },{
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            console.log('Image sent to server.');
-            console.log(response.data);
-            setResult(response.data)
-        } catch (error) {
-            console.error('Error sending image to server:', error);
-        }*/
+        await handleUpload()
     });
+    const handleUpload = async () => {
+        try {
+          const formData = new FormData();
+          formData.append('file',picture );
+    
+          // Replace 'http://127.0.0.1:8000' with the actual URL where your FastAPI server is running
+          const response = await axios.post('http://127.0.0.1:8000/getPicture/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+    
+          console.log(response.data);
+        }
+         catch (error) {
+          console.error('Error uploading file:', error);
+        }
+      };
 
     return (
 

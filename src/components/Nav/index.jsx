@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Error from '../Error'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { Margin } from "@mui/icons-material"
 
 
 function Nav() {
@@ -41,13 +42,10 @@ function Nav() {
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
-        {(currentUser) ? 
-        <div> שלום {currentUser.firstName} {currentUser.lastName}
-        <FontAwesomeIcon icon={faUser} fontSize={"20px"}/></div> 
-        : <div></div>}
-
         {currentUser ?
           <>
+           <div> שלום {currentUser.firstName} {currentUser.lastName}
+            <FontAwesomeIcon icon={faUser} fontSize={"20px"}/></div> 
             <NavLink to="/personalArea">אזור אישי </NavLink>
             <Button onClick={logout}>logout</Button>
           </>
