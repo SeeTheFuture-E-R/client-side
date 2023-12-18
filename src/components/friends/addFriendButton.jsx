@@ -32,17 +32,17 @@ function AddFriendButton({ friends, setFriends }) {
     };
 
     const addFriend = async () => { //alert("add friend"); console.log(image) }
-
-        console.log(image+"🧑🏿‍🎄🧓🏽👩🏽‍🦰😉😕🍹😣")
+        console.log(image)
+        console.log("🧑🏿‍🎄🧓🏽👩🏽‍🦰😉😕🍹😣")
         const friend = { userId: currentUser.id, name }//, picturePath: image.name }
         try {
             const res = await axios.post(`http://localhost:9660/friends`, friend, { headers: { 'Authorization': 'Bearer ' + token } })
-            const picture = await axios.post(`http://localhost:9660/friends/${res.data.friendId}`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
+            const picture = await axios.post(`http://localhost:9660/friends/upload`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
             res.data.picturePath = picture.data.name
             setFriends([...friends, res.data])
         }
         catch (err) {
-            console.log(err)
+            console.log(err.masseage)
         }
     }
 
@@ -69,6 +69,10 @@ function AddFriendButton({ friends, setFriends }) {
                     <br />
                     {cameraOpen ? <Camera open={cameraOpen} setOpen={setCameraOpen} image={image} setImage={setImage}></Camera> : <IconButton onClick={() => setCameraOpen(true)}><PhotoCamera></PhotoCamera></IconButton>}
                     <Uploader file={image} setFile={setImage}></Uploader>
+                   {/* <img
+                    src={image}
+                    alt="webcam"
+    />*/}
                     <DialogActions>
                         <Button onClick={() => { addFriend(); handleClose() }} autoFocus>להוספה</Button>
                         <Button onClick={handleClose}>❌</Button>

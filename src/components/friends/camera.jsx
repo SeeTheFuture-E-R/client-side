@@ -4,8 +4,9 @@ import { IconButton } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 import { Button } from "@mui/material";
 
-function Camera({ open, setOpen, image, setImage }) {
 
+function Camera({ open, setOpen, image, setImage }) {
+    
     const webcamRef = useRef(null)
     const [imgSrc, setImgSrc] = useState('');
 
@@ -37,24 +38,25 @@ function Camera({ open, setOpen, image, setImage }) {
         facingMode: "user"
     };
 
-    // const capture1 = () => {
-    //     const imageSrc = webcamRef.current.getScreenshot();
-    //     setImgSrc(imageSrc);
-    //     setOpen(false)
-    // }
-
     const capture = useCallback(
         () => {
-            const imageSrc = webcamRef.current.getScreenshot();
+            /*const imageSrc = webcamRef.current.getScreenshot();
             console.log(imageSrc)
-            const formData = new FormData()
-            formData.append("file", imgSrc)
-            setImage(imageSrc)
-            setOpen(false)
+            console.log("(^///^)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)")
 
-            /*const pictureSrc = webcamRef.current.getScreenshot();
-            setPicture(pictureSrc)
-          
+            const formData = new FormData()
+            formData.append("file", imgSrc)*/
+            //const buffer = Buffer.from(base64Data, "base64"); 
+            const pictureSrc = webcamRef.current.getScreenshot();
+            //setPicture(pictureSrc)
+            let base64String = pictureSrc.replace(/^data:image\/jpeg;base64,/, "");
+            console.log(base64String+"dfghkjjhgfdcghjk")
+
+            setImage(pictureSrc)
+            //setOpen(false)
+
+           
+          /*
             try {
                
                 const response=await axios.post('http://127.0.0.1:8000/aa', { path: pictureSrc },{
