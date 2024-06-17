@@ -1,9 +1,8 @@
 
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { IconButton } from "@mui/material"
 import { PhotoCamera } from "@mui/icons-material"
-import { Input } from "@mui/material"
+
 
 const Uploader = ({ file, setFile, label }) => {
 

@@ -31,10 +31,7 @@ function SingleBook({ book, area }) {
                 catch (e) {
                         console.log(e)
                 }
-
         }
-
-
 
         return (<div class="single">
                 {/* <button ><FaMapMarkerAlt ></FaMapMarkerAlt></button> */}
@@ -43,8 +40,6 @@ function SingleBook({ book, area }) {
                 {book.name}<br />
                 {book.description}<br />
                 טלפון:{book.contact_details}<br />     
-                  
-
                 {area ? <Button onClick={removeBook}>להסרה</Button> :
                 <FontAwesomeIcon class="map" onClick={() => setOpen(true)} icon={faLocationDot}fontSize={"30px"}/>}
                         {/* // <button onClick={() => setOpen(true)}  style={{borderRadius: "180px"}} ><FontAwesomeIcon icon={faLocationDot}fontSize={"30px"}/>  </button>} */}
@@ -56,11 +51,10 @@ function SingleBook({ book, area }) {
                         scroll="body"
                 >
                         <div style={{ height: 600, width:500 }} >
-                                <Map address={book.address}  style={{}}>
-                                       
-                                </Map>
+                                <Map address={book.address} ></Map>
                                 <Button  onClick={() => setOpen(false)} >
-                                        <FontAwesomeIcon onClick={() => setOpen(true)} icon={faXmark} fontSize={"30px"} style={{color:"#dd131d"}}/></Button></div>
+                                        <FontAwesomeIcon onClick={() => setOpen(true)} icon={faXmark} fontSize={"30px"} style={{color:"#dd131d"}}/>
+                                </Button></div>
                 </Dialog>
 
 
@@ -68,8 +62,8 @@ function SingleBook({ book, area }) {
 
         </div>)
 
-}
+        }
 
-export default SingleBook;
-// style={{ width: 65, height: 35, fontSize: 12, fontWeight: 150, lineHeight: 1 }}
-//
+        export default SingleBook;
+        // style={{ width: 65, height: 35, fontSize: 12, fontWeight: 150, lineHeight: 1 }}
+        //

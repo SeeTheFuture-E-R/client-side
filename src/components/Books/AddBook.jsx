@@ -23,7 +23,6 @@ import Uploader from '../Uploader'
 
 function AddBook({ books, setBooks }) {
 
-
     const [open, setOpen] = useState(false);
     let { setCurrentUser, currentUser, token } = useContext(AuthContext);
     const [image, setImage] = useState()
