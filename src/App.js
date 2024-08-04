@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-do
 import { AuthContextProvider } from './components/context/authContext';
 import { useContext, useState, useEffect } from "react"
 import Nav from './components/Nav';
+import AccessibilitySidebar from './components/accessibility'
 
 function App() {
   // useEffect = (() => {
@@ -17,9 +18,9 @@ function App() {
 
       <AuthContextProvider>
         <Router>
+          <AccessibilitySidebar></AccessibilitySidebar>
           <Nav></Nav>
         </Router>
-
       </AuthContextProvider>
     </>
   );

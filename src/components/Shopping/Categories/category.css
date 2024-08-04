@@ -1,17 +1,54 @@
-
-.category{
-  background-color: pink;
+/* nav.css */
+.main-nav {
+  background-color: #333; /* צבע רקע כהה לסרגל הניווט */
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:30px;
-  top: 30px;
-  margin:10px;
+  padding: 10px;
+  flex-wrap: nowrap; /* מבטיח שכל הפריטים יהיו בשורה אחת */
+  overflow-x: auto; /* מאפשר גלילה אופקית במקרה הצורך */
 }
 
+.main-nav a {
+  color: #ddd; /* צבע טקסט בהיר */
+  text-decoration: none;
+  font-size: 18px; /* גודל טקסט */
+  padding: 15px 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 10px; /* רווח בין ה-NavLinks */
+  white-space: nowrap; /* מונע מהטקסט לעבור לשורה הבאה */
+}
 
-.category:hover, .category.active {
-  transition: all 0.3s;
-  background-color: palevioletred;
-  color:black
+.main-nav a:hover {
+  background-color: #575757; /* צבע רקע כהה בעת מעבר עכבר */
+  color: #fff; /* צבע טקסט לבן בעת מעבר עכבר */
+  border-radius: 4px;
+}
+
+.main-nav a.active {
+  background-color: #1976d2; /* צבע רקע עבור פריט פעיל */
+  color: #fff; /* צבע טקסט לבן עבור פריט פעיל */
+  border-radius: 4px;
+}
+
+.user-div {
+  margin: 0 10px; /* רווח בין ה-user-div לפריטים אחרים */
+  display: flex;
+  align-items: center;
+  color: #ddd; /* צבע טקסט בהיר */
+  white-space: nowrap; /* מונע מהטקסט לעבור לשורה הבאה */
+}
+
+.logout-button {
+  color: #ffffff; /* צבע טקסט לבן */
+  background-color: #1976d2; /* צבע כפתור */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1565c0; /* צבע כפתור בעת מעבר עכבר */
 }

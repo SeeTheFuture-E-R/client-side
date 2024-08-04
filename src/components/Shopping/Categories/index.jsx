@@ -1,73 +1,69 @@
-// import './category.css'
-
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
+import './category.css'; // ייבוא קובץ ה-CSS
 
 function Categories() {
+  const navigate = useNavigate();
+  const [category, setCategory] = useState("daily");
 
-   const navigate = useNavigate()
+  const handleChange = (event, nextView) => {
+    setCategory(nextView);
+    changeCategory(nextView);
+  };
 
-   const [prev, setPrev] = useState(null);
-   const [category, setCategory] = useState("daily");
+  function changeCategory(c) {
+    navigate(`/shopping?category=${c}`);
+  }
 
-
-   const handleChange = (event, nextView) => {
-      if(prev!=null)
-      {
-         console.log(prev.target)
-      }
-      else{
-         document.getElementById("daily").sx = Style
-      }
-      // event.target.sx = {currentStyle}
-      setPrev(event)
-      setCategory(event.target.value)
-      changeCategory(event.target.value)
-   };
-
-   function changeCategory(c) {
-      navigate(`/shopping?category=${c}`);
-   }
-   
-   const Style = {
-      backgroundColor: "pink",
-      width: "105px",
-      margin:"10px"
-   }
-
-
-   return (<>
-      <ToggleButtonGroup
-         orientation="vertical"
-         value={category}
-         exclusive
-         onChange={handleChange}
+  return (
+    <ToggleButtonGroup
+      className="toggle-button-group"
+      orientation="vertical"
+      value={category}
+      exclusive
+      onChange={handleChange}
+    >
+      <ToggleButton
+        className={`toggle-button ${category === "daily" ? "selected" : ""}`}
+        value="daily"
       >
-         <ToggleButton id="daily" value="daily" sx={Style}>
-            יום יום
-         </ToggleButton>
-         <ToggleButton value="brail" sx={Style}>
-            ברייל
-         </ToggleButton>
-         <ToggleButton value="medical" sx={Style}>
-            רפואי
-         </ToggleButton>
-         <ToggleButton value="kitchen" sx={Style}>
-            מטבח
-         </ToggleButton>
-         <ToggleButton value="mobility" sx={Style}>
-            ניידות
-         </ToggleButton>
-         <ToggleButton value="ICamera" sx={Style}>
-            הפיתוח שלנו
-         </ToggleButton>
-      </ToggleButtonGroup>
-   </>
-   )
+        יום יום
+      </ToggleButton>
+      <ToggleButton
+        className={`toggle-button ${category === "brail" ? "selected" : ""}`}
+        value="brail"
+      >
+        ברייל
+      </ToggleButton>
+      <ToggleButton
+        className={`toggle-button ${category === "medical" ? "selected" : ""}`}
+        value="medical"
+      >
+        רפואי
+      </ToggleButton>
+      <ToggleButton
+        className={`toggle-button ${category === "kitchen" ? "selected" : ""}`}
+        value="kitchen"
+      >
+        מטבח
+      </ToggleButton>
+      <ToggleButton
+        className={`toggle-button ${category === "mobility" ? "selected" : ""}`}
+        value="mobility"
+      >
+        ניידות
+      </ToggleButton>
+      <ToggleButton
+        className={`toggle-button ${category === "ICamera" ? "selected" : ""}`}
+        value="ICamera"
+      >
+        הפיתוח שלנו
+      </ToggleButton>
+    </ToggleButtonGroup>
+  );
 }
-export default Categories;
 
+export default Categories;

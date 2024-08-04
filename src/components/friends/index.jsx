@@ -29,9 +29,11 @@ function Friends() {
             :
             <Development></Development>
             }
-            {/* <ICameraOn></ICameraOn> */}
+            
         </>
     )
 }
 
 export default Friends
+
+{/* <ICameraOn></ICameraOn> */}

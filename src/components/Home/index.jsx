@@ -58,7 +58,6 @@ function Home(props) {
 </div>
     </Box>
     <Footer></Footer>
-    <Management></Management>
   </>
 }
 
