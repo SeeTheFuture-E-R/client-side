@@ -16,10 +16,11 @@ function Friends() {
   };
 
     function start(){
+      window.open(window.location.href);
         startTrial()
         setDevelopment(true)
-        window.open(window.location.href, '_blank');
     }
+
     return (
         <>
             {!development?
@@ -29,7 +30,6 @@ function Friends() {
             :
             <Development></Development>
             }
-            
         </>
     )
 }

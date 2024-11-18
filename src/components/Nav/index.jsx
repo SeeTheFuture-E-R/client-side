@@ -17,7 +17,6 @@ import Error from '../Error';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import './nav.css'; // ייבוא קובץ ה-CSS
-
 function Nav() {
   let { currentUser, setCurrentUser, setToken } = useContext(AuthContext);
 
@@ -75,7 +74,11 @@ function Nav() {
               הרשמה 
             </NavLink>
           </>
+          
         )}
+        <div class="logo-container">
+          <img src='../../../see-the-future.png' alt="Logo" class="logo" />
+        </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />

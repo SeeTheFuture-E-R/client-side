@@ -28,7 +28,7 @@ function Details({setCartOpen,handleClose, calcSum, setCount}){
     }
    
     return(<>
-<h2>העגלה שלך"</h2>
+<h2>העגלה שלך</h2>
 סכום כולל: {calcSum} ₪
 {getProductsFromStorage().map(p => <div style={{"border-color": "black",
             "border":"30px",

@@ -7,15 +7,37 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
-  );
+  const [currentUser, setCurrentUser] = useState( JSON.parse(localStorage.getItem("user")) || null);
 
-  const [token, setToken] = useState(
-    localStorage.getItem("token") || null
-  );
+  const [token, setToken] = useState( localStorage.getItem("token") || null);
+
+  const [theme, setTheme] = useState('');
+  const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1); 
+
+  const changeTheme = (newTheme) => {
+    if(newTheme=='large-font'){
+      const newMultiplier = fontSizeMultiplier * 1.5; 
+      setFontSizeMultiplier(newMultiplier);
+      document.body.style.fontSize = `${newMultiplier}em`;
+    }
+    else if(newTheme==''){
+      setFontSizeMultiplier(1); 
+      document.body.style.fontSize = '1em';
+      setTheme('');
+      document.body.className = newTheme;  
+    }
+    else if(newTheme=='large-cursor'){
+      document.body.classList.add('large-cursor');
+    }
+    else{
+      setTheme(newTheme);
+      document.body.classList.add(newTheme);   
+      document.body.classList.remove('large-cursor');
+    }
+
+  };
+
   const login = async ({ username, password }) => {
-    console.log("hhhhhhhhhhhhhhhhhhhhkkkkkkkkkkkkkkkk")
     const res = await axios.post(
       "http://localhost:3600/api/auth/login",
       { username, password },
@@ -45,7 +67,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, token, setCurrentUser, setToken, login, logout }}>
+    <AuthContext.Provider value={{theme, changeTheme, currentUser, token, setCurrentUser, setToken, login, logout }}>
       {children}
     </AuthContext.Provider>
 

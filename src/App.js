@@ -15,10 +15,9 @@ function App() {
 
   return (
     <>
-
       <AuthContextProvider>
-        <Router>
-          <AccessibilitySidebar></AccessibilitySidebar>
+        <Router >
+          <AccessibilitySidebar/>
           <Nav></Nav>
         </Router>
       </AuthContextProvider>

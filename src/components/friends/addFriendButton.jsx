@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions } from '@mui/material';
 import axios from 'axios';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -13,6 +13,8 @@ import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {fasolid, faCirclePlus ,faLocationDot} from "@fortawesome/free-solid-svg-icons"
+import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function AddFriendButton({ friends, setFriends }) {
 
@@ -20,7 +22,7 @@ function AddFriendButton({ friends, setFriends }) {
     const [name, setName] = useState("")
     const [image, setImage] = useState('');
     const [cameraOpen, setCameraOpen] = useState(false)
-
+    const navigate = useNavigate()
     const takePicture = async ()=>{
         const res = await axios.post(`http://localhost:8000/01`)
         console.log(res)
@@ -39,10 +41,13 @@ function AddFriendButton({ friends, setFriends }) {
     const addFriend = async () => { //alert("add friend"); console.log(image) }
         console.log(image)
         console.log("🧑🏿‍🎄🧓🏽👩🏽‍🦰😉😕🍹😣")
+        if(!currentUser.id)
+            navigate("/login")
         const friend = { userId: currentUser.id, name }//, picturePath: image.name }
         try {
             const res = await axios.post(`http://localhost:9660/friends`, friend, { headers: { 'Authorization': 'Bearer ' + token } })
-            const picture = await axios.post(`http://localhost:9660/friends/upload`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
+            console.log(res)
+            const picture = await axios.post(`http://localhost:9660/friends/${res.data.friendId}`, image, { headers: { 'Authorization': 'Bearer ' + token, "Content-Type": "multipart/form-data" } })
             res.data.picturePath = picture.data.name
             setFriends([...friends, res.data])
         }
@@ -72,12 +77,7 @@ function AddFriendButton({ friends, setFriends }) {
                     <br />
                     <input style={{ border: "1px solid" }} type="text" onChange={(e) => { setName(e.target.value) }} placeholder="vghbb" />
                     <br />
-                    {cameraOpen ? <Camera open={cameraOpen} setOpen={setCameraOpen} image={image} setImage={setImage}></Camera> : <IconButton onClick={() => takePicture()}><PhotoCamera></PhotoCamera></IconButton>}
                     <Uploader file={image} setFile={setImage}></Uploader>
-                   {/* <img
-                    src={image}
-                    alt="webcam"
-    />*/}
                     <DialogActions>
                         <Button onClick={() => { addFriend(); handleClose() }} autoFocus>להוספה</Button>
                         <Button onClick={handleClose}>❌</Button>
@@ -89,4 +89,3 @@ function AddFriendButton({ friends, setFriends }) {
 }
 
 export default AddFriendButton;
-//name=e.target.value;

@@ -1,0 +1,59 @@
+.main-nav {
+  background-color: #e3f2fd; /* צבע רקע בהיר */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* ממרכז את התוכן אנכית */
+  padding: 10px;
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
+}
+
+.main-nav a {
+  color: #0d47a1; 
+  text-decoration: none;
+  font-size: 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  margin: 0 10px; 
+  white-space: nowrap; 
+}
+
+.main-nav a:hover {
+  background-color: #575757; 
+  border-radius: 4px;
+}
+
+.main-nav a.active {
+  background-color: #90caf9; 
+  border-radius: 4px;
+}
+
+.user-div {
+  margin: 0 10px; 
+  display: flex;
+  align-items: center;
+  color: #0d47a1; 
+  white-space: nowrap; 
+}
+
+.logout-button {
+  color: #ffffff; /* צבע טקסט לבן */
+  background-color: #1976d2; /* צבע כפתור */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1565c0; 
+}
+
+
+.logo {
+  max-width: 100px; 
+  height: auto; 
+  max-height: 100px; 
+  margin: 0 auto; 
+}
+

@@ -38,31 +38,19 @@ function Login(props) {
     }
 
     return (
-        <>
-            <div>שלום</div>
-            {
                 <div class='container'>
-                    <div class='window'>
-                        <div class='overlay'></div>
-                        <div class='content'>
-                            <div class='welcome'>להיכנס לחשבונך</div>
-                            <div class='subtitle'>We're almost done. Before using our services you need to create an account.</div>
+                    <div class='welcome'>שלום</div>
+                        <div class='welcome'>להיכנס לחשבונך</div>
                             <div class='input-fields'>
-                                <TextField id="demo-helper-text-misaligned-no-helper" label='*תעודת זהות' onChange={(e) => setid(e.target.value)} />
-                                <Password class='password' setPassword={setPassword} style={{"text-align": "right"}}></Password>
+                                <TextField label='*תעודת זהות' onChange={(e) => setid(e.target.value)} />
+                                <Password class='password' setPassword={setPassword} ></Password>
                                 <br/>
-                                <label id="comments" ></label>
                             </div>
-                                <div class='spacing'>שכחת את הסיסמא?</div>
-                                <div><button class='ghost-round full-width' onClick={submit}>Sign In</button></div>
+                            <div class='spacing'>שכחת את הסיסמא?</div>
+                            <div>
+                                <button class='ghost-round full-width' onClick={submit}>Sign In</button>
                             </div>
-                        </div>
-                    </div>
-
-
-
-                }
-            </>
+                </div>
             );
 }
             export default Login

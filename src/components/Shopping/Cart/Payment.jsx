@@ -10,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import CardMedia from '@mui/material/CardMedia';
 import axios from "axios";
 
 import { useContext } from "react"
@@ -85,8 +86,15 @@ function Payment({ setCartOpen, handleClose, calcSum }) {
               <TableRow key={row.name}>
                 <TableCell align="right"> {row.name}</TableCell>
                 <TableCell align="right">{((100-currentUser.points)*0.01)*row.price}</TableCell>
-                <TableCell align="right">{row.picture}</TableCell>
-
+                <TableCell align="right">
+                <CardMedia
+          component="img"
+          height="80"
+          width="150"
+          margin='5'
+          image={`http://localhost:9660/images/products/${row.picture}`}
+        />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

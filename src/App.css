@@ -22,3 +22,36 @@ body{
   background-color: #fff;
   color:black
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 1em;
+  cursor: default;
+}
+
+body.high-contrast {
+  background-color: black;
+  color: white;
+}
+
+body.black-white {
+  background-color: white;
+  color: black;
+  filter: grayscale(100%);
+}
+
+/* גופן מוגדל */
+body.large-font {
+  font-size: 1.5em; /* הגדלת הגופן ב-1.5 */
+}
+
+body.large-cursor {
+  cursor: url('../public/image/mouse.png'), auto; /* סמן מותאם אישית */
+}
+
+body.large-cursor * {
+  cursor: url('https://img.icons8.com/emoji/72/camping.png'), auto; /* החלת סמן מותאם גם על כל אלמנט */
+}
