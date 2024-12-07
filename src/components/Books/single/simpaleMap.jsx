@@ -7,11 +7,11 @@ function Map({ address }) {
     
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBlaEbbWfIfFEFg5TV0uSOKHVemMAmsuIc"
+        googleMapsApiKey: process.env.googleMapKey
     });
     
     useEffect(() => {
-        Geocode.setApiKey("AIzaSyBlaEbbWfIfFEFg5TV0uSOKHVemMAmsuIc");
+        Geocode.setApiKey(process.env.googleMapKey);
         
         Geocode.fromAddress(address).then(
             (response) => {
