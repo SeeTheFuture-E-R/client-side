@@ -43,7 +43,7 @@ function Development() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert(response.data.name);
+      alert(response?.data?.results[0].name);
       console.log(response.data.id);
       setResult(response.data); // Assuming you want to set the result from the response
     } catch (error) {

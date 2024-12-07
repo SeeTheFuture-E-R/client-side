@@ -1,4 +1,3 @@
-
 import { useState, useContext } from "react"
 import axios from "axios";
 import { AuthContext } from '../context/authContext';
@@ -12,6 +11,13 @@ import { Box } from "@mui/system";
 
 function SingleFriend({ friend, friends, setFriends }) {
     let { token } = useContext(AuthContext);
+
+    const getImageUrl = (picturePath) => {
+        if (!picturePath) {
+            return '/default-avatar.png';
+        }
+        return `http://localhost:9660/images/friends/${picturePath}`;
+    };
 
     const deleteFriend = async () => {
         try {
@@ -41,8 +47,16 @@ function SingleFriend({ friend, friends, setFriends }) {
                     <Grid container spacing={2}>
                         <Grid item>
                             <Box sx={{ width: 300, height: 300 }}>
-                                <img style={{ margin: 'auto', display: 'block', maxWidth: '100%', maxHeight: '100%' }}
-                                    alt="complex" src={`http://localhost:9660/images/friends/${friend.picturePath}`} />
+                                <img 
+                                    style={{ 
+                                        margin: 'auto', 
+                                        display: 'block', 
+                                        maxWidth: '100%', 
+                                        maxHeight: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                    src={getImageUrl(friend.picturePath)}
+                                />
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm container>

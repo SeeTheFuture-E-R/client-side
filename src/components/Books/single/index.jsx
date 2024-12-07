@@ -33,7 +33,7 @@ function SingleBook({ book, area }) {
                 }
         }
 
-        return (<div class="single">
+        return (<div className="single">
                 {/* <button ><FaMapMarkerAlt ></FaMapMarkerAlt></button> */}
                 <img alt="image of book" title="image of book" src={`http://localhost:9660/images/books/${book.picture}`}></img>
                 <br/>
@@ -41,7 +41,7 @@ function SingleBook({ book, area }) {
                 {book.description}<br />
                 טלפון:{book.contact_details}<br />     
                 {area ? <Button onClick={removeBook}>להסרה</Button> :
-                <FontAwesomeIcon class="map" onClick={() => setOpen(true)} icon={faLocationDot}fontSize={"30px"}/>}
+                <FontAwesomeIcon className="map" onClick={() => setOpen(true)} icon={faLocationDot}fontSize={"30px"}/>}
                         {/* // <button onClick={() => setOpen(true)}  style={{borderRadius: "180px"}} ><FontAwesomeIcon icon={faLocationDot}fontSize={"30px"}/>  </button>} */}
                         <br /><br />
                 <Dialog
@@ -50,11 +50,26 @@ function SingleBook({ book, area }) {
                         maxWidth={"1000px"}
                         scroll="body"
                 >
-                        <div style={{ height: 600, width:500 }} >
-                                <Map address={book.address} ></Map>
-                                <Button  onClick={() => setOpen(false)} >
-                                        <FontAwesomeIcon onClick={() => setOpen(true)} icon={faXmark} fontSize={"30px"} style={{color:"#dd131d"}}/>
-                                </Button></div>
+                        <div style={{ 
+                                height: 600, 
+                                width: 500,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                position: 'relative'
+                        }} >
+                                <Map address={book.address} />
+                                <Button 
+                                        onClick={() => setOpen(false)}
+                                        style={{
+                                                position: 'absolute',
+                                                top: 10,
+                                                right: 10
+                                        }}
+                                >
+                                        <FontAwesomeIcon icon={faXmark} fontSize={"30px"} style={{color:"#dd131d"}}/>
+                                </Button>
+                        </div>
                 </Dialog>
 
 

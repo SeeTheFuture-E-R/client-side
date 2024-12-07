@@ -1,95 +1,53 @@
-import { Icon } from '@iconify/react'
-import React, { useEffect, useState } from "react";
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { useState, useEffect } from 'react';
 import Geocode from "react-geocode";
-import {
-   GoogleMap,
-   useJsApiLoader,
-   Marker,
-} from "@react-google-maps/api";
 
-Geocode.setApiKey("AIzaSyDfnY7GcBdHHFQTxRCSJGR-AGUEUnMBfqo");
+function Map({ address }) {
+    const [coordinates, setCoordinates] = useState(null);
+    
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyBlaEbbWfIfFEFg5TV0uSOKHVemMAmsuIc"
+    });
+    
+    useEffect(() => {
+        Geocode.setApiKey("AIzaSyBlaEbbWfIfFEFg5TV0uSOKHVemMAmsuIc");
+        
+        Geocode.fromAddress(address).then(
+            (response) => {
+                const { lat, lng } = response.results[0].geometry.location;
+                setCoordinates({ lat, lng });
+            },
+            (error) => {
+                console.error("Error getting coordinates:", error);
+            }
+        );
+    }, [address]);
 
-const Map = ({ address }) => {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: "AIzaSyDfnY7GcBdHHFQTxRCSJGR-AGUEUnMBfqo",
-    zoom: 12
-  });
+    const mapStyles = {
+        height: "100%",
+        width: "100%"
+    };
 
-  const [center, setCenter] = useState(null);
+    const defaultCenter = {
+        lat: 31.7683, // Default center (Israel)
+        lng: 35.2137
+    };
 
-  const getLongitudeLatitude = async () => {
-    if (!center) {
-      try {
-        const res = await Geocode.fromAddress(address);
-        const location = res.results[0].geometry.location;
-        setCenter({ lat: location.lat, lng: location.lng });
-      } catch (error) {
-        console.error("Error fetching location:", error);
-      }
+    if (!isLoaded) {
+        return <div>Loading...</div>;
     }
-  };
 
-  useEffect(() => {
-    getLongitudeLatitude();
-  }, [address]);
-
-  const containerStyle = {
-    width: '550px',
-    height: '550px'
-  };
-
-  return (
-    isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-      >
-        <Marker position={center} title={"the book"}>
-          <Icon className="pin-icon" />
-        </Marker> 
-      </GoogleMap>
-    ) : null
-  );
-};
+    return (
+        <GoogleMap
+            mapContainerStyle={mapStyles}
+            zoom={15}
+            center={coordinates || defaultCenter}
+        >
+            {coordinates && <Marker position={coordinates} />}
+        </GoogleMap>
+    );
+}
 
 export default Map;
-
-
-// const { isLoaded } = useJsApiLoader({
-//   id: 'google-map-script',
-//   googleMapsApiKey: "YOUR_API_KEY"
-// })
-
-// const [map, setMap] = React.useState(null)
-
-// const onLoad = React.useCallback(function callback(map) {
-//   // This is just an example of getting and using the map instance!!! don't just blindly copy!
-//   const bounds = new window.google.maps.LatLngBounds(center);
-//   map.fitBounds(bounds);
-
-//   setMap(map)
-// }, [])
-
-// const onUnmount = React.useCallback(function callback(map) {
-//   setMap(null)
-// }, [])
-
-// return isLoaded ? (
-//     <GoogleMap
-//       mapContainerStyle={containerStyle}
-//       center={center}
-//       zoom={10}
-//       onLoad={onLoad}
-//       onUnmount={onUnmount}
-//     >
-//       { /* Child components, such as markers, info windows, etc. */ }
-//       <></>
-//     </GoogleMap>
-// ) : <></>
-// }
-
-
-
 
