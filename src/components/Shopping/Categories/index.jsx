@@ -56,12 +56,6 @@ function Categories() {
       >
         ניידות
       </ToggleButton>
-      <ToggleButton
-        className={`toggle-button ${category === "ICamera" ? "selected" : ""}`}
-        value="ICamera"
-      >
-        הפיתוח שלנו
-      </ToggleButton>
     </ToggleButtonGroup>
   );
 }

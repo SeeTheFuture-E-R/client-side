@@ -59,23 +59,19 @@ function AddFriendButton({ friends, setFriends }) {
 
     return (
         <>
-
             <FontAwesomeIcon 
-            onClick={handleClickOpen} 
-            icon={faCirclePlus} 
-            fontSize={"30px"}  
-            style={{color: "#28e41b", fontSize: "90px"}}
-            
-            ></FontAwesomeIcon>
+                onClick={handleClickOpen} 
+                icon={faCirclePlus} 
+                className="add-icon"
+            />
             <Dialog
                 open={open}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
                 <div style={{ width: 300, textAlign: "center" }}>
-                    הכנס שם של החבר
                     <br />
-                    <input style={{ border: "1px solid" }} type="text" onChange={(e) => { setName(e.target.value) }} placeholder="vghbb" />
+                    <input style={{ border: "1px solid" }} type="text" onChange={(e) => { setName(e.target.value) }} placeholder="הכנס שם של החבר" />
                     <br />
                     <Uploader file={image} setFile={setImage}></Uploader>
                     <DialogActions>

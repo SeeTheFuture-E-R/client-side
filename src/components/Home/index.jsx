@@ -37,7 +37,7 @@ function Home(props) {
 במאגר הספרים שלנו יש מגוון רחב של ספרי קריאה, בישול, הסטוריה ועוד... לכל שלבי החיים.
 </div>
     </Box>
-    <Box class="ltr">
+    {/* <Box class="ltr">
       <Link class= "link" to={"/articles"}>
         <BoxLink url={'../../../image/home_articles.jpg'} title='מאמרים' ></BoxLink>
       </Link>
@@ -46,8 +46,8 @@ function Home(props) {
 האוסף שלנו מכיל מאמרים מקצועיים בנושאי בריאות ובפרט בלקויות ראיה.
 כאן תוכלו לקבל מידע מלא ומקצועי בכל תחומי החיים הנחוצים לאדם בעל מוגבלות.
 </div>
-    </Box>
-    <Box class="rtl">
+    </Box> */}
+    <Box class="ltr">
       <Link class= "link" to={"/about"}>
         <BoxLink url={'../../../image/home_about.jpg'} title='אודותינו'></BoxLink>
       </Link>

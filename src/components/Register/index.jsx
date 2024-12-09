@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
@@ -14,242 +15,193 @@ import { useContext, useState } from "react";
 import { AuthContext } from '../context/authContext';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import MyUploadFile from './UploadFile'
-import PdfViewer from '../Viewer';
 
-const steps = [' רישום למערכת', 'פרטים אישיים', 'העלאת מסמכים', 'אימות כתובת מייל'];
-
+const steps = ['רישום למערכת', 'פרטים אישיים', 'העלאת מסמכים', 'אימות כתובת מייל'];
 
 function Register() {
+  const navigate = useNavigate();
+  const { setCurrentUser } = useContext(AuthContext);
+  const [activeStep, setActiveStep] = useState(0);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    userId: "",
+    phone: "",
+    email: "",
+    birth_year: null,
+    family_status: "",
+    num_of_children: 0,
+    password: "",
+    handicap_precentage: 0,
+    blind_card: "A",
+    handicap_card: "A",
+    identity_card: "A"
+  });
+
+  const handleFormChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
 
   const register = async () => {
     try {
-      const res = await axios.post("http://localhost:9660/auth/register", user
-      )
+      const res = await axios.post("http://localhost:9660/auth/register", formData);
       console.log(res);
+      return res;
+    } catch (err) {
+      console.error("Registration error:", err);
+      throw err;
     }
-    catch (err) {
-      console.log(err)
+  };
+
+  const upload = async () => {
+    const formDataFiles = new FormData();
+    
+    // Add each file with a unique field identifier
+    if (formData.identity_card) {
+        formDataFiles.append('file', formData.identity_card, 'identity_card');
     }
-  }
+    if (formData.blind_card) {
+        formDataFiles.append('file', formData.blind_card, 'blind_card');
+    }
+    if (formData.handicap_card) {
+        formDataFiles.append('file', formData.handicap_card, 'handicap_card');
+    }
 
-  const navigate = useNavigate();
+    try {
+        const res = await axios.post(
+            `http://localhost:9660/upload/${formData.userId}`, 
+            formDataFiles, 
+            { 
+                headers: { 
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+        );
+        console.log('Upload response:', res.data);
+    } catch (err) {
+        console.error("File upload error:", err);
+    }
+};
 
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [userId, setUserId] = useState("")
-  const [phone, setPhone] = useState("")
-  const [email, setEmail] = useState("")
-  const [birth_year, setBirth_year] = useState(null)
-  const [family_status, setFamily_status] = useState("")
-  const [num_of_children, setNum_of_children] = useState(0)
-  const [password, setPassword] = useState("")
-  const [blind_card, setBlind_card] = useState("A")
-  const [handicap_card, setHandicap_card] = useState("A")
-  const [identity_card, setIdentity_card] = useState("A")
-  const [handicap_precentage, setHandicap_precentage] = useState(0);
+  const handleNext = () => {
+    setActiveStep((prevStep) => prevStep + 1);
+  };
 
-  const [activeStep, setActiveStep] = useState(0)
+  const handleBack = () => {
+    setActiveStep((prevStep) => prevStep - 1);
+  };
 
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    boxShadow: 24,
-    backgroundColor: 'white',
-    padding: '2%'
-  }
-
-
-  const user = {
-    userId: userId,
-    password: password,
-    firstName: firstName,
-    lastName: lastName,
-    phone: phone,
-    email: email,
-    birth_year: birth_year,
-    // family_status: family_status,
-    num_of_children: num_of_children,
-    handicap_precentage: handicap_precentage,
-  }
-
-
-
+  const finishRegistration = async () => {
+    try {
+      await register();
+      await upload();
+      navigate('/login');
+    } catch (error) {
+      console.error("Error during registration:", error);
+      // Handle error (show error message to user)
+    }
+  };
 
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <FirstStep
-          userId={userId}
-          email={email}
-          password={password}
-          handleNext={handleNext}
-          setPassword={setPassword}
-          setUserId={setUserId}
-          setEmail={setEmail}
-        />;
+        return <FirstStep 
+        formData={formData} 
+        setFormData={setFormData} 
+        handleNext={handleNext}
+      />;
       case 1:
-        return <SecondStep
+        return <SecondStep 
+          formData={formData} 
+          setFormData={setFormData} 
           handleNext={handleNext}
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          birth_year={birth_year}
-          setBirth_year={setBirth_year}
-          family_status={family_status}
-          setFamily_status={setFamily_status}
-          num_of_children={num_of_children}
-          setNum_of_children={setNum_of_children}
-          handicap_precentage={handicap_precentage}
-          setHandicap_precentage={setHandicap_precentage}
-          phone={phone}
-          setPhone={setPhone}
+          handleBack={handleBack}
         />;
       case 2:
-        return <ThirdStep
-          handleNext={handleNext}
-          handicap_card={handicap_card}
-          setHandicap_card={setHandicap_card}
-          blind_card={blind_card}
-          setBlind_card={setBlind_card}
-          identity_card={identity_card}
-          setIdentity_card={setIdentity_card}
-        />;
-
+        return <ThirdStep 
+        formData={formData} 
+        setFormData={setFormData} 
+        handleNext={async()=>{await upload();}}
+        handleBack={handleBack}
+      />;
       case 3:
-        return <FourthStep
+        return <FourthStep 
+          formData={formData} 
+          setFormData={setFormData} 
           handleNext={handleNext}
-
+          handleBack={handleBack}
         />;
       default:
         throw new Error('Unknown step');
     }
   }
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
-
-  const { setCurrentUser } = useContext(AuthContext)
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const closeStepper = async () => {
-    handleClose();
-    // setLogedIn(true);
-
-    await register();
-  }
-
-  const upload = async () => {
-
-    // console.log(blind_card)
-    // console.log(handicap_card)
-    // console.log(identity_card)
-    const files = [
-      identity_card,
-      blind_card,
-      handicap_card,
-  ]
-    const formData = new FormData()
-    files.forEach(f=>formData.append('file', f));
-    // formData.append('file', identity_card)
-    // console.log("🤣😂😊", formData.entries().forEach(f=>console.log(f[0]+""+f[1])) ,"💛🧡🧡❤");
-    // multipart/form-data
-
-    try {
-      const res = await axios.post(`http://localhost:9660/users/53`, formData, { headers: { "Content-Type": "application/pdf" } })
-      console.log(res);
-    }
-    catch (err) {
-      console.log(err)
-    }
-  }
-
   return (
-    <>
-      <Button style={{ margin: '10px', color: 'purple', backgroundColor: 'white' }} id='lgnBtn' variant="contained" onClick={handleOpen}>Sign Up</Button>
-      {
-        identity_card ?
-          <PdfViewer url={identity_card} fileName={"identity_card"} ></PdfViewer>
-          :
-          <MyUploadFile file={identity_card} setFile={setIdentity_card}></MyUploadFile>
-      }
-      {
-        blind_card ?
-          <PdfViewer url={blind_card.name} fileName={"blind_card"} ></PdfViewer>
-          :
-          <MyUploadFile file={blind_card} setFile={setBlind_card}></MyUploadFile>
-      }
-      {
-        handicap_card ?
-          <PdfViewer url={handicap_card.name} fileName={"handicap_card"} ></PdfViewer>
-          :
-          <MyUploadFile file={handicap_card} setFile={setHandicap_card}></MyUploadFile>
-      }
-
-      <Button onClick={upload}>upload</Button>
-
-
-      <Modal
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-      ><Box sx={style}>
-          <Typography component="h1" variant="h4" align="center">
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      p: 3,
+      minHeight: '100vh',
+      bgcolor: '#f5f5f5'
+    }}>
+      <Card sx={{ 
+        maxWidth: 800,
+        width: '100%',
+        mb: 4,
+        boxShadow: 3,
+        borderRadius: 2
+      }}>
+        <CardContent>
+          <Typography 
+            component="h1" 
+            variant="h4" 
+            align="center" 
+            gutterBottom
+            sx={{ color: 'primary.main', mb: 4 }}
+          >
             רישום
           </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+
+          <Stepper 
+            activeStep={activeStep} 
+            sx={{ 
+              py: 3,
+              '& .MuiStepLabel-label': {
+                fontSize: '1rem',
+              }
+            }}
+          >
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
-          {activeStep === steps.length ? (
-            setTimeout(closeStepper, 3000),
-            <React.Fragment>
-              <Typography variant="h5" gutterBottom>
-                הרישום הסתיים בהצלחה!
-              </Typography>
-              <Typography variant="subtitle1">
-                תודה שהצטרפתם אלינו!
-              </Typography>
-            </React.Fragment>
 
-          ) : (
-            <React.Fragment>
-              {getStepContent(activeStep)}
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    הקודם
-                  </Button>
-                )}
-                {activeStep === steps.length - 1 ?
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {'סיום'}
-                  </Button> : <></>}
+          <Box sx={{ mt: 4, mb: 2 }}>
+            {activeStep === steps.length ? (
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h5" gutterBottom>
+                  !הרישום הסתיים בהצלחה
+                </Typography>
+                <Typography variant="subtitle1" sx={{ mb: 4 }}>
+                  !תודה שהצטרפתם אלינו
+                </Typography>
+                {setTimeout(finishRegistration, 3000)}
               </Box>
-            </React.Fragment>
-          )}
-        </Box>
-      </Modal>
-    </>
+            ) : (
+              getStepContent(activeStep)
+            )}
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
 

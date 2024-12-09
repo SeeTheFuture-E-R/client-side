@@ -12,7 +12,7 @@ const MyUploadFile = ({ file, setFile}) => {
     useEffect(() => {
         console.log(selectFile)
         if (selectFile) {
-            console.log("bhhjh")
+            console.log(selectFile)
             // const formData = new FormData()
             // formData.append("file", selectFile)
             // console.log(formData)
@@ -50,6 +50,7 @@ const MyUploadFile = ({ file, setFile}) => {
                 <Typography fontSize={'14px'} color="rgba(0, 0, 0, 0.6)">
                     PDF (max. 3MB)
                 </Typography>
+                {selectFile.name && <span>{selectFile.name}</span>} 
             </>
             {/* <PdfViewer url={'../../../documents/1.pdf'} fileName={"1"}></PdfViewer> */}
         </Box>
@@ -58,44 +59,4 @@ const MyUploadFile = ({ file, setFile}) => {
 
 
 export default MyUploadFile
-
-// import { ReactElement } from 'react'
-
-// import Dropper from './Dropper'
-// import FileLink from './FileLink'
-
-// const FileUploader = ({
-//     files,
-//     setFiles
-// }: {
-//     files: File[] | null
-//     setFiles: (files: File[] | null) => void
-// }): ReactElement => {
-//     const addFiles = (newFiles: File[]) => setFiles([...files, ...newFiles])
-
-//     const deleteFile = (deletedFile: File) =>
-//         setFiles(files.filter((f: File) => f !== deletedFile))
-
-//     return (
-//         <>
-//             <Dropper onDrop={addFiles} />
-//             {files
-//                 ? files.map((file: File, i: number) => (
-//                     <FileLink file={file} handleDelete={deleteFile} key={i} />
-//                 ))
-//                 : null}
-//         </>
-//     )
-// }
-
-// export default FileUploader
-
-// =====================BE
-
-// const files = req.files as any;
-
-// if (!files || !files.file) {
-// res.status(400).send("Missing files");
-// return;
-// }
 

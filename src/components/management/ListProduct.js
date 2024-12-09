@@ -38,7 +38,6 @@ function ListProduct({products, setProducts}){
             console.log('Response:', res.data);
             products.pop(i)
             setProducts([...products])
-            alert("res", res.data)
         } catch (err) {
             console.error('Error:', err);
         } 
