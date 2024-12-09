@@ -33,49 +33,39 @@ function SingleBook({ book, area }) {
                 }
         }
 
-        return (<div className="single">
-                {/* <button ><FaMapMarkerAlt ></FaMapMarkerAlt></button> */}
-                <img alt="image of book" title="image of book" src={`http://localhost:9660/images/books/${book.picture}`}></img>
-                <br/>
-                {book.name}<br />
-                {book.description}<br />
-                טלפון:{book.contact_details}<br />     
-                {area ? <Button onClick={removeBook}>להסרה</Button> :
-                <FontAwesomeIcon className="map" onClick={() => setOpen(true)} icon={faLocationDot}fontSize={"30px"}/>}
-                        {/* // <button onClick={() => setOpen(true)}  style={{borderRadius: "180px"}} ><FontAwesomeIcon icon={faLocationDot}fontSize={"30px"}/>  </button>} */}
-                        <br /><br />
-                <Dialog
-                        open={open}
-                        fullWidth={false}
-                        maxWidth={"1000px"}
-                        scroll="body"
-                >
-                        <div style={{ 
-                                height: 600, 
-                                width: 500,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                position: 'relative'
-                        }} >
-                                <Map address={book.address} />
-                                <Button 
-                                        onClick={() => setOpen(false)}
-                                        style={{
-                                                position: 'absolute',
-                                                top: 10,
-                                                right: 10
-                                        }}
-                                >
-                                        <FontAwesomeIcon icon={faXmark} fontSize={"30px"} style={{color:"#dd131d"}}/>
-                                </Button>
+        return (
+                <div className="book-wrapper" role="article" >
+                    <div className="book-content">
+                        <div className="book-image-container">
+                            <img 
+                                className="book-image"
+                                src={`http://localhost:9660/images/books/${book.picture}`}
+                                alt={book.name}
+                                loading="lazy"
+                            />
                         </div>
-                </Dialog>
-
-
-
-
-        </div>)
+            
+                        <h2 className="book-title">{book.name}</h2>
+                        <p className="book-description">{book.description}</p>
+                        <p className="book-contact">
+                            <strong>טלפון: </strong>{book.contact_details}
+                        </p>
+            
+                        {area ? (
+                            <button className="action-button" onClick={removeBook}>
+                                להסרה
+                            </button>
+                        ) : (
+                            <button 
+                                className="action-button location-button"
+                                onClick={() => setOpen(true)}
+                            >
+                                <FontAwesomeIcon icon={faLocationDot} />
+                            </button>
+                        )}
+                    </div>
+                </div>
+            );
 
         }
 

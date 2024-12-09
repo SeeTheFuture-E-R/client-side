@@ -31,19 +31,19 @@ function Nav() {
   return (
     <>
       <nav className="main-nav">
-        <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink to="/" className={({ isActive }) => (isActive ? "active user-div" : "")}>
           דף הבית
         </NavLink>
-        <NavLink to={`/shopping?category=daily`} className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink to={`/shopping?category=daily`} className={({ isActive }) => (isActive ? "active user-div" : "")}>
           מוצרים 
         </NavLink>
-        <NavLink to="/books" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink to="/books" className={({ isActive }) => (isActive ? "active user-div" : "")}>
           ספרים 
         </NavLink>
-        <NavLink to="/ICamera" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink to="/ICamera" className={({ isActive }) => (isActive ? "active user-div" : "")}>
           פיתוח 
         </NavLink>
-        <NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink to="/about" className={({ isActive }) => (isActive ? "active user-div" : "")}>
           אודות  
         </NavLink>
         
@@ -58,7 +58,7 @@ function Nav() {
               שלום {currentUser.firstName} {currentUser.lastName}
               <FontAwesomeIcon icon={faUser} fontSize={"20px"} />
             </div>
-            <NavLink to="/personalArea" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/personalArea" className={({ isActive }) => (isActive ? "active user-div" : "")}>
               אזור אישי 
             </NavLink>
             <Button onClick={logout} className="logout-button">
@@ -67,10 +67,10 @@ function Nav() {
           </>
         ) : (
           <>
-            <NavLink to="/login" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/login" className={({ isActive }) => (isActive ? "active user-div" : "")}>
               כניסה 
             </NavLink>
-            <NavLink to="/register" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/register" className={({ isActive }) => (isActive ? "active user-div" : "")}>
               הרשמה 
             </NavLink>
           </>

@@ -1,0 +1,103 @@
+.about-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    direction: rtl;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.about-intro {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    text-align: center;
+    font-style: italic;
+    margin: 2rem 0;
+    padding: 1rem;
+    border-bottom: 2px solid #3498db;
+
+}
+
+.about-story, .about-mission, .about-features, .about-vision {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border: 2px solid #3498db;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.about-story:hover, .about-mission:hover, 
+.about-features:hover, .about-vision:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    color: #3498db;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #34495e;
+}
+
+.about-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-features li {
+    margin: 1rem 0;
+    padding-right: 2rem;
+    position: relative;
+}
+
+.about-features li::before {
+    content: "✓";
+    color: #3498db;
+    position: absolute;
+    right: 0;
+    font-weight: bold;
+}
+
+.location-section {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+    .about-wrapper {
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-intro {
+        font-size: 1.2rem;
+    }
+}

@@ -30,7 +30,7 @@ function Books(props) {
 
     return <>
         <AddBook setBooks={ setBooks} books={books}></AddBook><br />
-<div id="listBooks">
+        <div className="books-grid" role="list" aria-label="רשימת ספרים">
         {books.map(p => <SingleBook book={p}></SingleBook>)}
 </div>
     </>

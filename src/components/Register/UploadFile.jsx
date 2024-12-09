@@ -50,7 +50,7 @@ const MyUploadFile = ({ file, setFile}) => {
                 <Typography fontSize={'14px'} color="rgba(0, 0, 0, 0.6)">
                     PDF (max. 3MB)
                 </Typography>
-                {selectFile.name && <span>{selectFile.name}</span>} 
+                {selectFile?.name && <span>{selectFile?.name}</span>} 
             </>
             {/* <PdfViewer url={'../../../documents/1.pdf'} fileName={"1"}></PdfViewer> */}
         </Box>

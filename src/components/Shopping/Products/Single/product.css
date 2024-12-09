@@ -1,31 +1,308 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
-body,
-html {
-  margin: 3;
-  height: 100%;
+:root {
+  /* גדלי בסיס גדולים יותר */
+  --title-size: 2.2rem;
+  --price-size: 1.8rem;
+  --text-size: 1.4rem;
+  --button-size: 1.6rem;
 }
-.signalProduct{
-  /* display: flex; */
-  position: relative;
-margin: 50px; 
-padding:50px;
-text-align: center;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-border: solid black 1px;
-font-size:40px;
-text-align:'center';
-display: 'flex' 
+
+.product-wrapper {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 15px;
+  /* מסגרת מודגשת יותר */
+  border: 2px solid #3498db;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  direction: rtl;
 }
-.signalProduct > img{
- 
-  border: solid black 3px;
+
+.product-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  border-color: #2980b9;
+}
+
+.product-content {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.product-image-container {
+  flex-shrink: 0;
+  margin: 30px;
+  /* מסגרת לתמונה */
+  border: 3px solid #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.product-image {
+  height: 360px;
+  width: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+  transform: scale(1.02);
+}
+
+.product-details {
+  flex: 1;
+  text-align: right;
+  padding: 1rem;
+}
+
+.product-title {
+  font-size: var(--title-size);
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 0.8rem;
+  font-weight: bold;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-price {
+  font-size: var(--price-size);
+  color: #2c3e50;
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+.discounted-price {
+  color: #e74c3c;
+  font-size: var(--price-size);
+  font-weight: bold;
+  padding: 0.5rem 0;
+  /* הדגשת המחיר המוזל */
+  background-color: #ffeaea;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.product-description {
+  font-size: var(--text-size);
+  line-height: 1.8;
+  color: #34495e;
+  margin: 1rem 0;
+}
+
+.product-company {
+  font-size: var(--text-size);
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+.product-actions {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.action-button {
+  padding: 1.2rem 2.5rem;
+  border-radius: 30px;
+  font-size: var(--button-size);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: bold;
+  min-width: 200px;
+}
+
+.add-button {
+  background-color: #3498db;
+  color: white;
+  border: 2px solid #3498db;
+}
+
+.add-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+  border: 2px solid #e74c3c;
+}
+
+.remove-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* תמיכה בניגודיות גבוהה */
+body.high-contrast .product-wrapper {
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+}
+
+body.high-contrast .product-title,
+body.high-contrast .product-price,
+body.high-contrast .product-description,
+body.high-contrast .product-company {
+  color: white;
+  border-color: white;
+}
+
+body.high-contrast .action-button {
+  border: 3px solid white;
+}
+
+/* רספונסיביות משופרת */
+@media (max-width: 1200px) {
+  .product-wrapper {
+      margin: 2rem;
   }
-  .bAdd{
-    position: absolute;
-    top: 100px;
-    bottom: 5px;
-    left:100px;
-    height: 10px;
+}
+
+@media (max-width: 968px) {
+  .product-content {
+      flex-direction: column;
   }
 
+  .product-image {
+      width: 100%;
+      height: auto;
+      max-width: 500px;
+  }
 
+  .product-title {
+      font-size: calc(var(--title-size) * 0.9);
+  }
+
+  .product-price,
+  .discounted-price {
+      font-size: calc(var(--price-size) * 0.9);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-wrapper {
+      padding: 1.5rem;
+      margin: 1rem;
+  }
+
+  .action-button {
+      width: 100%;
+      padding: 1rem;
+  }
+}
+
+/* תמיכה בהגדלת טקסט נוספת */
+body.large-font .product-title {
+  font-size: calc(var(--title-size) * 1.2);
+}
+
+body.large-font .product-price,
+body.large-font .discounted-price {
+  font-size: calc(var(--price-size) * 1.2);
+}
+
+body.large-font .product-description,
+body.large-font .product-company {
+  font-size: calc(var(--text-size) * 1.2);
+}
+
+body.large-font .action-button {
+  font-size: calc(var(--button-size) * 1.2);
+}
+
+/* תמיכה במיקוד מקלדת */
+.action-button:focus {
+  outline: 3px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* הוספת מרווח אוויר */
+.product-wrapper + .product-wrapper {
+  margin-top: 3rem;
+}
+
+:root {
+  --base-font-size: 1;
+  --title-size: calc(1.8rem * var(--base-font-size));
+  --price-size: calc(1.4rem * var(--base-font-size));
+  --text-size: calc(1.2rem * var(--base-font-size));
+}
+
+/* סגנונות בסיסיים */
+.product-title {
+  font-size: var(--title-size);
+}
+
+.product-info {
+  font-size: var(--text-size);
+}
+
+.product-price,
+.discounted-price,
+.product-description,
+.product-company {
+  font-size: var(--text-size);
+}
+
+/* הגדרות ספציפיות למצב גופן גדול */
+body.large-font .product-title {
+  font-size: var(--title-size);
+}
+
+body.large-font .product-info,
+body.large-font .product-price,
+body.large-font .discounted-price,
+body.large-font .product-description,
+body.large-font .product-company {
+  font-size: var(--text-size);
+}
+
+/* מרווחים מותאמים */
+body.large-font .product-details {
+  gap: calc(1rem * var(--base-font-size));
+}
+
+body.large-font .product-info {
+  gap: calc(0.8rem * var(--base-font-size));
+}
+
+/* הגדרה גלובלית לכל הטקסטים */
+body.large-font .product-details * {
+  font-size: calc(1.2rem * var(--base-font-size)) !important;
+}
+
+/* הגדרה ספציפית לכותרת */
+body.large-font .product-title {
+  font-size: calc(1.8rem * var(--base-font-size)) !important;
+}
+
+/* הגדרה ספציפית למחירים */
+body.large-font .product-price,
+body.large-font .discounted-price {
+    font-size: calc(1.4rem * var(--base-font-size)) !important;
+}
+
+/* וידוא שכל הטקסטים גדלים */
+body.large-font .product-details span,
+body.large-font .product-details p,
+body.large-font .product-details div {
+    font-size: inherit !important;
+}
+
+/* מניעת דריסה של סגנונות אחרים */
+body.large-font .product-info * {
+    font-size: var(--text-size) !important;
+}

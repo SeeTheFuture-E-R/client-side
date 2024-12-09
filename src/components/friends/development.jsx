@@ -43,9 +43,20 @@ function Development() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert(response?.data?.results[0].name);
       console.log(response.data.id);
-      setResult(response.data); // Assuming you want to set the result from the response
+      setResult(response.data); 
+
+      const speak = (text) => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'he-IL'; 
+        utterance.rate = 0.7; 
+        utterance.pitch = 1; 
+        window.speechSynthesis.speak(utterance);
+    };
+    
+    // שימוש:
+    speak(response?.data?.results[0].name);
+
     } catch (error) {
       console.error('Error uploading file:', error);
     }

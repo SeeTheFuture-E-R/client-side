@@ -17,7 +17,7 @@ import { useContext } from "react"
 import { AuthContext } from '../../context/authContext'
 
 
-function Payment({ setCartOpen, handleClose, calcSum }) {
+function Payment({ setCartOpen, handleClose, calcSum, setCount }) {
   let { setCurrentUser, setToken, currentUser, token } = useContext(AuthContext);
   // const [open, setOpen] = React.useState(false);
   const [creditNumber, setcreditNumber] = useState("")
@@ -54,7 +54,8 @@ function Payment({ setCartOpen, handleClose, calcSum }) {
     }
     handleClose()
     setCartOpen(false)
-    alert("i payments")
+    alert("Oreder added successfully") 
+    setCount(0)
   }
   const getProductsFromStorage = () => {
     let cart = localStorage.getItem("cart")

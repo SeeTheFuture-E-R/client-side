@@ -81,7 +81,7 @@ function Cart({ count, setCount }) {
                     {cartOpen ?
                         <Details setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()} setCount={setCount}></Details>
                         :
-                        <Payment setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()}></Payment>
+                        <Payment setCartOpen={setCartOpen} handleClose={handleClose} calcSum={calcSum()} setCount={setCount}></Payment>
                     }
                 </div>
             </Dialog>

@@ -60,6 +60,12 @@ function AccessibilitySidebar() {
               <Typography variant="caption" onClick={() => changeTheme('large-cursor')}>גודל סמן</Typography>
             </Button>
           </Tooltip>
+          <Tooltip title="היפוך צבעים">
+            <Button className="accessibility-button" variant="contained" onClick={() => changeTheme('inverted')}>
+              <InvertColors fontSize="small" />
+              <Typography variant="caption">היפוך צבעים</Typography>
+            </Button>
+          </Tooltip>
           <Tooltip title="איפוס">
             <Button className="accessibility-button" variant="contained" onClick={() => changeTheme('')}>
               <Restore fontSize="small" />

@@ -33,39 +33,66 @@ const SingleProduct = ({ product , setCount}) => {
       return false;
     }
     
-    return ( 
-        <div class="signalProduct" > 
-       {/* <Card sx={{ display: 'flex' ,border}}> */}
-       <Box sx={{ display: 'flex',textAlign:'center'}}> 
-     <div style={{margin:"30px"}}> <CardMedia
-          component="img"
-          height="360"
-          width="500"
-          margin='5'
-          image={`http://localhost:9660/images/products/${picture}`}
-        /></div>
-        <div>
-        <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
-           {name}
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-            {price} ₪
-            <br/>  
-            {currentUser && currentUser.points > 0? <div>מחיר לאחר הנחה {(100-currentUser.points)*0.01*price} ₪</div>:<></>}<br/>
-            {description}
-            <br/>
-            {company}
-          </Typography>
-        </CardContent>  
-      </div>
-      </Box>  
-       
-      {! cheackInCart()?
- <AddToCart class="bAdd" product={product} setCount={setCount}></AddToCart> : <DeleteFromCart productId={product.productId} setCount={setCount}>להסיר מהעגלה</DeleteFromCart>}
-    {/* </Card>*/}
-    </div>) 
+  return (
+      <div className="product-wrapper" role="article" aria-label={`מוצר: ${name}`}>
+          <div className="product-content">
+              <div className="product-image-container">
+                  <img
+                      src={`http://localhost:9660/images/products/${picture}`}
+                      alt={`תמונה של ${name}`}
+                      className="product-image"
+                  />
+              </div>
+              
+              <div className="product-details">
+    <h2 className="product-title">{name}</h2>
+    
+    <div className="product-info">
+        <p className="product-price">
+            <span className="price-text">{price} ₪</span>
+        </p>
+        
+        {currentUser && currentUser.points > 0 && (
+            <p className="discounted-price">
+                <span className="price-text">
+                    מחיר לאחר הנחה {(100-currentUser.points)*0.01*price} ₪
+                </span>
+            </p>
+        )}
+        
+        <p className="product-description">
+            <span className="description-text">{description}</span>
+        </p>
+        
+        <p className="product-company">
+            <span className="company-text">{company}</span>
+        </p>
+    </div>
+</div>
+          </div>
 
-       }
+          <div className="product-actions">
+              {!cheackInCart() ? (
+                  <AddToCart 
+                      className="action-button add-button" 
+                      product={product} 
+                      setCount={setCount}
+                      aria-label="הוסף לעגלה"
+                  />
+              ) : (
+                  <DeleteFromCart 
+                      className="action-button remove-button"
+                      productId={product.productId} 
+                      setCount={setCount}
+                      aria-label="הסר מהעגלה"
+                  >
+                      להסיר מהעגלה
+                  </DeleteFromCart>
+              )}
+          </div>
+      </div>
+  );
+
+}
 export default SingleProduct;
 

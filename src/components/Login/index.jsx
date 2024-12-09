@@ -48,7 +48,7 @@ function Login(props) {
                             </div>
                             <div class='spacing'>שכחת את הסיסמא?</div>
                             <div>
-                                <button class='ghost-round full-width' onClick={submit}>Sign In</button>
+                                <button class='ghost-round' onClick={submit}>Sign In</button>
                             </div>
                 </div>
             );

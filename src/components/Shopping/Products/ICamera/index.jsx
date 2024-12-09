@@ -1,6 +1,6 @@
 import Freinds from "../../../friends";
 function ICamera(props){
-    return <>ICamera
+    return <>
     <Freinds></Freinds>
     </>
 }

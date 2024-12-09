@@ -15,27 +15,59 @@ export const AuthContextProvider = ({ children }) => {
   const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1); 
 
   const changeTheme = (newTheme) => {
-    if(newTheme=='large-font'){
-      const newMultiplier = fontSizeMultiplier * 1.5; 
-      setFontSizeMultiplier(newMultiplier);
-      document.body.style.fontSize = `${newMultiplier}em`;
-    }
-    else if(newTheme==''){
-      setFontSizeMultiplier(1); 
-      document.body.style.fontSize = '1em';
-      setTheme('');
-      document.body.className = newTheme;  
-    }
-    else if(newTheme=='large-cursor'){
-      document.body.classList.add('large-cursor');
-    }
-    else{
-      setTheme(newTheme);
-      document.body.classList.add(newTheme);   
-      document.body.classList.remove('large-cursor');
-    }
+    const root = document.documentElement;
 
-  };
+    // ניקוי כל הקלאסים הקודמים
+    document.body.classList.remove('large-font', 'high-contrast', 'large-cursor');
+
+    if(newTheme === 'large-font'){
+        const newMultiplier = fontSizeMultiplier * 1.8;
+        setFontSizeMultiplier(newMultiplier);
+        root.style.setProperty('--base-font-size', newMultiplier);
+        document.body.classList.add('large-font');
+        localStorage.setItem('fontSizeMultiplier', newMultiplier);
+    }
+    else if(newTheme === 'high-contrast'){
+        document.body.classList.add('high-contrast');
+        localStorage.setItem('theme', 'high-contrast');
+    }
+    else if(newTheme === 'inverted'){
+      document.body.classList.add('inverted');
+      localStorage.setItem('theme', 'inverted');
+    }
+    else if(newTheme === ''){
+        setFontSizeMultiplier(1);
+        root.style.setProperty('--base-font-size', '1');
+        localStorage.removeItem('fontSizeMultiplier');
+        localStorage.removeItem('theme');
+        setTheme('');
+        document.body.className = '';
+    }
+    else if(newTheme === 'large-cursor'){
+        document.body.classList.add('large-cursor');
+        localStorage.setItem('theme', 'large-cursor');
+    }
+    else {
+        setTheme(newTheme);
+        document.body.classList.add(newTheme);
+        localStorage.setItem('theme', newTheme);
+    }
+};
+
+// פונקציה לשחזור הגדרות בטעינת האתר
+const restoreAccessibilitySettings = () => {
+    const savedMultiplier = localStorage.getItem('fontSizeMultiplier');
+    if (savedMultiplier) {
+        const root = document.documentElement;
+        root.style.setProperty('--base-font-size', savedMultiplier);
+        setFontSizeMultiplier(parseFloat(savedMultiplier));
+    }
+};
+
+// להוסיף ב-useEffect
+useEffect(() => {
+    restoreAccessibilitySettings();
+}, []);
 
   const login = async ({ username, password }) => {
     const res = await axios.post(

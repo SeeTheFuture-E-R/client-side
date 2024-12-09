@@ -16,7 +16,7 @@ import { AuthContext } from '../context/authContext';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const steps = ['רישום למערכת', 'פרטים אישיים', 'העלאת מסמכים', 'אימות כתובת מייל'];
+const steps = ['רישום למערכת', 'פרטים אישיים', 'העלאת מסמכים']//, 'אימות כתובת מייל'];
 
 function Register() {
   const navigate = useNavigate();
@@ -126,16 +126,16 @@ function Register() {
         return <ThirdStep 
         formData={formData} 
         setFormData={setFormData} 
-        handleNext={async()=>{await upload();}}
+        handleNext={handleNext}
         handleBack={handleBack}
       />;
-      case 3:
-        return <FourthStep 
-          formData={formData} 
-          setFormData={setFormData} 
-          handleNext={handleNext}
-          handleBack={handleBack}
-        />;
+      // case 3:
+      //   return <FourthStep 
+      //     formData={formData} 
+      //     setFormData={setFormData} 
+      //     handleNext={handleNext}
+      //     handleBack={handleBack}
+      //   />;
       default:
         throw new Error('Unknown step');
     }
