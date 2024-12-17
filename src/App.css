@@ -8,11 +8,71 @@
   --small-text: calc(1rem * var(--base-font-size));
   --nav-size: calc(1.3rem * var(--base-font-size));
   --button-size: calc(1.2rem * var(--base-font-size));
+
+     /* צבעים בסיסיים */
+     --primary-color: #1976d2;
+     --primary-dark: #1565c0;
+     --primary-light: #e3f2fd;
+     --secondary-color: #3498db;
+     --text-primary: #2c3e50;
+     --text-secondary: #34495e;
+     --text-light: #ffffff;
+     --border-color: #ddd;
+     --background-light: #f5f5f5;
+     --background-white: #ffffff;
+   
+     /* גדלי טקסט */
+     --base-font-size: 1.5rem;
+     --text-xs: 1.5rem;
+     --text-sm: 2rem;
+     --text-md: 2rem;
+     --text-lg: 2.4rem;
+     --text-xl: 2.8rem;
+     --text-2xl: 3rem;
+   
+     /* מרווחים */
+     --spacing-xs: 0.5rem;
+     --spacing-sm: 1rem;
+     --spacing-md: 1.5rem;
+     --spacing-lg: 2rem;
+     --spacing-xl: 2.5rem;
+   
+     /* עיצוב */
+     --border-radius-sm: 4px;
+     --border-radius-md: 8px;
+     --border-radius-lg: 15px;
+     --border-radius-full: 25px;
+     
+     /* צללים */
+     --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+     --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+     --shadow-lg: 0 6px 12px rgba(0,0,0,0.15);
+   
+     /* מעברים */
+     --transition-speed: 0.3s;
+ 
+     --accent-pink: #e41b79;
+     --accent-pink-hover: #e065a4;
+ 
+     --icon-spacing: 20px;
+       /* מידות */
+   --width-xs: 30%;
+   --width-sm: 43%;
+   --height-md: 200px;
+   
+   /* מרווחים נוספים */
+   --spacing-xxs: 4px;
+   --spacing-huge: 90px;
+   --spacing-xl: 40px;
+ 
+   --accessibility-button-width: 150px;
+   --accessibility-icon-size: 40px;
 }
 
 /* שאר ההגדרות נשארות אותו דבר */
 body * {
   font-size: var(--text-size);
+  font-family: 'Arial', sans-serif;
   direction: rtl;
 }
 
@@ -202,3 +262,1556 @@ body.large-font .action-button {
 body.large-font a {
   font-size: calc(1rem * var(--base-font-size));
 }
+
+.about{
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 20px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  color: #3498db;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #34495e;
+}
+
+.about-features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-features li {
+  margin: 1rem 0;
+  padding-right: 2rem;
+  position: relative;
+}
+
+.about-features li::before {
+  content: "✓";
+  color: #3498db;
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+}
+
+.location-section {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  .about-wrapper {
+      padding: 1rem;
+  }
+
+  h2 {
+      font-size: 2rem;
+  }
+
+  h3 {
+      font-size: 1.5rem;
+  }
+}
+
+/* accessibilitySidebar.css */
+.accessibility-sidebar {
+  position: fixed;
+  bottom: 20px; /* מרחק מהתחתית של המסך */
+  left: 0px; /* צמוד לדופן השמאלית של המסך */
+  z-index: 1000;
+}
+
+.accessibility-toggle-button {
+  background-color: #1976d2; /* צבע כפתור פתיחה */
+  color: #ffffff; /* צבע אייקון */
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.accessibility-toggle-button:hover {
+  background-color: #1565c0; /* צבע כפתור פתיחה בעת מעבר עכבר */
+}
+
+.accessibility-popover {
+  padding: 10px;
+}
+
+.accessibility-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* רווח בין הכפתורים */
+}
+
+.accessibility-button {
+  background-color: #333; /* צבע רקע של הכפתור */
+  color: #ffffff; /* צבע טקסט של האייקון */
+  border-radius: 4px; /* פינות מעוגלות */
+  padding: 10px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
+}
+
+.accessibility-button:hover {
+  background-color: #575757; /* צבע רקע של הכפתור בעת מעבר עכבר */
+}
+
+.accessibility-button .MuiTypography-caption {
+  margin-left: 10px; /* רווח בין האייקון לטקסט */
+}
+
+
+.ltr{
+  direction: ltr;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 4px;
+  margin: 20px;
+  text-align: center;
+
+}
+.rtl{
+  direction: rtl;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 4px;
+  margin: 20px;
+  text-align: center;
+}
+.pageDescription{
+  width:30%;
+  margin: 90px;
+  padding: 40px; 
+  text-align: center;
+  border: solid black 1px;
+  margin: auto;
+}
+/* .wrappingDescription{
+  width:50%;
+  direction: center;
+  text-align: center;
+  background-color: aqua;
+
+} */
+.link{
+  width:43%;
+}
+
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 2rem 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  direction: rtl;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+.footer-section h4 {
+  color: #3498db;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: #3498db;
+}
+
+.footer-section p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #ecf0f1;
+}
+
+.footer-section a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #2980b9;
+}
+
+/* אנימציה בהופעה */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.footer-section {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  .footer-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+  }
+
+  .footer-section {
+      min-width: 100%;
+  }
+
+  .footer-section h4::after {
+      width: 30px;
+  }
+}
+
+/* הוספת צל עדין בחלק העליון */
+.footer {
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+/* אפקט hover על הטקסט */
+.footer-section p:hover {
+  transition: transform 0.3s ease;
+}
+
+:root {
+  --card-width: 300px;
+  --image-height: 300px;
+  --title-size: 1.4rem;
+  --text-size: 1.2rem;
+  --button-size: 1rem;
+  --base-font-size: 1;
+  --title-size: calc(1.4rem * var(--base-font-size));
+  --text-size: calc(1.2rem * var(--base-font-size));
+  --contact-size: calc(1rem * var(--base-font-size));
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.book-wrapper {
+  width: 80%;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 15px;
+  /* מסגרת מודגשת יותר */
+  border: 2px solid #3498db;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  direction: rtl;
+}
+
+.book-image-container {
+  width: 100%;
+  height: var(--image-height);
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.book-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.book-title {
+  font-size: var(--title-size);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  height: 2em; /* גובה לשורה אחת */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.book-description {
+  font-size: var(--text-size);
+  line-height: 1.4;
+  height: 4.2em; /* גובה לשלוש שורות */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.book-contact {
+  font-size: var(--text-size);
+  margin: 0.5rem 0;
+}
+
+.action-button {
+  width: 100%;
+  height: 40px;
+  padding: 0 1rem;
+  font-size: var(--button-size);
+  border-radius: 20px;
+  margin-top: auto;
+}
+
+.location-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+@media (max-width: 1200px) {
+  .books-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .books-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .book-wrapper {
+      max-width: 400px;
+      margin: 0 auto;
+  }
+}
+
+.search-input {
+  width: 300px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+  direction: rtl;
+}
+
+.search-input:focus {
+  border-color: #270375;
+  box-shadow: 0 0 8px rgba(76, 134, 175, 0.3);
+}
+
+.search-input::placeholder {
+  color: #888;
+}
+
+.search-input:hover {
+  border-color: #999;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
+.container {
+  width: 100%; /* הרחבת רוחב הקונטיינר */
+  max-width: 600px; /* הגדלת הרוחב המקסימלי */
+  margin: auto;
+  padding: 50px; /* הגדלת הריווח הפנימי */
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.welcome {
+  font-size: 30px; /* הגדלת גודל הגופן */
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.input-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* הגדלת הרווחים בין השדות */
+  margin-bottom: 30px;
+}
+
+
+.input-fields .MuiTextField-root, /* עבור TextField */
+.input-fields .password {
+  width: 95%; /* וודא ששני השדות יתפסו את כל הרוחב */
+  border-radius: 10px;  border: 1px solid #ccc;
+}
+ .password {
+  width: 100%; /* וודא ששני השדות יתפסו את כל הרוחב */
+  border-radius: 10px;  border: 1px solid #ccc;
+}
+
+.spacing {
+  font-size: 16px;
+  text-align: right;
+  color: #007bff;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+
+.ghost-round {
+  font-size: 20px; /* הגדלת גודל הטקסט בכפתור */
+  padding: 18px 25px; /* הגדלת הריווח הפנימי בכפתור */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.ghost-round:hover {
+  background-color: #0056b3;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.main-nav {
+  background-color: #e3f2fd; /* צבע רקע בהיר */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* ממרכז את התוכן אנכית */
+  padding: 10px;
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
+}
+
+.main-nav a {
+  color: #0d47a1; 
+  text-decoration: none;
+  font-size: 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  margin: 0 10px; 
+  white-space: nowrap; 
+}
+
+.main-nav a:hover {
+  background-color: #575757; 
+  border-radius: 4px;
+}
+
+.main-nav a.active {
+  background-color: #90caf9; 
+  border-radius: 4px;
+}
+
+.user-div {
+  margin: 0 10px; 
+  display: flex;
+  align-items: center;
+  color: #0d47a1; 
+  white-space: nowrap; 
+}
+
+.logout-button {
+  color: #ffffff; /* צבע טקסט לבן */
+  background-color: #1976d2; /* צבע כפתור */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1565c0; 
+}
+
+
+.logo {
+  max-width: 100px; 
+  height: auto; 
+  max-height: 100px; 
+  margin: 0 auto; 
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
+
+input {
+  border: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+::-webkit-input-placeholder .input-line:focus +::input-placeholder {
+  color: #fff;
+}
+
+.highlight {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.highlight:hover {
+  color: #fff;
+  transition: color .2s ease;
+}
+
+.spacing {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  height: 120px;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.65)
+}
+
+.input-line:focus {
+  outline: none;
+  border-color: #fff;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.ghost-round {
+  cursor: pointer;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 25px;
+  color: rgb(8, 7, 7);
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  font-size: 19px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 2.5em;
+  margin-top: auto;
+  margin-bottom: 25px;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.ghost-round:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgb(8, 7, 7);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.input-line {
+  background: none;
+  margin-bottom: 10px;
+  line-height: 2.4em;
+  color: rgb(8, 7, 7);
+  font-weight: 300;
+  letter-spacing: 0px;
+  letter-spacing: 0.02rem;
+  font-size: 19px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.input-fields {
+  margin-top: 25px;
+}
+
+.container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #eee;
+  height: 100%;
+}
+
+.content {
+  padding-left: 25px;
+  padding-right: 25px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  z-index: 5;
+}
+
+.welcome {
+  font-weight: 200;
+  margin-top: 75px;
+  text-align: center;
+  font-size: 40px;
+  font-size: 2.5rem;
+  letter-spacing: 0px;
+  letter-spacing: 0.05rem;
+}
+
+.subtitle {
+  text-align: center;
+  line-height: 1em;
+  font-weight: 100;
+  letter-spacing: 0px;
+  letter-spacing: 0.02rem;
+}
+
+.menu {
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 50px;
+}
+
+.window {
+  z-index: 100;
+  color: rgb(8, 7, 7);
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  height: 560px;
+  width: 360px;
+  background: #fff;
+  background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
+}
+
+.overlay {
+  background: -webkit-linear-gradient(#5a6e94, #e9e5ec);
+  background: linear-gradient(#5a6e94, #e9e5ec);
+  opacity: 0.85;
+  filter: alpha(opacity=85);
+  height: 560px;
+  position: absolute;
+  width: 360px;
+  z-index: 1;
+}
+
+.bold-line {
+  background: #e7e7e7;
+  position: absolute;
+  top: 100px;
+  bottom: 0px;
+  margin: auto;
+  width: 100%;
+  height: 360px;
+  z-index: 1;
+  opacity:0.1;
+    background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') left no-repeat;
+  background-size:cover;
+}
+
+@media (max-width: 500px) {
+  .window {
+    width: 100%;
+    height: 100%;
+  }
+  .overlay {
+    
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#conteiner{
+  display: flex;
+  direction:ltr;
+  /* flex-wrap: nowrap; */ 
+ 
+}
+
+
+#categories{
+  width: 20%;
+   background-color: red;
+
+}
+#conteiner-pro{
+  width:80%;
+  margin:30px;
+ 
+  flex-direction: column;
+}
+
+:root {
+  /* גדלי בסיס גדולים יותר */
+  --title-size: 2.2rem;
+  --price-size: 1.8rem;
+  --text-size: 1.4rem;
+  --button-size: 1.6rem;
+}
+
+.product-wrapper {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 15px;
+  /* מסגרת מודגשת יותר */
+  border: 2px solid #3498db;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  direction: rtl;
+}
+
+.product-wrapper:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  border-color: #2980b9;
+}
+
+.product-content {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.product-image-container {
+  flex-shrink: 0;
+  margin: 30px;
+  /* מסגרת לתמונה */
+  border: 3px solid #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.product-image {
+  height: 360px;
+  width: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+  transform: scale(1.02);
+}
+
+.product-details {
+  flex: 1;
+  text-align: right;
+  padding: 1rem;
+}
+
+.product-title {
+  font-size: var(--title-size);
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 0.8rem;
+  font-weight: bold;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-price {
+  font-size: var(--price-size);
+  color: #2c3e50;
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+.discounted-price {
+  color: #e74c3c;
+  font-size: var(--price-size);
+  font-weight: bold;
+  padding: 0.5rem 0;
+  /* הדגשת המחיר המוזל */
+  background-color: #ffeaea;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.product-description {
+  font-size: var(--text-size);
+  line-height: 1.8;
+  color: #34495e;
+  margin: 1rem 0;
+}
+
+.product-company {
+  font-size: var(--text-size);
+  color: #7f8c8d;
+  padding: 0.5rem 0;
+}
+
+.product-actions {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.action-button {
+  padding: 1.2rem 2.5rem;
+  border-radius: 30px;
+  font-size: var(--button-size);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: bold;
+  min-width: 200px;
+}
+
+.add-button {
+  background-color: #3498db;
+  color: white;
+  border: 2px solid #3498db;
+}
+
+.add-button:hover {
+  background-color: #2980b9;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+  border: 2px solid #e74c3c;
+}
+
+.remove-button:hover {
+  background-color: #c0392b;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* תמיכה בניגודיות גבוהה */
+body.high-contrast .product-wrapper {
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+}
+
+body.high-contrast .product-title,
+body.high-contrast .product-price,
+body.high-contrast .product-description,
+body.high-contrast .product-company {
+  color: white;
+  border-color: white;
+}
+
+body.high-contrast .action-button {
+  border: 3px solid white;
+}
+
+/* רספונסיביות משופרת */
+@media (max-width: 1200px) {
+  .product-wrapper {
+      margin: 2rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .product-content {
+      flex-direction: column;
+  }
+
+  .product-image {
+      width: 100%;
+      height: auto;
+      max-width: 500px;
+  }
+
+  .product-title {
+      font-size: calc(var(--title-size) * 0.9);
+  }
+
+  .product-price,
+  .discounted-price {
+      font-size: calc(var(--price-size) * 0.9);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-wrapper {
+      padding: 1.5rem;
+      margin: 1rem;
+  }
+
+  .action-button {
+      width: 100%;
+      padding: 1rem;
+  }
+}
+
+/* תמיכה בהגדלת טקסט נוספת */
+body.large-font .product-title {
+  font-size: calc(var(--title-size) * 1.2);
+}
+
+body.large-font .product-price,
+body.large-font .discounted-price {
+  font-size: calc(var(--price-size) * 1.2);
+}
+
+body.large-font .product-description,
+body.large-font .product-company {
+  font-size: calc(var(--text-size) * 1.2);
+}
+
+body.large-font .action-button {
+  font-size: calc(var(--button-size) * 1.2);
+}
+
+/* תמיכה במיקוד מקלדת */
+.action-button:focus {
+  outline: 3px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* הוספת מרווח אוויר */
+.product-wrapper + .product-wrapper {
+  margin-top: 3rem;
+}
+
+:root {
+  --base-font-size: 1;
+  --title-size: calc(1.8rem * var(--base-font-size));
+  --price-size: calc(1.4rem * var(--base-font-size));
+  --text-size: calc(1.2rem * var(--base-font-size));
+}
+
+/* סגנונות בסיסיים */
+.product-title {
+  font-size: var(--title-size);
+}
+
+.product-info {
+  font-size: var(--text-size);
+}
+
+.product-price,
+.discounted-price,
+.product-description,
+.product-company {
+  font-size: var(--text-size);
+}
+
+/* הגדרות ספציפיות למצב גופן גדול */
+body.large-font .product-title {
+  font-size: var(--title-size);
+}
+
+body.large-font .product-info,
+body.large-font .product-price,
+body.large-font .discounted-price,
+body.large-font .product-description,
+body.large-font .product-company {
+  font-size: var(--text-size);
+}
+
+/* מרווחים מותאמים */
+body.large-font .product-details {
+  gap: calc(1rem * var(--base-font-size));
+}
+
+body.large-font .product-info {
+  gap: calc(0.8rem * var(--base-font-size));
+}
+
+/* הגדרה גלובלית לכל הטקסטים */
+body.large-font .product-details * {
+  font-size: calc(1.2rem * var(--base-font-size)) !important;
+}
+
+/* הגדרה ספציפית לכותרת */
+body.large-font .product-title {
+  font-size: calc(1.8rem * var(--base-font-size)) !important;
+}
+
+/* הגדרה ספציפית למחירים */
+body.large-font .product-price,
+body.large-font .discounted-price {
+    font-size: calc(1.4rem * var(--base-font-size)) !important;
+}
+
+/* וידוא שכל הטקסטים גדלים */
+body.large-font .product-details span,
+body.large-font .product-details p,
+body.large-font .product-details div {
+    font-size: inherit !important;
+}
+
+/* מניעת דריסה של סגנונות אחרים */
+body.large-font .product-info * {
+    font-size: var(--text-size) !important;
+}
+
+#conteiner{
+  display: flex;
+  direction:ltr;
+  /* flex-wrap: nowrap; */ 
+ 
+}
+
+
+#categories{
+  width: 20%;
+   background-color: red;
+
+}
+#conteiner-pro{
+  width:80%;
+  margin:30px;
+ 
+  flex-direction: column;
+}
+
+/* nav.css */
+.main-nav {
+  background-color: #333; /* צבע רקע כהה לסרגל הניווט */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  flex-wrap: nowrap; /* מבטיח שכל הפריטים יהיו בשורה אחת */
+  overflow-x: auto; /* מאפשר גלילה אופקית במקרה הצורך */
+}
+
+.main-nav a {
+  color: #ddd; /* צבע טקסט בהיר */
+  text-decoration: none;
+  font-size: 18px; /* גודל טקסט */
+  padding: 15px 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 10px; /* רווח בין ה-NavLinks */
+  white-space: nowrap; /* מונע מהטקסט לעבור לשורה הבאה */
+}
+
+.main-nav a:hover {
+  background-color: #575757; /* צבע רקע כהה בעת מעבר עכבר */
+  color: #fff; /* צבע טקסט לבן בעת מעבר עכבר */
+  border-radius: 4px;
+}
+
+.main-nav a.active {
+  background-color: #1976d2; /* צבע רקע עבור פריט פעיל */
+  color: #fff; /* צבע טקסט לבן עבור פריט פעיל */
+  border-radius: 4px;
+}
+
+.user-div {
+  margin: 0 10px; /* רווח בין ה-user-div לפריטים אחרים */
+  display: flex;
+  align-items: center;
+  color: #ddd; /* צבע טקסט בהיר */
+  white-space: nowrap; /* מונע מהטקסט לעבור לשורה הבאה */
+}
+
+.logout-button {
+  color: #ffffff; /* צבע טקסט לבן */
+  background-color: #1976d2; /* צבע כפתור */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1565c0; /* צבע כפתור בעת מעבר עכבר */
+}
+
+:root {
+  --card-width: 300px;
+  --image-height: 300px;
+  --title-size: 1.4rem;
+  --text-size: 1.2rem;
+  --button-size: 1rem;
+  --base-font-size: 1;
+  --title-size: calc(1.4rem * var(--base-font-size));
+  --text-size: calc(1.2rem * var(--base-font-size));
+  --contact-size: calc(1rem * var(--base-font-size));
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.book-wrapper {
+  width: 80%;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 15px;
+  /* מסגרת מודגשת יותר */
+  border: 2px solid #3498db;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  direction: rtl;
+}
+
+.book-image-container {
+  width: 100%;
+  height: var(--image-height);
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.book-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.book-title {
+  font-size: var(--title-size);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  height: 2em; /* גובה לשורה אחת */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.book-description {
+  font-size: var(--text-size);
+  line-height: 1.4;
+  height: 4.2em; /* גובה לשלוש שורות */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.book-contact {
+  font-size: var(--text-size);
+  margin: 0.5rem 0;
+}
+
+.action-button {
+  width: 100%;
+  height: 40px;
+  padding: 0 1rem;
+  font-size: var(--button-size);
+  border-radius: 20px;
+  margin-top: auto;
+}
+
+.location-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+@media (max-width: 1200px) {
+  .books-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .books-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .book-wrapper {
+      max-width: 400px;
+      margin: 0 auto;
+  }
+}
+
+.search-input {
+  width: 300px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+  direction: rtl;
+}
+
+.search-input:focus {
+  border-color: #270375;
+  box-shadow: 0 0 8px rgba(76, 134, 175, 0.3);
+}
+
+.search-input::placeholder {
+  color: #888;
+}
+
+.search-input:hover {
+  border-color: #999;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+
+.start-button {
+  padding: 12px 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: fixed; /* שינוי מ-absolute ל-fixed */
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100; /* הגדלת ה-z-index כדי להבטיח שהכפתור תמיד יופיע מעל תוכן אחר */
+}
+
+.start-button:hover {
+  background-color: #1976d2;
+  transform: translate(-50%, -2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.add-icon {
+  position: fixed;
+  top: 150px;
+  left: 20px;
+  color: #e41b79;
+  font-size: 120px;
+  cursor: pointer;
+  font-size: 100px;
+}
+
+.add-icon:hover {
+  transform: scale(1.1);
+  color: #e065a4; /* Darker shade on hover */
+}
+
+.main-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f5f5f5;
+}
+
+.top-section-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 33vh;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.friends-section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.component-wrapper {
+  flex: 1;
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+  overflow-y: auto;
+  text-align: right;
+  direction: rtl;
+}
+
+.full-width {
+  width: 100%;
+  height: 33vh; /* או כל גובה אחר שתרצה */
+}
+
+/* שאר הסגנונות נשארים אותו דבר */
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  .top-section-container {
+      flex-direction: column;
+      height: auto;
+  }
+
+  .component-wrapper {
+      min-height: 200px;
+  }
+
+  .full-width {
+      height: auto;
+      min-height: 200px;
+  }
+}
+
+
+.start-button {
+  padding: 12px 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.start-button:hover {
+  background-color: #1976d2;
+  transform: translate(-50%, -2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  .top-section-container {
+      flex-direction: column;
+      height: auto;
+  }
+
+  .component-wrapper {
+      min-height: 200px;
+  }
+
+  .component-wrapper h2 {
+      font-size: 1.2rem;
+  }
+}
+
+/* כותרות */
+h2 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+/* רשימות */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+li {
+  margin-bottom: 1rem;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+li::before {
+  content: "•";
+  color: #3498db;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+}
+
+/* מספרים */
+ol {
+  counter-reset: item;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+ol > li {
+  counter-increment: item;
+  margin-bottom: 1.5rem;
+  padding-right: 2rem;
+  position: relative;
+}
+
+ol > li::before {
+  content: counter(item) ".";
+  color: #3498db;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+}
+
+/* טקסט מודגש */
+strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.main-nav {
+  background-color: #e3f2fd; /* צבע רקע בהיר */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* ממרכז את התוכן אנכית */
+  padding: 10px;
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
+}
+
+.main-nav a {
+  color: #0d47a1; 
+  text-decoration: none;
+  font-size: 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  margin: 0 10px; 
+  white-space: nowrap; 
+}
+
+.main-nav a:hover {
+  background-color: #575757; 
+  border-radius: 4px;
+}
+
+.main-nav a.active {
+  background-color: #90caf9; 
+  border-radius: 4px;
+}
+
+.user-div {
+  margin: 0 10px; 
+  display: flex;
+  align-items: center;
+  color: #0d47a1; 
+  white-space: nowrap; 
+}
+
+.logout-button {
+  color: #ffffff; /* צבע טקסט לבן */
+  background-color: #1976d2; /* צבע כפתור */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #1565c0; 
+}
+
+
+.logo {
+  max-width: 100px; 
+  height: auto; 
+  max-height: 100px; 
+  margin: 0 auto; 
+}
+
+
+button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--text-md);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border-radius: 4px;
+}
+

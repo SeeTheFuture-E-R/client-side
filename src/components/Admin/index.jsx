@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import SingleBook from "./single";
 import AddBook from "./AddBook";
 import Uploader from "../Uploader";
-import "./Books.css"
+//import "./Books.css"
 function Books(props) {
     const [books, setBooks] = useState([])
     const [file, setFile] = useState()

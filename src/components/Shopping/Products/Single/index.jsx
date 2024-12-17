@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-import './product.css'
+//import './product.css'
 const SingleProduct = ({ product , setCount}) => {
     const theme = useTheme();
 

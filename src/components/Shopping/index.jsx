@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Products from "./Products/index"
 import Categories from "./Categories";
 import Cart from "./Cart/Cart";
-import "./Shopping.css"
+//import "./Shopping.css"
 
 function Shopping(props) {
 

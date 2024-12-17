@@ -1,15 +1,15 @@
 import SimpaleMap from '../Books/single/simpaleMap'
-import "./style.css"
+//import "./style.css"
 function About(props) {
     return (
-        <div className="about-wrapper">
-    <h2>אודותינו</h2>
-    <div className="about-content">
-        <p className="about-intro">
-            "SEE-THE-FUTURE" נולדה מתוך חזון להפוך את העולם למקום נגיש יותר, צעד אחר צעד
-        </p>
-        
-        <div className="about-story">
+    <div>
+        <div className="about">
+            <h2>אודותינו</h2>
+            <p>
+                "SEE-THE-FUTURE" נולדה מתוך חזון להפוך את העולם למקום נגיש יותר, צעד אחר צעד
+            </p>
+        </div>
+        <div className="about">
             <h3>הסיפור שלנו</h3>
             <p>
                 התחלנו את דרכנו כפרויקט גמר במסלול מדעי המחשב, עם התמחות בבינה מלאכותית. 
@@ -17,7 +17,7 @@ function About(props) {
             </p>
         </div>
 
-        <div className="about-mission">
+        <div className="about">
             <h3>המשימה שלנו</h3>
             <p>
                 אנו מאמינים שטכנולוגיה צריכה לשרת את האנושות ולחבר בין אנשים. 
@@ -26,7 +26,7 @@ function About(props) {
             </p>
         </div>
 
-        <div className="about-features">
+        <div className="about">
             <h3>הייחודיות שלנו</h3>
             <ul>
                 <li>זיהוי פנים מתקדם בזמן אמת</li>
@@ -37,7 +37,7 @@ function About(props) {
             </ul>
         </div>
 
-        <div className="about-vision">
+        <div className="about">
             <h3>החזון שלנו</h3>
             <p>
                 אנו שואפים ליצור עולם שבו טכנולוגיה מגשרת על פערים חברתיים ומאפשרת לכל אדם 
@@ -45,7 +45,7 @@ function About(props) {
                 לקראת חברה מכילה ומחבקת יותר.
             </p>
         </div>
-        <div className="about-vision">
+        <div className="about">
             <h3>מיקומינו</h3>
             <div className="map-container" style={{
                     width: "900px",
@@ -55,8 +55,6 @@ function About(props) {
                     <SimpaleMap address={"מלכי ישראל 57, ירושלים"} />
                 </div>
         </div>
-        
-    </div>
 </div>
     );
 }

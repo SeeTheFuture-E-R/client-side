@@ -5,7 +5,7 @@ import Development from './development'
 import Friend from "./friends";
 import { useState } from "react";
 import axios from 'axios';
-import "./style.css"
+//import "./style.css"
 
 function Friends() {
     const [development, setDevelopment]=useState(false)
@@ -20,17 +20,13 @@ function Friends() {
         startTrial()
         setDevelopment(true)
     }
-    
-{/* <div className="component-wrapper">
-                      <MailFriend />
-                  </div> */}
 
     return (
       <div>
-          {!development ? (     
-        <div className="main-container">
-        <div className="top-section-container">
-            <div className="component-wrapper">
+        {!development ? (     
+        <div>
+        <div >
+            <div className="about">
                 <h2>הפיתוח שלנו - טכנולוגיה שמחברת אנשים</h2>
                 <p>
                     הפיתוח שלנו הוא מערכת חדשנית המיועדת לסייע לאנשים עם לקות ראייה לזהות את היקרים להם בסביבתם הקרובה. 
@@ -42,7 +38,7 @@ function Friends() {
                 </p>
             </div>
     
-            <div className="component-wrapper">
+            <div className="about">
                 <h2>איך זה עובד?</h2>
                 <ul>
                     <li>המשתמש מזמין את חבריו ובני משפחתו להעלות את תמונותיהם למערכת</li>

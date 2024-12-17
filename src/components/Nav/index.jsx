@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import Error from '../Error';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import './nav.css'; // ייבוא קובץ ה-CSS
+//import './nav.css'; // ייבוא קובץ ה-CSS
 function Nav() {
   let { currentUser, setCurrentUser, setToken } = useContext(AuthContext);
 

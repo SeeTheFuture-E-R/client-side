@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import Webcam from 'react-webcam';
 import axios from 'axios';
 
-import './style.css';
+//import './style.css';
 
 const videoConstraints = {
   width: 1280,
@@ -76,18 +76,16 @@ function Development() {
   };
 
   return (
-    <div className="container">
+    <div className="about">
       {picture !== '' ? (
-        <button
+        <button className="start-button"
           onClick={() => setPicture('')}
-          className="btn btn-primary"
         >
           הצג מצב מצלמה
         </button>
       ) : (
-        <button
+        <button className="start-button"
           onClick={capture}
-          className="btn btn-danger"
         >
           שלח תמונה
         </button>

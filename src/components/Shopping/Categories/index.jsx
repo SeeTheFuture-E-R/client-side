@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import './category.css'; // ייבוא קובץ ה-CSS
+//import './category.css'; // ייבוא קובץ ה-CSS
 
 function Categories() {
   const navigate = useNavigate();

@@ -30,7 +30,7 @@
   color: #e41b79;
   font-size: 120px;
   cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 100px;
 }
 
 .add-icon:hover {
@@ -247,3 +247,4 @@ p {
       font-size: 1.5rem;
   }
 }
+

@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/authContext'
 import { Dialog } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLocationDot} from "@fortawesome/free-solid-svg-icons"
-import "../Books.css"
+//import "../Books.css"
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 function SingleBook({ book, area }) {
         let { setCurrentUser, currentUser, token } = useContext(AuthContext);
