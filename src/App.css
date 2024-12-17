@@ -65,7 +65,6 @@
    --spacing-huge: 90px;
    --spacing-xl: 40px;
  
-   --accessibility-button-width: 150px;
    --accessibility-icon-size: 40px;
 }
 
@@ -330,58 +329,6 @@ p {
       font-size: 1.5rem;
   }
 }
-
-/* accessibilitySidebar.css */
-.accessibility-sidebar {
-  position: fixed;
-  bottom: 20px; /* מרחק מהתחתית של המסך */
-  left: 0px; /* צמוד לדופן השמאלית של המסך */
-  z-index: 1000;
-}
-
-.accessibility-toggle-button {
-  background-color: #1976d2; /* צבע כפתור פתיחה */
-  color: #ffffff; /* צבע אייקון */
-  border-radius: 50%;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.accessibility-toggle-button:hover {
-  background-color: #1565c0; /* צבע כפתור פתיחה בעת מעבר עכבר */
-}
-
-.accessibility-popover {
-  padding: 10px;
-}
-
-.accessibility-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* רווח בין הכפתורים */
-}
-
-.accessibility-button {
-  background-color: #333; /* צבע רקע של הכפתור */
-  color: #ffffff; /* צבע טקסט של האייקון */
-  border-radius: 4px; /* פינות מעוגלות */
-  padding: 10px;
-  width: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background-color 0.3s ease;
-}
-
-.accessibility-button:hover {
-  background-color: #575757; /* צבע רקע של הכפתור בעת מעבר עכבר */
-}
-
-.accessibility-button .MuiTypography-caption {
-  margin-left: 10px; /* רווח בין האייקון לטקסט */
-}
-
 
 .ltr{
   direction: ltr;
