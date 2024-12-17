@@ -4,6 +4,9 @@ import { useState, useContext } from "react";
 import { Button, Dialog, DialogActions, Box, TextField } from '@mui/material';
 import { AuthContext } from "../context/authContext"
 import Uploader from '../Uploader'
+import Icon from '@mui/material/Icon';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {fasolid, faCirclePlus ,faLocationDot} from "@fortawesome/free-solid-svg-icons"
 //   return (
 //     <Box
 //       component="form"
@@ -74,7 +77,11 @@ function AddBook({ books, setBooks }) {
     return (
         <>
             <div>
-                <Button variant="outlined" onClick={handleClickOpen}>הוספת ספר</Button>
+                <FontAwesomeIcon 
+                onClick={handleClickOpen} 
+                icon={faCirclePlus} 
+                className="add-icon"
+            />
                 <Dialog
                     open={open}
                     aria-labelledby="alert-dialog-title"

@@ -109,3 +109,35 @@
         margin: 0 auto;
     }
 }
+
+.search-input {
+    width: 300px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    direction: rtl;
+  }
+  
+  .search-input:focus {
+    border-color: #270375;
+    box-shadow: 0 0 8px rgba(76, 134, 175, 0.3);
+  }
+  
+  .search-input::placeholder {
+    color: #888;
+  }
+  
+  .search-input:hover {
+    border-color: #999;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    width: 100%;
+  }
