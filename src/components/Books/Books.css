@@ -141,3 +141,59 @@
     margin: 20px 0;
     width: 100%;
   }
+
+.map-dialog-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.map-container {
+    height: 400px;
+    width: 100%;
+}
+
+.map-dialog-header .MuiIconButton-root:hover {
+    background-color: rgb(223, 27, 27); /* Change background to a more vibrant red with transparency */
+    color: white ; /* Optional: Change icon color to white */
+}
+
+.book-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ממרכז את התוכן אנכית */
+    align-items: center; /* ממרכז את התוכן אופקית */
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.location-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+    width: 50px;
+    height: 50px;
+    background-color: #3498db; /* צבע רקע */
+    color: white; /* צבע אייקון */
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.location-button:hover {
+    background-color: #1d70a8; /* צבע רקע בעת מעבר עכבר */
+}
+
+.location-button:active {
+    transform: scale(0.95); /* אפקט לחיצה */
+}
