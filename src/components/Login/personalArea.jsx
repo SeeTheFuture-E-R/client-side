@@ -79,32 +79,39 @@ function PersonalArea(props) {
       console.log(err)
     }
   }
-const getPurchaseDtailes=async(x)=>{
-  console.log(x)
-  let config = {
-    headers: {
-      'Authorization': 'Bearer ' + token
+  const getPurchaseDtailes=async(x)=>{
+    console.log(x)
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
     }
+    const res=await axios.get(`http://localhost:9660/purchase_details/${x.purchaseId}`, config)
+    console.log(res)
   }
-const res=await axios.get(`http://localhost:9660/users/${x.purchaseId}`, config)
-console.log(res)
-}
-  // useEffect=()=>{
-  //   {getDetails()}
-  // }
+
   return (<>
     <br />
+    <h3>פרטים אישיים</h3>
     <TextField id="firstName" defaultValue={currentUser.firstName} label="שם פרטי" type="text" InputLabelProps={{ shrink: true, }} /><br/><br/>
     <TextField id="lastName" defaultValue={currentUser.lastName} label="שם משפחה" type="text" InputLabelProps={{ shrink: true, }} /><br/><br/>
     <TextField id="email" defaultValue={currentUser.email} label="email" type="text" InputLabelProps={{ shrink: true, }} /><br/><br/>
     <TextField id="outlined-number" defaultValue={currentUser.phone} label="Number" type="text" InputLabelProps={{ shrink: true, }} /><br/>
     <Button varient="outline" onClick={changeDetilas}>לעידכון</Button>
-    <h3>ספרים</h3>
-    {currentUser.books.map((x) => <SingleBook book={x} area={true}></SingleBook>)}
-    <h3>הזמנות</h3>
-    {currentUser.purchases.map((x, i) => <div key={i}>קוד הזמנה: {x.purchaseId}<br /><Button key={i} onClick={(e) => { getPurchaseDtailes(e.target.value);console.log(e)}}>צפה בפרטים</Button><br />
+   <h3>ספרים</h3>
+    <div className="books-grid" role="list" aria-label="רשימת ספרים">
+      {currentUser.books.map((x) => <SingleBook book={x} area={true}></SingleBook>)}
     </div>
+    <h3>הזמנות</h3>
+    {currentUser.purchases.map((x, i) => <div key={i} className="book-wrapper">
+      קוד הזמנה: {x.purchaseId}<br />
+      <Button key={i} onClick={(e) => { getPurchaseDtailes(e.target.value);console.log(e)}}>צפה בפרטים</Button><br />
+    </div>
+    
     ) }
+    <br/>
+    <br/>
+    <br/>
       </>)
     };
     export default PersonalArea;

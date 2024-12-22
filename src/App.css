@@ -150,7 +150,6 @@ body.high-contrast * {
 body.high-contrast {
   /* קישורים */
   a, .nav-link, .link {
-      color: yellow !important;
       text-decoration: underline !important;
   }
 
@@ -201,7 +200,6 @@ body.high-contrast {
 
   /* מצבי hover */
   a:hover, .nav-link:hover {
-      color: #ffff00 !important;
       text-decoration: none !important;
   }
 
@@ -704,20 +702,21 @@ html {
 }
 
 .main-nav a:hover {
-  background-color: #575757; 
+  background-color: #2f04af; 
   border-radius: 4px;
 }
 
 .main-nav a.active {
-  background-color: #90caf9; 
+  background-color: #032745; 
   border-radius: 4px;
+  color:#ddd
 }
 
 .user-div {
   margin: 0 10px; 
   display: flex;
   align-items: center;
-  color: #0d47a1; 
+  color: #03204b; 
   white-space: nowrap; 
 }
 
@@ -841,10 +840,6 @@ button:focus {
   width: 100%;
 }
 
-.input-fields {
-  margin-top: 25px;
-}
-
 .container {
   display: -webkit-box;
   display: -webkit-flex;
@@ -873,16 +868,6 @@ button:focus {
   -ms-flex-flow: column;
   flex-flow: column;
   z-index: 5;
-}
-
-.welcome {
-  font-weight: 200;
-  margin-top: 75px;
-  text-align: center;
-  font-size: 40px;
-  font-size: 2.5rem;
-  letter-spacing: 0px;
-  letter-spacing: 0.05rem;
 }
 
 .subtitle {
@@ -1035,7 +1020,7 @@ button:focus {
 
 .product-title {
   font-size: var(--title-size);
-  color: #2c3e50;
+  color: #031e3a;
   margin-bottom: 1.5rem;
   border-bottom: 3px solid #3498db;
   padding-bottom: 0.8rem;
@@ -1050,7 +1035,7 @@ button:focus {
 
 .product-price {
   font-size: var(--price-size);
-  color: #2c3e50;
+  color: #092e52;
   font-weight: bold;
   padding: 0.5rem 0;
 }
@@ -1070,7 +1055,7 @@ button:focus {
 .product-description {
   font-size: var(--text-size);
   line-height: 1.8;
-  color: #34495e;
+  color: #052a50;
   margin: 1rem 0;
 }
 
@@ -1103,7 +1088,7 @@ button:focus {
 }
 
 .add-button:hover {
-  background-color: #2980b9;
+  background-color: #186293;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
@@ -1329,7 +1314,7 @@ body.large-font .product-info * {
 }
 
 .main-nav a.active {
-  background-color: #1976d2; /* צבע רקע עבור פריט פעיל */
+  background-color: #143c64; /* צבע רקע עבור פריט פעיל */
   color: #fff; /* צבע טקסט לבן עבור פריט פעיל */
   border-radius: 4px;
 }
@@ -1719,11 +1704,6 @@ strong {
   border-radius: 4px;
 }
 
-.main-nav a.active {
-  background-color: #90caf9; 
-  border-radius: 4px;
-}
-
 .user-div {
   margin: 0 10px; 
   display: flex;
@@ -1761,4 +1741,59 @@ button {
   color: var(--text-light);
   border-radius: 4px;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Adds space between elements */
+  padding: 20px;
+  max-width: 400px; /* Restricts the container's width */
+  margin: 0 auto; /* Centers the container */
+  border: 1px solid #ccc; /* Optional: Adds a border */
+  border-radius: 10px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.welcome {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #333; /* Dark text color */
+  direction: rtl; /* Ensures Hebrew alignment */
+}
+
+.input-fields {
+  width: 100%; /* Takes full width of the container */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between input fields */
+}
+
+.spacing {
+  font-size: 14px;
+  color: #007bff; /* Optional: Blue text color for the link */
+  cursor: pointer;
+  text-align: right; /* Aligns the text to the right */
+  direction: rtl; /* Hebrew text alignment */
+}
+
+button.ghost-round {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px; /* Rounded corners */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.ghost-round:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
 

@@ -6,7 +6,6 @@ import { useContext } from "react"
 import { AuthContext } from '../context/authContext'
 import TextField from '@mui/material/TextField';
 import PersonalArea from "./personalArea";
-//import './Login.css'
 
 
 function Login(props) {
@@ -43,7 +42,7 @@ function Login(props) {
                         <div class='welcome'>להיכנס לחשבונך</div>
                             <div class='input-fields'>
                                 <TextField label='*תעודת זהות' onChange={(e) => setid(e.target.value)} />
-                                <Password class='password' setPassword={setPassword} ></Password>
+                                <Password setPassword={setPassword} ></Password>
                                 <br/>
                             </div>
                             <div class='spacing'>שכחת את הסיסמא?</div>

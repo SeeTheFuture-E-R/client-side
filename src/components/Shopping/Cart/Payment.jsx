@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import { TextField } from "@mui/material";
+import { TextField} from "@mui/material";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CardMedia from '@mui/material/CardMedia';
 import axios from "axios";
-
+import { DateField } from '@mui/x-date-pickers/DateField';
 import { useContext } from "react"
 import { AuthContext } from '../../context/authContext'
 
@@ -26,7 +26,7 @@ function Payment({ setCartOpen, handleClose, calcSum, setCount }) {
   const [expiryDate, setExpiryDate] = useState("")
 
   const toPayment = async () => {
-    if(!creditNumber||!idOfCard ||!CVV ||!expiryDate){
+    if(!creditNumber||!idOfCard ||!CVV){
       setError(true)
       return
     }
@@ -54,7 +54,7 @@ function Payment({ setCartOpen, handleClose, calcSum, setCount }) {
     }
     handleClose()
     setCartOpen(false)
-    alert("Oreder added successfully") 
+    alert("Oreder added successfully")
     setCount(0)
   }
   const getProductsFromStorage = () => {
@@ -109,7 +109,8 @@ function Payment({ setCartOpen, handleClose, calcSum, setCount }) {
       CVV<br />
       <TextField error={error && !CVV} required style={{ margin: "8px" }} onChange={(e) => { setCVV(e.target.value) }}></TextField><br />
       תאריך<br />
-      <TextField error={error && !expiryDate} required style={{ margin: "8px" }} onChange={(e) => { setExpiryDate(e.target.value) }}></TextField><br />
+        <TextField error={error && !expiryDate} required style={{ margin: "8px" }} onChange={(e) => { setExpiryDate(e.target.value) }}/>
+      <br />
       <Button onClick={() => setCartOpen(true)}>לחזור </Button>
       <Button onClick={()=>{toPayment(); handleClose()}}>לסיום</Button>
     </div>
