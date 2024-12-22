@@ -19,34 +19,14 @@ function PersonalArea(props) {
   let { setCurrentUser, currentUser, token } = useContext(AuthContext);
   const arr = [2, 4, 5]
   const changeDetilas = async () => {
-    // const useStyles = makeStyles((theme) => ({
-    //   root: {
-    //     width: '100%',
-    //   },
-    //   heading: {
-    //     fontSize: theme.typography.pxToRem(15),
-    //     fontWeight: theme.typography.fontWeightRegular,
-    //   },
-    // }));
     const user = {
       id: currentUser.id,
       userId: currentUser.userId,
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
-      //     // phone: currentUser.phone,
       mail: document.getElementById("email").value,
-      //     // birth_year: birth_year,
-      //     // family_status: family_status,
-      //     // num_of_children: num_of_children,
-      //     //     blind_card: blind_card,
-      //     //     handicap_card: handicap_card,
-      //     //     identity_card: identity_card,
-      //     //     handicap_precentage: handicap_precentage
     }
 
-
-
-    // // e.preventDefault();
     let config = {
       headers: {
         'Authorization': 'Bearer ' + token
@@ -73,22 +53,29 @@ function PersonalArea(props) {
         }
       }
       const res = await axios.get(`http://localhost:9660/users/${currentUser.id}`, config)
+      setCurrentUser(res.data)
     }
     catch (err) {
-
       console.log(err)
     }
   }
-const getPurchaseDtailes=async(x)=>{
-  console.log(x)
-  let config = {
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
+  const getPurchaseDtailes=async(x)=>{
+      console.log(x)
+      let config = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      }
+      const res=await axios.get(`http://localhost:9660/purchase_details/${x.purchaseId}`, config)
+      console.log(res.data)
+      const object = res.data.find((i)=>i.id == x.purchaseId)
+      
+      alert('פרטי ההזמנה: '+'\n' +
+        'מספר הזמנה: '+ object.id + '\n' +
+        'תאריך: '+object.purchase.date+'\n' + 
+        'מחיר סופי: '+object.price+'\n'
+      )
   }
-const res=await axios.get(`http://localhost:9660/users/${x.purchaseId}`, config)
-console.log(res)
-}
   // useEffect=()=>{
   //   {getDetails()}
   // }
@@ -102,7 +89,7 @@ console.log(res)
     <h3>ספרים</h3>
     {currentUser.books.map((x) => <SingleBook book={x} area={true}></SingleBook>)}
     <h3>הזמנות</h3>
-    {currentUser.purchases.map((x, i) => <div key={i}>קוד הזמנה: {x.purchaseId}<br /><Button key={i} onClick={(e) => { getPurchaseDtailes(e.target.value);console.log(e)}}>צפה בפרטים</Button><br />
+    {currentUser.purchases.map((x, i) => <div key={i}>קוד הזמנה: {x.purchaseId}<br /><Button key={i} onClick={(e) => { getPurchaseDtailes(x);console.log(e)}}>צפה בפרטים</Button><br />
     </div>
     ) }
       </>)
