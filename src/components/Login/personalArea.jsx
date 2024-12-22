@@ -19,34 +19,14 @@ function PersonalArea(props) {
   let { setCurrentUser, currentUser, token } = useContext(AuthContext);
   const arr = [2, 4, 5]
   const changeDetilas = async () => {
-    // const useStyles = makeStyles((theme) => ({
-    //   root: {
-    //     width: '100%',
-    //   },
-    //   heading: {
-    //     fontSize: theme.typography.pxToRem(15),
-    //     fontWeight: theme.typography.fontWeightRegular,
-    //   },
-    // }));
     const user = {
       id: currentUser.id,
       userId: currentUser.userId,
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
-      //     // phone: currentUser.phone,
       mail: document.getElementById("email").value,
-      //     // birth_year: birth_year,
-      //     // family_status: family_status,
-      //     // num_of_children: num_of_children,
-      //     //     blind_card: blind_card,
-      //     //     handicap_card: handicap_card,
-      //     //     identity_card: identity_card,
-      //     //     handicap_precentage: handicap_precentage
     }
 
-
-
-    // // e.preventDefault();
     let config = {
       headers: {
         'Authorization': 'Bearer ' + token
@@ -73,23 +53,32 @@ function PersonalArea(props) {
         }
       }
       const res = await axios.get(`http://localhost:9660/users/${currentUser.id}`, config)
+      setCurrentUser(res.data)
     }
     catch (err) {
-
       console.log(err)
     }
   }
   const getPurchaseDtailes=async(x)=>{
-    console.log(x)
-    let config = {
-      headers: {
-        'Authorization': 'Bearer ' + token
+      console.log(x)
+      let config = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
       }
-    }
-    const res=await axios.get(`http://localhost:9660/purchase_details/${x.purchaseId}`, config)
-    console.log(res)
+      const res=await axios.get(`http://localhost:9660/purchase_details/${x.purchaseId}`, config)
+      console.log(res.data)
+      const object = res.data.find((i)=>i.id == x.purchaseId)
+      
+      alert('פרטי ההזמנה: '+'\n' +
+        'מספר הזמנה: '+ object.id + '\n' +
+        'תאריך: '+object.purchase.date+'\n' + 
+        'מחיר סופי: '+object.price+'\n'
+      )
   }
-
+  // useEffect=()=>{
+  //   {getDetails()}
+  // }
   return (<>
     <br />
     <h3>פרטים אישיים</h3>

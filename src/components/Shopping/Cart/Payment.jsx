@@ -18,12 +18,28 @@ import { AuthContext } from '../../context/authContext'
 
 
 function Payment({ setCartOpen, handleClose, calcSum, setCount }) {
-  let { setCurrentUser, setToken, currentUser, token } = useContext(AuthContext);
+  let { setCurrentUser, setToken, currentUser, token} = useContext(AuthContext);
   // const [open, setOpen] = React.useState(false);
   const [creditNumber, setcreditNumber] = useState("")
   const [idOfCard, setIdOfCard] = useState("")
   const [CVV, setCVV] = useState("")
   const [expiryDate, setExpiryDate] = useState("")
+
+  const getUserDetails = async () => {
+    console.log('dsfgfnhg' + currentUser.id)
+    try {
+      let config = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      }
+      const res = await axios.get(`http://localhost:9660/users/${currentUser.id}`, config)
+      localStorage.setItem("user", JSON.stringify(res.data));
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
 
   const toPayment = async () => {
     if(!creditNumber||!idOfCard ||!CVV){
@@ -54,7 +70,9 @@ function Payment({ setCartOpen, handleClose, calcSum, setCount }) {
     }
     handleClose()
     setCartOpen(false)
-    alert("Oreder added successfully")
+    localStorage.removeItem('cart')
+    alert("Oreder added successfully") 
+    await getUserDetails()
     setCount(0)
   }
   const getProductsFromStorage = () => {
