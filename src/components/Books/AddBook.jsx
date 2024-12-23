@@ -67,6 +67,7 @@ function AddBook({ books, setBooks }) {
             newUser.books = [...currentUser.books, res.data]
             console.log(newUser.books)
             setCurrentUser(newUser);
+            localStorage.setItem("user", JSON.stringify(newUser));
             setBooks([...books, res.data])
         }
         catch (err) {

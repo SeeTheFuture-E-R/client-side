@@ -23,7 +23,9 @@ function Books(props) {
 
     }
 
-
+    useEffect(()=>{
+        setFilteredBooks(books)
+    },[books])
 
     useEffect(() => {
         getAllBooks()

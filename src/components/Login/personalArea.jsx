@@ -94,7 +94,7 @@ function PersonalArea(props) {
     <h3>הזמנות</h3>
     {currentUser.purchases.map((x, i) => <div key={i} className="book-wrapper">
       קוד הזמנה: {x.purchaseId}<br />
-      <Button key={i} onClick={(e) => { getPurchaseDtailes(e.target.value);console.log(e)}}>צפה בפרטים</Button><br />
+      <Button key={i} onClick={(e) => { getPurchaseDtailes(x);console.log(e)}}>צפה בפרטים</Button><br />
     </div>
     
     ) }

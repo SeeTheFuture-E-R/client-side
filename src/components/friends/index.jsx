@@ -1,25 +1,58 @@
 import { EventSeatRounded } from "@mui/icons-material";
+import { useContext, useEffect, useState } from "react"
+import { AuthContext } from '../context/authContext';
 import MailFriend from "./MailToFriends";
 import { Link } from "react-router-dom"
 import Development from './development' 
 import Friend from "./friends";
-import { useState } from "react";
 import axios from 'axios';
 //import "./style.css"
 
-function Friends() {
-    const [development, setDevelopment]=useState(false)
-    
-  const startTrial = async () => {
-    const res = await axios.post('http://localhost:8000/02');
-    console.log(res.data);
-  };
+export const productId=1000
 
-    function start(){
-      window.open(window.location.href);
-        startTrial()
-        setDevelopment(true)
+function Friends() {
+    let { currentUser, token } = useContext(AuthContext);
+    const [development, setDevelopment]=useState(false)
+
+    const updateExpirence=async()=>{
+        let config = {
+            headers: {'Authorization': 'Bearer ' + token}
+        }
+
+        const Experiences = await axios.get(`http://localhost:9660/experiences/${currentUser?.id}`, config)
+        const expProd = Experiences.data.find(e => e.productId === productId); 
+
+        if (expProd && expProd.expireDate < new Date()) {
+            return false;
+        }
+        if(!expProd){
+            let experience= {
+                userId: currentUser?.id,
+                productId:productId
+            }        
+            const startExperience = await axios.post('http://localhost:9660/experiences', experience, config)
+            console.log(startExperience)
+        }
+       return true
     }
+
+    const startTrial = async () => {
+        const res = await axios.post('http://localhost:8000/02');
+        console.log(res.data);
+        return res;
+      };
+    
+      const start = async() => {
+        const allow = await updateExpirence()
+        if(!allow){
+            alert("הנסיון שלך יסתים"+'\n' +
+                "יש לרכוש את המוצר"
+            )
+        }
+        startTrial();
+        setDevelopment(true); 
+        window.open(window.location.href);
+      };
 
     return (
       <div>

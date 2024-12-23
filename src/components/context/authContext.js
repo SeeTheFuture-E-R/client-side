@@ -91,6 +91,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    console.log(currentUser)
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
 

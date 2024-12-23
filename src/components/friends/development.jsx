@@ -1,6 +1,8 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, {useContext, useState, useRef, useCallback } from 'react';
 import Webcam from 'react-webcam';
 import axios from 'axios';
+import {productId} from './index';
+import { AuthContext } from '../context/authContext';
 
 //import './style.css';
 
@@ -11,6 +13,7 @@ const videoConstraints = {
 };
 
 function Development() {
+  let { currentUser, token } = useContext(AuthContext);
   const [picture, setPicture] = useState('');
   const [result, setResult] = useState('');
   const webcamRef = useRef(null);
@@ -20,19 +23,35 @@ function Development() {
     setFile(event.target.files[0]);
   };
 
-  const startTrial = async () => {
-    const res = await axios.post('http://localhost:8000/02');
-    console.log(res.data);
-  };
-
   const capture = useCallback(async () => {
     const pictureSrc = webcamRef.current.getScreenshot();
     setPicture(pictureSrc);
     await handleUpload(pictureSrc);
   }, [webcamRef]);
 
+  const checkAllowEx =async()=>{
+      let config = {
+        headers: {'Authorization': 'Bearer ' + token}
+    }
+
+    const Experiences = await axios.get(`http://localhost:9660/experiences/${currentUser?.id}`, config)
+    const expProd = Experiences.data.find(e => e.productId === productId); 
+
+    if (expProd && expProd.expireDate < new Date()) {
+        return false;
+    }
+    return true
+  }
+
   const handleUpload = async (base64Image) => {
     try {
+      const checkAllow = checkAllowEx()
+        if(!checkAllow){
+          alert("הנסיון שלך יסתים"+'\n' +
+            "יש לרכוש את המוצר"
+        )
+        return;
+      }
       const blob = base64ToBlob(base64Image);
       const formData = new FormData();
       formData.append('file', blob, 'capture.jpg');
